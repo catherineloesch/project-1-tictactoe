@@ -16,13 +16,26 @@
         //select new current player
 
 
-let xCurrentSymbol = true;
+let xCurrentSymbol;
 const xMove = 'x';
 const oMove = 'o';
 
 //Selecting all cells in the grid + save to a variable
 const allCells = document.querySelectorAll('.cell') // -> NodeList(9)
+//Selecting the whole grid + save to a variable
+const grid = document.querySelector('.grid')
 
+initialiseGame()
+
+function initialiseGame() {
+    //attaching an eventListener to each cell so we know when player clicks on it
+    xCurrentSymbol = true;
+    allCells.forEach((cell) => {
+    cell.addEventListener('click', handleUserInput,  {once: true}) //same cell can only be clicked once
+    activateHoverSymbol()
+    
+})
+}
 
 //attaching an eventListener to each cell so we know when player clicks on it
 allCells.forEach((cell) => {
@@ -39,6 +52,7 @@ function handleUserInput(e) {
     // display move on grid
     displayNewMove(cell, currentSymbol)
     switchTurns()
+    activateHoverSymbol()
         // check if there is a winner or if board is full
         // if there is no winner and no draw
         // select new current player
@@ -53,4 +67,14 @@ function displayNewMove(cell, currentSymbol) {
 // if current player uses o, we switch to x
 function switchTurns() {
     xCurrentSymbol = !xCurrentSymbol
+}
+
+function activateHoverSymbol() {
+    grid.classList.remove(xMove)
+    grid.classList.remove(oMove)
+    if (xCurrentSymbol) {
+        grid.classList.add(xMove)
+    } else {
+        grid.classList.add(oMove)
+    }
 }
