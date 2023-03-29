@@ -2,8 +2,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --cell-size: 125px;
+    /* making the symbol slightly smaller than the grid cell */
+    --mark-size: calc(var(--cell-size) * 0.9)
+}
+
 body {
     margin: 0;
+    background-color: black;
+    color: white;
 }
 
 .grid {
@@ -12,15 +20,113 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
+    justify-items: center;
     grid-template-columns: repeat(3, auto);
 
 }
 
+
+
+
 .cell {
-    width: 100px;
-    height: 100px;
-    background-color: black;
-    border: 1px solid white;
+    /* width: 100px;
+    height: 100px; */
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 3px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
 
     
+}
+
+/* removing the outside border of the grid */
+.cell:nth-child(1), .cell:nth-child(2), .cell:nth-child(3) {
+    border-top: none;
+}
+.cell:nth-child(3n+3) {
+    border-right: none;   
+}
+.cell:nth-child(9), .cell:nth-child(8), .cell:nth-child(7) {
+    border-bottom: none;
+}
+.cell:nth-child(3n+1) {
+    border-left: none;   
+}
+
+
+/* X Symbol */
+.cell.x::before, 
+.cell.x::after, 
+.grid.x .cell:not(.x):not(.o):hover::before,
+.grid.x .cell:not(.x):not(.o):hover::after  {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    background-color: white;
+}
+
+.cell.x::before,
+.grid.x .cell:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.grid.x .cell:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+
+/*  o symbol */
+.cell.o::before,
+.cell.o::after,
+.grid.o .cell:not(.x):not(.o):hover::before,
+.grid.o .cell:not(.x):not(.o):hover::after  {
+    content: '';
+    position: absolute;
+    border-radius: 50%;    
+}
+
+/* larger circle i.e. "outside" circle */
+.cell.o::before,
+.grid.o .cell:not(.x):not(.o):hover::before {
+    width: calc(var(--mark-size)* 0.9);
+    height: calc(var(--mark-size)* 0.9);
+    
+}
+
+/* slightly smaller circle i.e. "inside" circle */
+.cell.x::before,
+.cell.x::after,
+.cell.o::before  {
+    background-color: white;
+}
+
+/* preview symbol when user hovers over empty cell */
+.grid.x .cell:not(.x):not(.o):hover::before,
+.grid.x .cell:not(.x):not(.o):hover::after,
+.grid.o .cell:not(.x):not(.o):hover::before {
+    background-color: rgb(47, 47, 47);
+}
+
+.cell.o::before,
+.grid.o .cell:not(.x):not(.o):hover::before {
+    width: calc(var(--mark-size)* 0.9);
+    height: calc(var(--mark-size)* 0.9);
+    
+}
+
+.cell.o::after,
+.grid.o .cell:not(.x):not(.o):hover::after {
+    width: calc(var(--mark-size)* 0.6);
+    height: calc(var(--mark-size)* 0.6);
+    background-color: black;
+}
+
+/* when cursor moves over cell that already has an x or o it changes to signal to user that cell is not available */
+.cell.x, .cell.o {
+    cursor: not-allowed;
 }
