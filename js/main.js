@@ -1,4 +1,14 @@
 console.log("Ready to play a round of Tic Tac Toe")
+class Tictactoe {
+    constructor() {
+        this.board = []
+    }
+
+    initialize () {
+
+    }
+}
+
 
 //when new game starts, make sure cells are all empty
 //determine current player
