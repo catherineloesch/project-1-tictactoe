@@ -21,9 +21,14 @@ const allCells = document.querySelectorAll('.cell') // -> NodeList(9)
 
 //attaching an eventListener to each cell so we know when user clicks on it
 allCells.forEach((cell) => {
-    cell.addEventListener('click', handleUserInput)
+    cell.addEventListener('click', handleUserInput,  {once: true}) //same cell can only be clicked once
 })
 
 function handleUserInput(e) {
     console.log(`${e.target.id} was clicked!`)
+        // if position is available, make the move
+        // display move on board
+        // check if there is a winner or if board is full
+        // if there is no winner and no draw
+        // select new current player
 }
