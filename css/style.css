@@ -1,9 +1,11 @@
+
+
 *, *::after, *::before {
     box-sizing: border-box;
 }
 
 :root {
-    --cell-size: 125px;
+    --cell-size: 150px;
     /* making the symbol slightly smaller than the grid cell */
     --mark-size: calc(var(--cell-size) * 0.9)
 }
@@ -12,6 +14,16 @@ body {
     margin: 0;
     background-color: black;
     color: white;
+    font-family: 'Comfortaa', futura;
+}
+
+
+
+h1 {
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid {
@@ -22,10 +34,7 @@ body {
     align-content: center;
     justify-items: center;
     grid-template-columns: repeat(3, auto);
-
 }
-
-
 
 
 .cell {
@@ -149,6 +158,7 @@ body {
 
 .message .btn {
     font-size: 2.5rem;
+    font-family: 'Comfortaa', futura;
     background-color: rgb(164, 197, 153);
     border: 3px solid rgb(40, 61, 35);
     color:  rgb(40, 61, 35);

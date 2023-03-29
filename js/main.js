@@ -1,15 +1,3 @@
-console.log("Ready to play a round of Tic Tac Toe")
-class Tictactoe {
-    constructor() {
-        this.board = []
-    }
-
-    initialize () {
-
-    }
-}
-
-
 //when new game starts, make sure cells are all empty
 //determine current player
 //making a move
@@ -26,3 +14,16 @@ class Tictactoe {
         //tell users it's a draw
     //if there is no winner and no draw
         //select new current player
+
+//Selecting all cells in the grid + save to a variable
+const allCells = document.querySelectorAll('.cell') // -> NodeList(9)
+
+
+//attaching an eventListener to each cell so we know when user clicks on it
+allCells.forEach((cell) => {
+    cell.addEventListener('click', handleUserInput)
+})
+
+function handleUserInput(e) {
+    console.log(`${e.target.id} was clicked!`)
+}
