@@ -143,6 +143,7 @@ h1 {
 .message {
     display: none;
     position: fixed;
+    text-align: center;
     top: 0;
     left: 0;
     right: 0;
@@ -164,6 +165,7 @@ h1 {
     color:  rgb(40, 61, 35);
     padding: .25em .5em;
     cursor: pointer;
+    margin-top: 1em;
 } 
 
 .message .btn:hover {

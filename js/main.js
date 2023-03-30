@@ -82,7 +82,7 @@ function handleUserInput(e) {
     if (checkForWin(currentSymbol)) {   //if one of the player won
         gameEnd(false)                  //the game ends
     } else if (checkForDraw()) {        //if there is a draw
-        endGame(true)                   //the game ends
+        gameEnd(true)                   //the game ends
     } else {                            //if no win or draw the game continues
         switchTurns()                   //and it's the other player's turn
         activateHoverSymbol()
@@ -118,20 +118,25 @@ function activateHoverSymbol() {
 function checkForWin(currentSymbol) {
     const result = winningCombinations.some((combo) => {
         return combo.every(index => {
-            return allCells[index].classList.contains(currentSymbol)
+            return Array.from(allCells)[index].classList.contains(currentSymbol) //need to turn html collection into array
         })
     })
     return result
 
 }
 
-function checkForDraw() {}
+function checkForDraw() { //returns true if every cell has either an x or an o
+    const result = Array.from(allCells).every(cell => { //need to turn html collection into array
+        return cell.classList.contains(xMove) || cell.classList.contains(oMove)
+    })
+    return result
+}
 
 function gameEnd(draw) {
     if (draw) {
-
+        winnerAnnouncement.innerHTML = 'Draw! <br> Neither player wins the game :('
     } else {
-        winnerAnnouncement.innerText = `${xCurrentSymbol ? "X" : "O"} wins the Game!`
+        winnerAnnouncement.innerHTML = `${xCurrentSymbol ? "X" : "O"} wins the Game!`
     }
     message.classList.add('display') //overlay appears only when class 'display' is added to message
 
