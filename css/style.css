@@ -180,12 +180,17 @@ svg {
     background-color: black;
 }
 
-.add-player-info, .btn{
+.btn.add-player-info, .btn-submit-player-input {
     margin: 0 2em;
     padding: 0;
     background-color: BLACK;
     border: none;
     cursor: pointer;
+}
+
+.add-player-info:hover, .submit-player-info:hover {
+    transform: scale(1.2);
+    color: rgb(164, 197, 153);
 }
 
 section.players {
@@ -201,6 +206,23 @@ section.players {
 
 }
 
+.player-input-form {
+    display: none;
+}
+
+.player-input-form.display {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#player-1 {
+    margin-bottom: 1rem;
+}
+
 input {
     background-color: black;
     border-radius: 8px;
@@ -209,6 +231,6 @@ input {
     border: 2px solid rgb(164, 197, 153);
     color: rgb(164, 197, 153);
     font-family: 'Comfortaa', futura, sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     outline: none;
 }

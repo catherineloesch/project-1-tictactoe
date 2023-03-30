@@ -162,28 +162,51 @@ function gameEnd(draw) {
 
 
 // adding player names
-//selecting button that adds player info
-
+//selecting buttons that let player enter info
 const addInfoButtons = document.querySelectorAll('.add-player-info.btn') //NodeList(2)
+const player1Form = document.querySelector('#player-1-input-form')
+const player2Form = document.querySelector('#player-2-input-form')
 
-addInfoButtons.forEach((btn) => {
+addInfoButtons.forEach(btn => {
     btn.addEventListener('click', displayInputFields, {once: true})
 })
 
 
 function displayInputFields(e) {
-    const name = document.createElement('input')
-    name.type = 'text';
-    name.class = 'player-name-input'
-    name.placeholder = 'enter name here'
-
-    // const enterBtn = document.querySelector('button')
-    // enterBtn.classList.add('btn')
-    // enterBtn.innerText = 'add name'
-    if (e.target.parentNode.parentNode.id === 'player-1-add-info-btn') {
-        document.querySelector('#player-1').appendChild(name)
+    // console.log(e.target.parentNode.parentNode.id)
+    if (e.target.parentNode.parentNode.id === 'player-1-add-info-btn' ||
+    e.target.parentNode.parentNode.id === 'player-1') {
+        player1Form.classList.add('display')
     } else {
-        document.querySelector('#player-2').appendChild(name)
+        player2Form.classList.add('display')
     }
+}
 
+
+const btnsPlayerSubmitInfo = document.querySelectorAll('.btn-submit-player-input') //NodeList(2)
+btnsPlayerSubmitInfo.forEach(btn => {
+    btn.addEventListener('click', handlePlayerInfoSubmit)
+})
+
+const nameInputPlayer1 = document.querySelector('#player-1-name-input')
+const nameInputPlayer2 = document.querySelector('#player-2-name-input')
+
+function handlePlayerInfoSubmit(e) {
+    e.preventDefault()
+    if (e.target.parentNode.parentNode.id === 'player-1-input-form' ||
+    e.target.parentNode.parentNode.id === 'btn-submit-player-1') {
+        player1.name = nameInputPlayer1.value
+        player1Form.classList.remove('display')
+        nameInputPlayer1.value = ''
+        console.log(`Player 1's name is ${player1.name}`)
+    } else {
+        player2.name = nameInputPlayer2.value
+        player2Form.classList.remove('display')
+        nameInputPlayer2.value = ''
+        console.log(`Player 2's name is ${player2.name}`)   
+    }
+    addInfoButtons.forEach((btn) => {
+        removeEventListener('click', displayInputFields, {once: true})
+        btn.addEventListener('click', displayInputFields, {once: true})
+    })
 }
