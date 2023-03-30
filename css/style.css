@@ -2,6 +2,7 @@
 
 *, *::after, *::before {
     box-sizing: border-box;
+    /* border: 1px solid grey; */
 }
 
 :root {
@@ -13,8 +14,11 @@
 body {
     margin: 0;
     width: 100%;
+    /* height: 100vh; */
     height: 100%;
     display: grid;
+    place-items: center;
+    place-content: center;
     background-color: black;
     color: white;
     font-family: 'Comfortaa', futura, sans-serif;
@@ -145,7 +149,7 @@ h1 {
     right: 0;
     bottom: 0;
     /* background-color: rgba(57, 84, 51, 0.9); */
-    background-color: rgba(59, 82, 53, 0.95);
+    background-color: rgba(59, 82, 53, 0.97);
     justify-content: center;
     align-items: center;
     color: gold;
@@ -182,7 +186,7 @@ svg {
     background-color: black;
 }
 
-.btn.add-player-info, .btn-submit-player-input, .btn-reset {
+.btn.add-player-info, .btn-submit-player-input, .btn-reset, .btn-clear-scores {
     margin: 0 2em;
     padding: 0;
     background-color: BLACK;
@@ -190,13 +194,13 @@ svg {
     cursor: pointer;
 }
 
-.add-player-info:hover, .submit-player-info:hover, .reset:hover {
+.add-player-info:hover, .submit-player-info:hover, .reset:hover, .clear-scores:hover {
     transform: scale(1.2);
     color: rgb(164, 197, 153);
     transition: 0.3s;
 }
 
-section.players {
+section.players, section.score-board {
     font-size: 2rem;
     text-align: center;
 }
@@ -255,3 +259,38 @@ input {
     margin-bottom: 1rem;
  
 }
+
+ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.player-scores, .scores-title, .score, .current-player-display {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-board-display {
+    margin: 1rem;
+}
+
+.scores-title {
+    display: block;
+}
+
+.scores-title {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-board, .players, .settings, .current-player-display {
+    border: 1px solid white;
+}
+
+
+
+/* playerOneWins.innerText = `${parseInt(playerOneWins.innerText)} + 1` */
