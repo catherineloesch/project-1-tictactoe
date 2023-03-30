@@ -49,18 +49,36 @@ const message = document.querySelector('.message')
 //winner announcement: text that appears inside message if either player wins the game
 const winnerAnnouncement = document.querySelector('.winner-announcement')
 
+//selecting button to start new game after game end
+const startNewGameBtn = document.querySelector('.message .btn')
+
 let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
+let gamesPlayed = 0
 
 initialiseGame()
 
+startNewGameBtn.addEventListener('click', initialiseGame)
+
 function initialiseGame() {
-    //attaching an eventListener to each cell so we know when player clicks on it
-    xCurrentSymbol = true;
-    allCells.forEach((cell) => {
-    cell.addEventListener('click', handleUserInput,  {once: true}) //same cell can only be clicked once
-    activateHoverSymbol()
     
-})
+    //the starting symbol should switch at every turn
+    if (gamesPlayed === 0) { //if this is the first game
+        xCurrentSymbol = true;          // x symbol starts
+    } else if (gamesPlayed%2 === 0) {//x symbol starts for even number or games
+        xCurrentSymbol = true
+    } else {
+        xCurrentSymbol = false      //o symbol starts for odd number of games
+    }
+    
+    allCells.forEach((cell) => {      //start with empty grid
+        cell.classList.remove(xMove) //remove all x symbols in grid
+        cell.classList.remove(oMove) //remove all o symbols in grid
+        //attaching an eventListener to each cell so we know when player clicks on it
+        cell.removeEventListener('click', handleUserInput) //remove previous eventListeners so there are no duplicates
+        cell.addEventListener('click', handleUserInput,  {once: true}) //same cell can only be clicked once
+        activateHoverSymbol()
+        message.classList.remove('display') //remove wind/draw overlay
+    })
 }
 
 //attaching an eventListener to each cell so we know when player clicks on it
@@ -139,5 +157,6 @@ function gameEnd(draw) {
         winnerAnnouncement.innerHTML = `${xCurrentSymbol ? "X" : "O"} wins the Game!`
     }
     message.classList.add('display') //overlay appears only when class 'display' is added to message
+    gamesPlayed++
 
 }
