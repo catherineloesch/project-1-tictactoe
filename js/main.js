@@ -159,3 +159,31 @@ function gameEnd(draw) {
     gamesPlayed++
 
 }
+
+
+// adding player names
+//selecting button that adds player info
+
+const addInfoButtons = document.querySelectorAll('.add-player-info.btn') //NodeList(2)
+
+addInfoButtons.forEach((btn) => {
+    btn.addEventListener('click', displayInputFields, {once: true})
+})
+
+
+function displayInputFields(e) {
+    const name = document.createElement('input')
+    name.type = 'text';
+    name.class = 'player-name-input'
+    name.placeholder = 'enter name here'
+
+    // const enterBtn = document.querySelector('button')
+    // enterBtn.classList.add('btn')
+    // enterBtn.innerText = 'add name'
+    if (e.target.parentNode.parentNode.id === 'player-1-add-info-btn') {
+        document.querySelector('#player-1').appendChild(name)
+    } else {
+        document.querySelector('#player-2').appendChild(name)
+    }
+
+}
