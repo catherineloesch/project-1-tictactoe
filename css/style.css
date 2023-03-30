@@ -17,7 +17,7 @@ body {
     display: grid;
     background-color: black;
     color: white;
-    font-family: 'Comfortaa', futura;
+    font-family: 'Comfortaa', futura, sans-serif;
 }
 
 h1 {
@@ -38,8 +38,6 @@ h1 {
 }
 
 .cell {
-    /* width: 100px;
-    height: 100px; */
     width: var(--cell-size);
     height: var(--cell-size);
     border: 3px solid white;
@@ -48,8 +46,6 @@ h1 {
     align-items: center;
     position: relative;
     cursor: pointer;
-
-    
 }
 
 /* removing the outside border of the grid */

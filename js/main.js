@@ -87,7 +87,6 @@ allCells.forEach((cell) => {
 })
 
 function handleUserInput(e) {
-    console.log(`${e.target.id} was clicked!`)
     const cell = e.target
     // make the move
     // if current player uses x, use CSS x class for x symbol
