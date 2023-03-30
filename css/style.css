@@ -169,10 +169,11 @@ h1 {
     background-color: rgb(40, 61, 35);
     border: 3px solid rgb(164, 197, 153);
     color: rgb(164, 197, 153);
+    transition: 0.4s;
 }
 
 .message.display {
-    display: flex;    
+    display: flex;
 }
 
 svg {
@@ -180,7 +181,7 @@ svg {
     background-color: black;
 }
 
-.btn.add-player-info, .btn-submit-player-input {
+.btn.add-player-info, .btn-submit-player-input, .btn-reset {
     margin: 0 2em;
     padding: 0;
     background-color: BLACK;
@@ -188,9 +189,10 @@ svg {
     cursor: pointer;
 }
 
-.add-player-info:hover, .submit-player-info:hover {
+.add-player-info:hover, .submit-player-info:hover, .reset:hover {
     transform: scale(1.2);
     color: rgb(164, 197, 153);
+    transition: 0.3s;
 }
 
 section.players {
@@ -198,7 +200,7 @@ section.players {
     text-align: center;
 }
 
-.player {
+.player, .settings {
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -215,6 +217,10 @@ section.players {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+::placeholder {
+    color: rgb(164, 197, 153);
+    opacity: 0.4;
 }
 
 

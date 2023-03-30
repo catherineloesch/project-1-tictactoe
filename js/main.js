@@ -37,6 +37,9 @@ let player2 = {
     wins: 0
 }
 
+let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
+let gamesPlayed = 0
+
 //Selecting all cells in the grid + save to a variable
 const allCells = document.querySelectorAll('.cell') // -> NodeList(9)
 
@@ -52,8 +55,6 @@ const winnerAnnouncement = document.querySelector('.winner-announcement')
 //selecting button to start new game after game end
 const startNewGameBtn = document.querySelector('.message .btn')
 
-let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
-let gamesPlayed = 0
 
 initialiseGame()
 
@@ -193,16 +194,21 @@ const nameInputPlayer2 = document.querySelector('#player-2-name-input')
 
 function handlePlayerInfoSubmit(e) {
     e.preventDefault()
+
     if (e.target.parentNode.parentNode.id === 'player-1-input-form' ||
     e.target.parentNode.parentNode.id === 'btn-submit-player-1') {
-        player1.name = nameInputPlayer1.value
+        if (nameInputPlayer1.value !== "") {
+            player1.name = nameInputPlayer1.value
+            nameInputPlayer1.value = ''   
+        }
         player1Form.classList.remove('display')
-        nameInputPlayer1.value = ''
         console.log(`Player 1's name is ${player1.name}`)
     } else {
-        player2.name = nameInputPlayer2.value
+        if (nameInputPlayer2.value !== "") {
+            player2.name = nameInputPlayer2.value
+            nameInputPlayer2.value = ''
+        }
         player2Form.classList.remove('display')
-        nameInputPlayer2.value = ''
         console.log(`Player 2's name is ${player2.name}`)   
     }
     addInfoButtons.forEach((btn) => {
@@ -210,3 +216,8 @@ function handlePlayerInfoSubmit(e) {
         btn.addEventListener('click', displayInputFields, {once: true})
     })
 }
+
+
+//Reset Game button clicked -> resets the game
+resetGameBtn = document.querySelector('.settings .btn-reset')
+resetGameBtn.addEventListener('click', initialiseGame)
