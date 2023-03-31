@@ -88,20 +88,27 @@ function startGame(){
     initialiseGame()
 }
 
+function yourTurn(name) {
+    const msg1 = `${name},`
+    const msg2 = `it's your turn!`
+    return msg1 + `<br>` + msg2
+}
+
 function initialiseGame() {
     //the starting symbol should switch at every turn
     if (gamesPlayed === 0) { //if this is the first game
         xCurrentSymbol = true;          // x symbol starts
-        playerTurnDisplay.innerText = `${player1.name}, it's your turn!`
+        playerTurnDisplay.innerHTML = yourTurn(player1.name)
+      
 
     } else if (gamesPlayed%2 === 0) {//x symbol starts for even number or games
         xCurrentSymbol = true
-        playerTurnDisplay.innerText = `${player1.name}, it's your turn!`
+        playerTurnDisplay.innerHTML = yourTurn(player1.name)
+        
 
     } else {
         xCurrentSymbol = false      //o symbol starts for odd number of games
-        playerTurnDisplay.innerText = `${player2.name}, it's your turn!`
-
+        playerTurnDisplay.innerHTML = yourTurn(player2.name)
     }
     
     allCells.forEach((cell) => {      //start with empty grid
@@ -156,7 +163,7 @@ function switchTurns() {
     } else {
         name = undefined
     }
-    playerTurnDisplay.innerText = `${name}, it's your turn!`
+    playerTurnDisplay.innerHTML = yourTurn(name)
 
 }
 

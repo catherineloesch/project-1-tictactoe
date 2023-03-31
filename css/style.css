@@ -53,9 +53,12 @@ svg {
     background-color: black;
 }
 
-/* __________________________________________________________________________________ */
-/*  left section of screen: score board */
-/* ___________________________________________________________________________________ */
+
+/*
+---------------------------------------------------------------------------------------
+left section of screen: score board -> column 1/3 in gid in <main>
+---------------------------------------------------------------------------------------
+*/
 
 aside.left { /* left section of sceen, column 1/3 in gid in <main> */
     display: grid;
@@ -129,9 +132,13 @@ aside.left .score-board .player-scores { /* <div> containing both players name +
     align-items: center;
 }
 
-/* __________________________________________________________________________________ */
-/* centre section of screen: grid + start game/reset buttons */
-/* __________________________________________________________________________________ */
+/*
+---------------------------------------------------------------------------------------
+centre section of screen: grid+start game/reset buttons -> column 2/3 in gid in <main>
+---------------------------------------------------------------------------------------
+*/
+
+
 /* .center: <section> elemement at center of sceen, column 2/3 in gid in <main> */
 
 /* overlay button that starts the game and then disappears */
@@ -195,7 +202,9 @@ aside.left .score-board .player-scores { /* <div> containing both players name +
     border-left: none;   
 }
 
-/* ____________________________________________________________________________________ */
+/* 
+________________________________________________________________________________________
+ */
 
 /* x and o symbols for grid -> 'x' class for cross, 'o' class for circle*/
 
@@ -280,14 +289,28 @@ aside.left .score-board .player-scores { /* <div> containing both players name +
     cursor: pointer;
 }
 
-/* __________________________________________________________________________________ */
-/*  right section of screen: players + turn display */
-/* ___________________________________________________________________________________ */
+/*  
+---------------------------------------------------------------------------------------
+right section of screen: players + turn display -> column 3/3 in gid in <main> 
+---------------------------------------------------------------------------------------
+*/
 
+aside.right {
+    display: grid;
+    grid-template-columns: 110%;
+    grid-template-rows: 33% 33% 33%;
+    background-color: darkcyan;
+       
+}
 
-/* right section of sceen, column 3/3 in gid in <main> */
+.right .current-player-display .current-player { /* <div> displaying whose turn it is */
+    color: gold;
+    display: flex;
+   
+    font-size: 2rem;
+}
 
-/* player input -> let's user enter information like name */
+/* player input -> lets user enter information like name */
 
 .btn.add-player-info, .btn-submit-player-input {
     margin: 0 2em;
@@ -351,11 +374,13 @@ section.players {
     /* text-align: center; */
 }
 
-.current-player {
-    color: gold;
-}
 
-/* _________________________________________________________________________________ */
+
+/* 
+---------------------------------------------------------------------------------------
+Overlay Message displaying winner or draw
+---------------------------------------------------------------------------------------
+*/
 
 /* overlay message when there's a win or draw */
 .message {
@@ -412,21 +437,6 @@ section.players {
 }
 
 /* ___________________________________________________________________________________*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------------------------------------------------------- */
-
 
 /* small screen: w = 1440px | h= 900px */
 /* second screen:  w = 1920px | h=1080px */
