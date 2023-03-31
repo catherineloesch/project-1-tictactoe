@@ -5,11 +5,15 @@
     /* border: 1px solid grey; */
 }
 
+/* variables */
+
 :root {
     --cell-size: 150px;
     /* making the symbol slightly smaller than the grid cell */
     --mark-size: calc(var(--cell-size) * 0.9)
 }
+
+/* element selectors */
 
 body {
     margin: 0;
@@ -24,6 +28,19 @@ body {
     font-family: 'Comfortaa', futura, sans-serif;
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+    /*
+    
+    column 1:   <aside class="left">      | 1fr
+    column 2:   <section class="center">  | 2fr
+    column 3:   <aside class="right">     | 1fr
+
+     */
+}
+
 h1 {
     font-size: 5rem;
     display: flex;
@@ -31,7 +48,119 @@ h1 {
     align-items: center;
 }
 
-.grid {
+svg {
+    color: white;
+    background-color: black;
+}
+
+/* __________________________________________________________________________________ */
+/*  left section of screen: score board */
+/* ___________________________________________________________________________________ */
+
+aside.left { /* left section of sceen, column 1/3 in gid in <main> */
+    display: grid;
+    grid-template-columns: 120%;
+    grid-template-rows: 100%;
+       
+}
+
+aside.left .score-board { /* <section> containing score board */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 15% 45% 40%;
+}
+
+aside.left .score-board .score-board-title { /* h3 title for score board */
+    display: flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    font-size: 2rem;
+}
+aside.left .score-board .player-scores { /* <div> containing both players name + score */
+    font-size: 1.7rem;
+    
+}
+
+.left .player-scores .score-board-display { /* <ul> containing one player's name + score */
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin: 2rem;
+}
+
+.left .score-board .player-scores .score { /* <li> displaying a player score */
+    font-size: 2.2rem;
+    padding-top: 2.5rem;
+}
+
+.left .score-board .draw-score-reset { /* <div> showing number of draws + reset button */
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+
+}
+
+.left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
+    font-size: 1.8rem;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+   
+}
+
+.left .score-board .draw-score-reset .btn-clear-scores {/* reset scores <button> */
+    background-color: BLACK;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.player-scores, .scores-title, .score, .current-player-display {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* __________________________________________________________________________________ */
+/* centre section of screen: grid + start game/reset buttons */
+/* __________________________________________________________________________________ */
+/* .center: <section> elemement at center of sceen, column 2/3 in gid in <main> */
+
+/* overlay button that starts the game and then disappears */
+.center .start-game-btn {
+    font-size: 2.5rem;
+    font-family: 'Comfortaa', futura, sans-serif;
+    background-color: black;
+    border: 2px solid white;
+    color:  white;
+    padding: 1em 1em;
+    cursor: pointer;
+    border-radius: 8px;
+    position:absolute;
+    top:46.5%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index: 1000;
+    
+}
+
+.center .start-game-btn:hover {
+    background-color: rgb(164, 197, 153);
+    border: 2px solid rgb(40, 61, 35);
+    color: rgb(40, 61, 35);
+    transition: 0.3s;
+}
+
+/* grid */
+.center .grid {
     width: 100%;
     height: 100%;
     display: grid;
@@ -66,8 +195,11 @@ h1 {
     border-left: none;   
 }
 
+/* ____________________________________________________________________________________ */
 
-/* X Symbol */
+/* x and o symbols for grid -> 'x' class for cross, 'o' class for circle*/
+
+/* x symbol */
 .cell.x::before, 
 .cell.x::after, 
 .grid.x .cell:not(.x):not(.o):hover::before,
@@ -87,7 +219,6 @@ h1 {
 .grid.x .cell:not(.x):not(.o):hover::after {
     transform: rotate(-45deg);
 }
-
 
 /*  o symbol */
 .cell.o::before,
@@ -114,7 +245,7 @@ h1 {
     background-color: white;
 }
 
-/* preview symbol when user hovers over empty cell */
+/* preview lighter symbol when user hovers over empty cell */
 .grid.x .cell:not(.x):not(.o):hover::before,
 .grid.x .cell:not(.x):not(.o):hover::after,
 .grid.o .cell:not(.x):not(.o):hover::before {
@@ -140,6 +271,93 @@ h1 {
     cursor: not-allowed;
 }
 
+
+.center .settings .btn-reset {
+    /* margin: 0 2em; */
+    /* padding: 0; */
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
+
+/* __________________________________________________________________________________ */
+/*  right section of screen: players + turn display */
+/* ___________________________________________________________________________________ */
+
+
+/* right section of sceen, column 3/3 in gid in <main> */
+
+/* player input -> let's user enter information like name */
+
+.btn.add-player-info, .btn-submit-player-input {
+    margin: 0 2em;
+    padding: 0;
+    background-color: BLACK;
+    border: none;
+    cursor: pointer;
+}
+
+.add-player-info:hover, .submit-player-info:hover, .reset:hover, .clear-scores:hover {
+    transform: scale(1.2);
+    color: rgb(164, 197, 153);
+    transition: 0.3s;
+}
+
+
+.player, .settings {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.player-input-form {
+    display: none;
+}
+
+.player-input-form.display {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#player-1 {
+    margin-bottom: 1rem;
+}
+
+input {
+    background-color: black;
+    border-radius: 8px;
+    width: 15em;
+    height: 2.5em;
+    border: 2px solid rgb(164, 197, 153);
+    color: rgb(164, 197, 153);
+    font-family: 'Comfortaa', futura, sans-serif;
+    font-size: 1.1rem;
+    outline: none;
+}
+::placeholder {
+    color: rgb(164, 197, 153);
+    opacity: 0.4;
+}
+
+
+section.players {
+    font-size: 2rem;
+    /* text-align: center; */
+}
+
+.current-player {
+    color: gold;
+}
+
+/* _________________________________________________________________________________ */
+
+/* overlay message when there's a win or draw */
 .message {
     display: none;
     position: fixed;
@@ -156,7 +374,6 @@ h1 {
     font-size: 6rem;
     flex-direction: column;
 }
-
 
 .message .btn {
     font-size: 2.5rem;
@@ -180,72 +397,6 @@ h1 {
 .message.display {
     display: flex;
 }
-
-svg {
-    color: white;
-    background-color: black;
-}
-
-.btn.add-player-info, .btn-submit-player-input, .btn-reset, .btn-clear-scores {
-    margin: 0 2em;
-    padding: 0;
-    background-color: BLACK;
-    border: none;
-    cursor: pointer;
-}
-
-.add-player-info:hover, .submit-player-info:hover, .reset:hover, .clear-scores:hover {
-    transform: scale(1.2);
-    color: rgb(164, 197, 153);
-    transition: 0.3s;
-}
-
-section.players, section.score-board {
-    font-size: 2rem;
-    text-align: center;
-}
-
-.player, .settings {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.player-input-form {
-    display: none;
-}
-
-.player-input-form.display {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-::placeholder {
-    color: rgb(164, 197, 153);
-    opacity: 0.4;
-}
-
-
-
-#player-1 {
-    margin-bottom: 1rem;
-}
-
-input {
-    background-color: black;
-    border-radius: 8px;
-    width: 15em;
-    height: 2.5em;
-    border: 2px solid rgb(164, 197, 153);
-    color: rgb(164, 197, 153);
-    font-family: 'Comfortaa', futura, sans-serif;
-    font-size: 1.1rem;
-    outline: none;
-}
-
 .message .draw-sad-face .sad-face {
     background-color: rgba(59, 82, 53, 0);
     color: gold;
@@ -260,37 +411,23 @@ input {
  
 }
 
-ul {
-    display: inline-block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.player-scores, .scores-title, .score, .current-player-display {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.score-board-display {
-    margin: 1rem;
-}
-
-.scores-title {
-    display: block;
-}
-
-.scores-title {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.score-board, .players, .settings, .current-player-display {
-    border: 1px solid white;
-}
+/* ___________________________________________________________________________________*/
 
 
 
-/* playerOneWins.innerText = `${parseInt(playerOneWins.innerText)} + 1` */
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------- */
+
+
+/* small screen: w = 1440px | h= 900px */
+/* second screen:  w = 1920px | h=1080px */
+/* phone screen: ?? */
