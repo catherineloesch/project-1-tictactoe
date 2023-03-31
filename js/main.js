@@ -197,7 +197,7 @@ function checkForDraw() { //returns true if every cell has either an x or an o
 function gameEnd(draw) {
     if (draw) {
         drawScore++
-        drawsDisplay.innerHTML = `Draws: &nbsp;${drawScore}`
+        drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`
         winnerAnnouncement.innerHTML = `${sadFace} Neither player wins the game!`
     } else {
         if (xCurrentSymbol && (player1.symbol === xMove)
@@ -260,8 +260,7 @@ function clearScores() {
     scorePlayer1.innerHTML = 0;
     scorePlayer2.innerHTML = 0;
     drawScore = 0;
-    drawsDisplay.innerHTML = `Draws: &nbsp;${drawScore}`
-    initialiseGame();
+    drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`
 
 }
 
