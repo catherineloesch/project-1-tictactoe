@@ -93,3 +93,9 @@
 - play against computer
 
 - Gold: CSS transitions or animations, showing "X" and "O" instead of colors, and Javascript that tells you when the game is over and who won.
+
+## Planning
+
+- MVP wireframe
+
+![Wireframe for MVP](./assets/tictactoe_wirerame.jpg)

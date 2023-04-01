@@ -91,8 +91,8 @@ btnsPlayerSubmitInfo.forEach(btn => {
 
 function startGame(){
     initialiseGame()
-    tl4.fromTo(startGameBtn, 1.5, {y: 0}, {y: 1000, ease: Power2.easeInOut})
-    setTimeout(function() {startGameBtn.remove()}, 1500);
+    tl4.fromTo(startGameBtn, 1.2, {y: 0}, {y: 1000, ease: Power2.easeInOut})
+    setTimeout(function() {startGameBtn.remove()}, 1000);
    
 }
 
@@ -293,6 +293,7 @@ function clearScores() {
 grid.classList.remove(xMove)
 grid.classList.remove(oMove)
 allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
+startGameBtn.style.opacity = "1";
 tl3.fromTo(startGameBtn, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut})
 
 

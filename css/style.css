@@ -29,9 +29,9 @@ body {
 }
 
 main {
-    width: 100%;
+    width: 100vw;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 25% 50% 25%;
 
     /*
     
@@ -168,6 +168,7 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
     left:50%;
     transform:translate(-50%, -50%);
     z-index: 1000;
+    opacity: 0;
     
 }
 
