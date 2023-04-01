@@ -145,6 +145,12 @@ external resources
 - TimelineMax gsap for transition animations of layover and start button
   - https://cdnjs.com/libraries/gsap
   - JavaScript library for building animations
+- opensource mp3 sound files
+
+  - https://pixabay.com/sound-effects/
+
+- https://howlerjs.com/
+  https://cdnjs.com/libraries/howler
 
 ## Installation
 

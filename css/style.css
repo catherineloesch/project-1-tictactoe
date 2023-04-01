@@ -11,6 +11,10 @@
     --cell-size: 150px;
     /* making the symbol slightly smaller than the grid cell */
     --mark-size: calc(var(--cell-size) * 0.9);
+    --mark-color: white;
+
+    --x-color: white;
+    --o-color: white;
 }
 
 /* element selectors */
@@ -55,7 +59,12 @@ svg {
 }
 
 /* <svg> elements when user hovers over them*/
-.add-player-info:hover, .submit-player-info:hover, .reset:hover, .clear-scores:hover {
+.add-player-info:hover,
+.submit-player-info:hover,
+.reset:hover,
+.clear-scores:hover,
+#no-sound-icon:hover,
+#play-sound-icon:hover {
     transform: scale(1.3);
     /* color: rgb(136, 216, 109); */
     transition: 0.3s;
@@ -272,12 +281,22 @@ ________________________________________________________________________________
     
 }
 
+
 /* slightly smaller circle i.e. "inside" circle */
-.cell.x::before,
-.cell.x::after,
-.cell.o::before  {
-    background-color: white;
+.cell.x::before, .cell.x::after {
+    background-color: var(--x-color);
 }
+.cell.o::before  {
+    background-color: var(--o-color);
+}
+/* variables go here */
+.blue {
+    --x-color: blue;
+    --o-color: blue;
+}
+
+
+
 
 /* preview lighter symbol when user hovers over empty cell */
 .grid.x .cell:not(.x):not(.o):hover::before,
@@ -312,9 +331,11 @@ ________________________________________________________________________________
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 4em;
+    padding-top: 0.5rem;
 }
 
-.center .settings .btn-reset { /* <button> resets game and clears the board */
+.center .settings .btn-reset, .btn-sound { /* <button> resets game and clears the board */
     /* margin: 0 2em; */
     /* padding: 0; */
     background-color: black;
@@ -325,6 +346,10 @@ ________________________________________________________________________________
 .reset:hover { /* <svg> on reset <button> */
     color: rgb(64,200,225);
 
+}
+
+#no-sound-icon:hover, #play-sound-icon:hover {
+    color:rgb(237, 237, 122);
 }
 
 /*  
@@ -425,16 +450,20 @@ aside.right { /* <aside> element that contains:
     color: rgb(150, 223, 141);
 } 
 
-
-.player-input-form { 
+/* <form> element contains: <div> | <input> | <button> */
+.player-input-form {    
     display: none;      /* unless user clicks add-info button, form is hidden */
+    /* background: pink; */
 }
 
 .player-input-form.display { /* when user clicks add-info button: 'display' class is added */
-    display:flex;           /* when display class is added, the <form> element is visible */
-    flex-direction: row;
-    justify-content: center;
+          /* when display class is added, the <form> element is visible */
+   
+    /* width: 90%; */
+    display:flex;
     align-items: center;
+    
+    gap: 0.2rem;
 }
 
 .right .players .player .player-input-form .name-input {
@@ -525,3 +554,5 @@ Overlay Message displaying winner or draw
 /* small screen: w = 1440px | h= 900px */
 /* second screen:  w = 1920px | h=1080px */
 /* phone screen: ?? */
+
+

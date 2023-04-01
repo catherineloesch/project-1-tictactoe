@@ -60,6 +60,10 @@
             </section>
             
             <section class="settings">
+                <button class='btn btn-sound id="btn-sound'>
+                    <svg class="icon svg" id="play-sound-icon"  xmlns="http://www.w3.org/2000/svg" width="3.5rem" height="3.5rem" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path id="play-sound-path "d="M1 13.857v-3.714a2 2 0 0 1 2-2h2.9a1 1 0 0 0 .55-.165l6-3.956a1 1 0 0 1 1.55.835v14.286a1 1 0 0 1-1.55.835l-6-3.956a1 1 0 0 0-.55-.165H3a2 2 0 0 1-2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 7.5S19 9 19 11.5s-1.5 4-1.5 4m3-11S23 7 23 11.5s-2.5 7-2.5 7"/></g>
+                    </svg>
+                </button>
                 <button class="btn btn-reset">
                     <svg class="icon reset" xmlns="http://www.w3.org/2000/svg" width="3.5rem" height="3.5rem" viewBox="0 0 20 20"><g transform="rotate(180 10 10)"><g fill="currentColor"><path d="M13.937 4.211a1 1 0 0 1-1.126 1.653A5 5 0 1 0 15 10a1 1 0 1 1 2 0a7 7 0 1 1-3.063-5.789Z"/><path d="M13.539 12.506a1 1 0 1 1-1.078-1.685l3.482-2.227a1 1 0 0 1 1.077 1.685l-3.481 2.227Z"/><path d="M18.903 12.41a1 1 0 0 1-1.826.815l-1.508-3.38a1 1 0 1 1 1.826-.815l1.508 3.38Z"/></g></g>
                     </svg>
@@ -94,6 +98,7 @@
                         </button>
                     </div>
                     <form class="player-input-form" id="player-1-input-form">
+                       
                         <input class="name-input" type="text" id="player-1-name-input" placeholder="enter name here">
                         <button class="btn-submit-player-input" id="btn-submit-player-1">
                             <svg class="icon check-mark submit-player-info" xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192s192-86 192-192Z"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M352 176L217.6 336L160 272"/></svg>
@@ -123,13 +128,13 @@
                 </div>
             </section>
         </aside>
-        
     </main>
+
         <section class="message overlay">
             <div class="winner-announcement"></div>
             <button class="btn" id="btn-start-new-game">Start new Game</button>
         </section>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

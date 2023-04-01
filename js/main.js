@@ -19,21 +19,50 @@
 //variables
 const xMove = 'x'; // setting CSS 'x' class to a variable
 const oMove = 'o'; // setting CSS 'o' class to a variable
+
 const tl1 = new TimelineMax();
 const tl2 = new TimelineMax();
 const tl3 = new TimelineMax();
 const tl4 = new TimelineMax();
 
+// mp3 sound files, located in audio folder ('./../assets/audio/success.mp3')
+// opensource sound files obtained from pixabay (https://pixabay.com/sound-effects/)
+// Howler: https://cdnjs.com/libraries/howler
+
+const soundWin = new Howl({
+    src: ['./../assets/audio/success.mp3'],
+    volume: 0.5
+})
+
+const soundDraw = new Howl({
+    src: ['./../assets/audio/error.mp3'],
+    volume: 0.4
+})
+
+const soundMakeMove = new Howl({
+    src: ['./../assets/audio/mouseClick.mp3'],
+    volume: 0.5
+})
+
+const soundResetGame = new Howl({
+    src: ['./../assets/audio/processing.mp3'],
+    volume: 0.8
+})
+
+const soundResetScores = new Howl({
+    src: ['./../assets/audio/game_button.mp3'],
+    volume: 0.5
+})
+
 let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
 let gamesPlayed = 0;
 let drawScore = 0;
+let mute = false;
 const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontal combinations
     [0, 3, 6], [1, 4, 7], [2, 5, 8], //vertical combinations
     [0, 4, 8], [2, 4, 6] //diagonal combinations
 ]
-
-
 
 //default: player 1 has x and player 2 has o
 let player1 = {
@@ -48,8 +77,19 @@ let player2 = {
     wins: 0
 }
 
-//svg for sad face
-const sadFace = `<span class="draw-sad-face"> Draw! &nbsp;<svg class="icon sad-face" xmlns="http://www.w3.org/2000/svg" width="8rem" height="8rem" viewBox="0 0 20 20"><g transform="translate(20 0) scale(-1 1)"><path fill="currentColor" d="M7.5 9.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm6-1a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm.062 4.89a.5.5 0 0 1-.7-.075l-.003-.003a1.91 1.91 0 0 0-.137-.137a3.069 3.069 0 0 0-.507-.37c-.461-.27-1.187-.555-2.213-.555s-1.753.284-2.216.556a3.088 3.088 0 0 0-.508.37a1.92 1.92 0 0 0-.138.137l-.003.003a.5.5 0 0 1-.777-.63l.39.314l-.39-.313v-.001l.002-.001l.002-.002l.005-.006l.014-.018l.049-.054c.04-.043.098-.102.174-.17c.152-.138.375-.316.674-.491c.6-.353 1.5-.694 2.722-.694c1.221 0 2.12.34 2.72.694c.3.176.522.353.673.49a2.907 2.907 0 0 1 .222.226l.015.017l.005.006l.002.003s.001.002-.389.314l.39-.312a.5.5 0 0 1-.078.702ZM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0a7 7 0 0 1-14 0Z"/></g></svg></span>`
+//svg for sad face icon
+const sadFace = `<span class="draw-sad-face"> Draw! &nbsp;<svg class="icon sad-face" xmlns="http://www.w3.org/2000/svg" width="8rem" height="8rem" viewBox="0 0 20 20"><g transform="translate(20 0) scale(-1 1)"><path id="no-sound-path" fill="currentColor" d="M7.5 9.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm6-1a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm.062 4.89a.5.5 0 0 1-.7-.075l-.003-.003a1.91 1.91 0 0 0-.137-.137a3.069 3.069 0 0 0-.507-.37c-.461-.27-1.187-.555-2.213-.555s-1.753.284-2.216.556a3.088 3.088 0 0 0-.508.37a1.92 1.92 0 0 0-.138.137l-.003.003a.5.5 0 0 1-.777-.63l.39.314l-.39-.313v-.001l.002-.001l.002-.002l.005-.006l.014-.018l.049-.054c.04-.043.098-.102.174-.17c.152-.138.375-.316.674-.491c.6-.353 1.5-.694 2.722-.694c1.221 0 2.12.34 2.72.694c.3.176.522.353.673.49a2.907 2.907 0 0 1 .222.226l.015.017l.005.006l.002.003s.001.002-.389.314l.39-.312a.5.5 0 0 1-.078.702ZM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0a7 7 0 0 1-14 0Z"/></g></svg></span>`
+
+//svg for sound icons
+const noSound = '<svg class="svg icon" id="no-sound-icon" xmlns="http://www.w3.org/2000/svg" width="3.5rem" height="3.5rem" viewBox="0 0 24 24"><g fill="none" stroke-width="1.5"><g stroke="currentColor" clip-path="url(#iconoirSoundOff0)"><path id="no-sound-path" stroke-linecap="round" stroke-linejoin="round" d="m18 14l2-2m2-2l-2 2m0 0l-2-2m2 2l2 2"/><path d="M2 13.857v-3.714a2 2 0 0 1 2-2h2.9a1 1 0 0 0 .55-.165l6-3.956a1 1 0 0 1 1.55.835v14.286a1 1 0 0 1-1.55.835l-6-3.956a1 1 0 0 0-.55-.165H4a2 2 0 0 1-2-2Z"/></g><defs><clipPath id="iconoirSoundOff0"><path fill="#fff" d="M0 0h24v24H0z"/></clipPath></defs></g></svg>'
+
+
+const playSound = '<svg class="icon svg" id="play-sound-icon"  xmlns="http://www.w3.org/2000/svg" width="3.5rem" height="3.5rem" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path id="play-sound-path "d="M1 13.857v-3.714a2 2 0 0 1 2-2h2.9a1 1 0 0 0 .55-.165l6-3.956a1 1 0 0 1 1.55.835v14.286a1 1 0 0 1-1.55.835l-6-3.956a1 1 0 0 0-.55-.165H3a2 2 0 0 1-2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M17.5 7.5S19 9 19 11.5s-1.5 4-1.5 4m3-11S23 7 23 11.5s-2.5 7-2.5 7"/></g></svg>'
+
+//CSS variables
+console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--x-color'))
+
+
 
 //Selecting HTML elements + assigning them to variables
 const grid = document.querySelector('.grid')
@@ -69,6 +109,7 @@ const startNewGameBtn = document.querySelector('.message .btn') //button appears
 const btnsAddInfo = document.querySelectorAll('.btn-add-player-info') //NodeList(2)
 const btnsPlayerSubmitInfo = document.querySelectorAll('.btn-submit-player-input') //NodeList(2)
 const resetGameBtn = document.querySelector('.settings .btn-reset')
+const btnSound = document.querySelector('.btn-sound')
 const clearScoresBtn = document.querySelector('.btn.btn-clear-scores')
 const message = document.querySelector('.message') // overlay that appears only when game ends (win or draw)
 const winnerAnnouncement = document.querySelector('.winner-announcement') //text text that appears on overlay after game ends (win or draw)
@@ -76,7 +117,16 @@ const winnerAnnouncement = document.querySelector('.winner-announcement') //text
 //Event Listeners
 startGameBtn.addEventListener('click', startGame)
 startNewGameBtn.addEventListener('click', initialiseGame)
-resetGameBtn.addEventListener('click', initialiseGame)
+resetGameBtn.addEventListener('click', () => {
+   
+    if (!mute) {
+        soundResetGame.play()
+    }
+
+
+    initialiseGame()
+})
+
 clearScoresBtn.addEventListener('click', clearScores)
 
 btnsAddInfo.forEach(btn => {
@@ -86,6 +136,9 @@ btnsAddInfo.forEach(btn => {
 btnsPlayerSubmitInfo.forEach(btn => {
     btn.addEventListener('click', handlePlayerInfoSubmit)
 })
+
+
+btnSound.addEventListener('click', handleSound) 
 
 //functions
 
@@ -143,6 +196,9 @@ function handleUserInput(e) {
     const currentSymbol = xCurrentSymbol ? xMove : oMove
     // display move on grid
     displayNewMove(cell, currentSymbol)
+    if (!mute) {
+        soundMakeMove.play()
+    }
 
     // check if current player won or if grid is full
     if (checkForWin(currentSymbol)) {   //if one of the player won
@@ -213,16 +269,25 @@ function gameEnd(draw) {
         drawScore++
         drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`
         winnerAnnouncement.innerHTML = `${sadFace} Neither player wins the game!`
+        if (!mute) {
+            soundDraw.play()
+        }
     } else {
         if (xCurrentSymbol && (player1.symbol === xMove)
                 || (!xCurrentSymbol && (player1.symbol === oMove))) {
                     player1.wins++
                     scorePlayer1.innerHTML = player1.wins
                     winnerAnnouncement.innerHTML = `${player1.name} wins the Game!`
+                    if (!mute) {
+                        soundWin.play()
+                    }
         } else {
             player2.wins++
             scorePlayer2.innerHTML = player2.wins
             winnerAnnouncement.innerHTML = `${player2.name} wins the Game!`
+            if (!mute) {
+                soundWin.play()
+            }
         }
         
         const jsConfetti = new JSConfetti()
@@ -233,6 +298,20 @@ function gameEnd(draw) {
     tl1.fromTo(message, 0.8, {y: 1000}, {y: 0, ease: Power2.easeInOut}
     )
     gamesPlayed++
+}
+
+function handleSound(e) {
+    if ((e.target.id === 'btn-sound') || 
+    (e.target.id === 'no-sound-icon') ||
+    (e.target.id === 'no-sound-path')) {
+        mute = false;
+        btnSound.innerHTML = playSound
+        console.log("I'm playing sounds now'!")
+    } else {
+        mute = true;
+        btnSound.innerHTML = noSound
+        console.log("I'm on mute now!")
+    }
 }
 
 // adding player names
@@ -295,7 +374,9 @@ function clearScores() {
     scorePlayer2.innerHTML = 0;
     drawScore = 0;
     drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`
-
+    if (!mute) {
+        soundResetScores.play()
+    }
 }
 
 //page loads
