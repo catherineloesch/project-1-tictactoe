@@ -100,7 +100,7 @@ function yourTurn(name) {
     const msg1 = `${name},`
     const msg2 = `it's your turn!`
     const msg3 = msg1 + `<br>` + msg2
-    playerTurnDisplay.innerHTML = msg3
+    playerTurnDisplay.innerHTML = `<div class='your-turn'>${msg3}</div>`
 }
 
 function initialiseGame() {

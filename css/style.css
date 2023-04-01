@@ -365,14 +365,12 @@ aside.right { /* <aside> element that contains:
     
 }
 
-.party-hat {
-    /* background-color: blue; */
+.your-turn {
     margin: 0;
     padding: 0;
-    align-items: center;
+    /* background-color: red; */
+    width: 118%;
 }
-
-
 /* player input -> lets user enter information like name */
 
 .right .players { /* <section> element -> contains 2 <div> elements, one for each player */
