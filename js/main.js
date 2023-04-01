@@ -241,16 +241,22 @@ function displayInputFields(e) {            //when one of the add-info buttons i
     e.target.id === 'btn-add-info-player-1')
     {                                          
         player1Form.classList.add('display')  //add an input field to player-1
+        nameInputPlayer1.focus();             //put cursor into input field
+        nameInputPlayer1.select();
     } else {                                  //otherwise (button doesn't match a player-1 element)
         player2Form.classList.add('display')  //add an input field to player-2
+        nameInputPlayer2.focus();             ////put cursor into input field
+        nameInputPlayer2.select();
     }
 }
 
 function handlePlayerInfoSubmit(e) {
     e.preventDefault()
-
+    console.log(e.target)
     if (e.target.parentNode.parentNode.id === 'player-1-input-form' ||
-    e.target.parentNode.parentNode.id === 'btn-submit-player-1') 
+    e.target.parentNode.parentNode.id === 'btn-submit-player-1' ||
+    e.target.id === 'btn-submit-player-1'
+    ) 
     {
         if (nameInputPlayer1.value !== "") {
             player1.name = nameInputPlayer1.value
