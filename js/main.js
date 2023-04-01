@@ -19,6 +19,10 @@
 //variables
 const xMove = 'x'; // setting CSS 'x' class to a variable
 const oMove = 'o'; // setting CSS 'o' class to a variable
+const tl1 = new TimelineMax();
+const tl2 = new TimelineMax();
+const tl3 = new TimelineMax();
+const tl4 = new TimelineMax();
 
 let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
 let gamesPlayed = 0;
@@ -28,6 +32,8 @@ const winningCombinations = [
     [0, 3, 6], [1, 4, 7], [2, 5, 8], //vertical combinations
     [0, 4, 8], [2, 4, 6] //diagonal combinations
 ]
+
+
 
 //default: player 1 has x and player 2 has o
 let player1 = {
@@ -43,7 +49,7 @@ let player2 = {
 }
 
 //svg for sad face
-const sadFace = `<span class="draw-sad-face"> Draw! <svg class="icon sad-face" xmlns="http://www.w3.org/2000/svg" width="9rem" height="9rem" viewBox="0 0 20 20"><g transform="translate(20 0) scale(-1 1)"><path fill="currentColor" d="M7.5 9.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm6-1a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm.062 4.89a.5.5 0 0 1-.7-.075l-.003-.003a1.91 1.91 0 0 0-.137-.137a3.069 3.069 0 0 0-.507-.37c-.461-.27-1.187-.555-2.213-.555s-1.753.284-2.216.556a3.088 3.088 0 0 0-.508.37a1.92 1.92 0 0 0-.138.137l-.003.003a.5.5 0 0 1-.777-.63l.39.314l-.39-.313v-.001l.002-.001l.002-.002l.005-.006l.014-.018l.049-.054c.04-.043.098-.102.174-.17c.152-.138.375-.316.674-.491c.6-.353 1.5-.694 2.722-.694c1.221 0 2.12.34 2.72.694c.3.176.522.353.673.49a2.907 2.907 0 0 1 .222.226l.015.017l.005.006l.002.003s.001.002-.389.314l.39-.312a.5.5 0 0 1-.078.702ZM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0a7 7 0 0 1-14 0Z"/></g></svg></span>`
+const sadFace = `<span class="draw-sad-face"> Draw! &nbsp;<svg class="icon sad-face" xmlns="http://www.w3.org/2000/svg" width="8rem" height="8rem" viewBox="0 0 20 20"><g transform="translate(20 0) scale(-1 1)"><path fill="currentColor" d="M7.5 9.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm6-1a1 1 0 1 1-2 0a1 1 0 0 1 2 0Zm.062 4.89a.5.5 0 0 1-.7-.075l-.003-.003a1.91 1.91 0 0 0-.137-.137a3.069 3.069 0 0 0-.507-.37c-.461-.27-1.187-.555-2.213-.555s-1.753.284-2.216.556a3.088 3.088 0 0 0-.508.37a1.92 1.92 0 0 0-.138.137l-.003.003a.5.5 0 0 1-.777-.63l.39.314l-.39-.313v-.001l.002-.001l.002-.002l.005-.006l.014-.018l.049-.054c.04-.043.098-.102.174-.17c.152-.138.375-.316.674-.491c.6-.353 1.5-.694 2.722-.694c1.221 0 2.12.34 2.72.694c.3.176.522.353.673.49a2.907 2.907 0 0 1 .222.226l.015.017l.005.006l.002.003s.001.002-.389.314l.39-.312a.5.5 0 0 1-.078.702ZM10 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16Zm-7 8a7 7 0 1 1 14 0a7 7 0 0 1-14 0Z"/></g></svg></span>`
 
 //Selecting HTML elements + assigning them to variables
 const grid = document.querySelector('.grid')
@@ -60,7 +66,7 @@ let scorePlayer1 = document.querySelector('#player-1-score')
 let scorePlayer2 = document.querySelector('#player-2-score')
 const startGameBtn = document.querySelector('.center .start-game-btn')
 const startNewGameBtn = document.querySelector('.message .btn') //button appears in overlay + starts new game after a game ends (win or draw)
-const addInfoButtons = document.querySelectorAll('.add-player-info.btn') //NodeList(2)
+const btnsAddInfo = document.querySelectorAll('.btn-add-player-info') //NodeList(2)
 const btnsPlayerSubmitInfo = document.querySelectorAll('.btn-submit-player-input') //NodeList(2)
 const resetGameBtn = document.querySelector('.settings .btn-reset')
 const clearScoresBtn = document.querySelector('.btn.btn-clear-scores')
@@ -73,7 +79,7 @@ startNewGameBtn.addEventListener('click', initialiseGame)
 resetGameBtn.addEventListener('click', initialiseGame)
 clearScoresBtn.addEventListener('click', clearScores)
 
-addInfoButtons.forEach(btn => {
+btnsAddInfo.forEach(btn => {
     btn.addEventListener('click', displayInputFields, {once: true})
 })
 
@@ -84,8 +90,10 @@ btnsPlayerSubmitInfo.forEach(btn => {
 //functions
 
 function startGame(){
-    startGameBtn.remove()
     initialiseGame()
+    tl4.fromTo(startGameBtn, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut})
+    // startGameBtn.remove()
+   
 }
 
 function yourTurn(name) {
@@ -118,8 +126,11 @@ function initialiseGame() {
         cell.removeEventListener('click', handleUserInput) //remove previous eventListeners so there are no duplicates
         cell.addEventListener('click', handleUserInput,  {once: true}) //same cell can only be clicked once
         activateHoverSymbol()
-        message.classList.remove('display') //remove wind/draw overlay
+       
     })
+
+    tl2.fromTo(message, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut})
+    // message.classList.remove('display') //remove wind/draw overlay
 }
 
 function handleUserInput(e) {
@@ -194,6 +205,7 @@ function checkForDraw() { //returns true if every cell has either an x or an o
     return result
 }
 
+
 function gameEnd(draw) {
     if (draw) {
         drawScore++
@@ -212,17 +224,21 @@ function gameEnd(draw) {
         }
     }
     message.classList.add('display') //overlay appears only when class 'display' is added to message
+    
+    tl1.fromTo(message, 0.8, {y: 1000}, {y: 0, ease: Power2.easeInOut}
+    )
     gamesPlayed++
 }
 
 // adding player names
-function displayInputFields(e) {
-    // console.log(e.target.parentNode.parentNode.id)
-    if (e.target.parentNode.parentNode.id === 'player-1-add-info-btn' ||
-    e.target.parentNode.parentNode.id === 'player-1') {
-        player1Form.classList.add('display')
-    } else {
-        player2Form.classList.add('display')
+function displayInputFields(e) {            //when one of the add-info buttons is clicked
+    if (e.target.id === 'path-player-1' ||  //and its id matches a player-1 element
+    e.target.id === 'add-info-player-1' ||      
+    e.target.id === 'btn-add-info-player-1')
+    {                                          
+        player1Form.classList.add('display')  //add an input field to player-1
+    } else {                                  //otherwise (button doesn't match a player-1 element)
+        player2Form.classList.add('display')  //add an input field to player-2
     }
 }
 
@@ -230,14 +246,14 @@ function handlePlayerInfoSubmit(e) {
     e.preventDefault()
 
     if (e.target.parentNode.parentNode.id === 'player-1-input-form' ||
-    e.target.parentNode.parentNode.id === 'btn-submit-player-1') {
+    e.target.parentNode.parentNode.id === 'btn-submit-player-1') 
+    {
         if (nameInputPlayer1.value !== "") {
             player1.name = nameInputPlayer1.value
             player1NameDisplays.forEach(display => display.innerText = nameInputPlayer1.value)
             nameInputPlayer1.value = ''   
         }
         player1Form.classList.remove('display')
-        console.log(`Player 1's name is ${player1.name}`)
     } else {
         if (nameInputPlayer2.value !== "") {
             player2.name = nameInputPlayer2.value
@@ -245,10 +261,9 @@ function handlePlayerInfoSubmit(e) {
             nameInputPlayer2.value = ''
         }
         player2Form.classList.remove('display')
-        console.log(`Player 2's name is ${player2.name}`)   
     }
 
-    addInfoButtons.forEach((btn) => {
+    btnsAddInfo.forEach((btn) => {
         removeEventListener('click', displayInputFields, {once: true})
         btn.addEventListener('click', displayInputFields, {once: true})
     })
@@ -268,3 +283,15 @@ function clearScores() {
 grid.classList.remove(xMove)
 grid.classList.remove(oMove)
 allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
+tl3.fromTo(startGameBtn, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut})
+
+
+
+
+//timeline
+
+// top:46.5%;
+//     left:50%;
+
+//     startGameBtn
+

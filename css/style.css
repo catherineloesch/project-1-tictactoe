@@ -29,6 +29,7 @@ body {
 }
 
 main {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 
@@ -145,7 +146,7 @@ aside.left .score-board .player-scores { /* <div> containing both players name +
 
 /*
 ---------------------------------------------------------------------------------------
-centre section of screen: grid+start game/reset buttons -> column 2/3 in gid in <main>
+center section of screen: grid+start game/reset buttons -> column 2/3 in gid in <main>
 ---------------------------------------------------------------------------------------
 */
 
@@ -171,11 +172,13 @@ centre section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
 }
 
 .center .start-game-btn:hover {
-    background-color: rgb(164, 197, 153);
-    border: 2px solid rgb(40, 61, 35);
-    color: rgb(40, 61, 35);
+    background-color: rgb(152, 201, 146);
+    border: 2px solid rgb(26, 60, 18);
+    color: rgb(26, 60, 18);
     transition: 0.3s;
 }
+
+
 
 /* grid */
 .center .grid {
@@ -291,6 +294,14 @@ ________________________________________________________________________________
     cursor: not-allowed;
 }
 
+/* buttons under grid: reset */
+
+.center .settings {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
 .center .settings .btn-reset { /* <button> resets game and clears the board */
     /* margin: 0 2em; */
@@ -311,79 +322,110 @@ right section of screen: players + turn display -> column 3/3 in gid in <main>
 ---------------------------------------------------------------------------------------
 */
 
-aside.right {
+
+aside.right { /* <aside> element that contains:
+                    <section class="current-player-display"> -> displays current player
+                    <section class="players"> -> players
+                */
     display: grid;
-    grid-template-columns: 110%;
-    grid-template-rows: 33% 33% 33%;
-    background-color: darkcyan;
+    grid-template-columns: 80%;
+    grid-template-rows: 1fr 2fr;
        
 }
 
-.right .current-player-display .current-player { /* <div> displaying whose turn it is */
-    color: gold;
+.right .current-player-display {
     display: flex;
-   
-    font-size: 2rem;
+    align-items: start;
+
+}
+
+.right .current-player-display .current-player { /* <div> displaying whose turn it is */
+    color: yellow;
+    display: flex;
+    text-align: center;
+    font-size: 2.5rem;
 }
 
 /* player input -> lets user enter information like name */
 
-.btn.add-player-info, .btn-submit-player-input {
-    margin: 0 2em;
+.right .players { /* <section> element -> contains 2 <div> elements, one for each player */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    font-size: 2rem;
+}
+
+.right .players .player { /* <div> element that contains 2 <div> elements -> one for each player
+                                    each player <div> contains 2 elements:
+                                - <div> that contains <span> + <span> + <button>
+                                - <form> that contains <input> + <button> (hidden)
+                             */
+    display: grid;
+    grid-template-columns: 120%;
+    grid-template-rows: 50% 50%;
+    /* background-color: #FA645C; */
+}
+
+
+.right .players .player .player-visible { /* <div> element that contains 3 elements:
+                                            - <span> -> contains <svg> for player symbol 
+                                            - <span> -> player name
+                                            - <button> -> contains <svg> for add info
+                                            */
+
+    display:flex;
+    align-items: center;
+}
+
+
+/* buttons for adding and submitting user info */
+.right .players .player .player-visible .btn-add-player-info,
+.right .players .player .player-input-form .btn-submit-player-input {
+    margin: 0 1em;
     padding: 0;
-    background-color: BLACK;
+    background-color: black;
     border: none;
     cursor: pointer;
 }
 
+/* buttons hover effect */
+.right .players .player .player-visible .btn-add-player-info .add-player-info:hover,
+.right .players .player .player-input-form .btn-submit-player-input .submit-player-info:hover{
+    color: rgb(150, 223, 141);
+} 
 
-.player, .settings {
-    display:flex;
+
+.player-input-form { 
+    display: none;      /* unless user clicks add-info button, form is hidden */
+}
+
+.player-input-form.display { /* when user clicks add-info button: 'display' class is added */
+    display:flex;           /* when display class is added, the <form> element is visible */
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
 }
 
-.player-input-form {
-    display: none;
-}
-
-.player-input-form.display {
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-#player-1 {
-    margin-bottom: 1rem;
-}
-
-input {
+.right .players .player .player-input-form .name-input {
     background-color: black;
     border-radius: 8px;
     width: 15em;
     height: 2.5em;
-    border: 2px solid rgb(164, 197, 153);
-    color: rgb(164, 197, 153);
+    border: 2px solid rgb(150, 223, 141);
+    color: rgb(150, 223, 141);
     font-family: 'Comfortaa', futura, sans-serif;
     font-size: 1.1rem;
     outline: none;
 }
-::placeholder {
-    color: rgb(164, 197, 153);
-    opacity: 0.4;
+.right .players .player .player-input-form .name-input::placeholder {
+    color: rgb(150, 223, 141);
+    opacity: 0.5;
 }
 
-
-section.players {
-    font-size: 2rem;
-    /* text-align: center; */
+/* svg for submit info */
+.right .players .player .player-input-form .btn-submit-player-input .submit-player-info {
+    color: rgb(150, 223, 141);
 }
-
 
 
 /* 
@@ -405,9 +447,13 @@ Overlay Message displaying winner or draw
     background-color: rgba(59, 82, 53, 0.97);
     justify-content: center;
     align-items: center;
-    color: gold;
+    color: yellow;
     font-size: 6rem;
     flex-direction: column;
+}
+
+.message.display {
+    display: flex;
 }
 
 .message .btn {
@@ -429,12 +475,9 @@ Overlay Message displaying winner or draw
     transition: 0.4s;
 }
 
-.message.display {
-    display: flex;
-}
 .message .draw-sad-face .sad-face {
     background-color: rgba(59, 82, 53, 0);
-    color: gold;
+    color: yellow;
 
 }
 .message .draw-sad-face {
