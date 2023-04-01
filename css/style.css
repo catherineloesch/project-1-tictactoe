@@ -89,6 +89,7 @@ aside.left .score-board .score-board-title { /* <h3> title on score board */
 }
 aside.left .score-board .player-scores { /* <div> containing both players name + score */
     font-size: 1.7rem;
+    /* background-color: blueviolet; */
     
 }
 
@@ -106,33 +107,42 @@ aside.left .score-board .player-scores { /* <div> containing both players name +
 }
 
 .left .score-board .draw-score-reset { /* <div> showing number of draws + reset button */
-    display: grid;
+    /* display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 100%;
+    grid-template-rows: 100%; */
     width: 100%;
     height: 50%;
+    display: flex;
     justify-content: center;
     align-content: center;
     justify-items: center;
+    /* background-color: grey; */
+    gap: 3em;
 
-}
-
-.left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
-    font-size: 1.8rem;
-    display: flex;
-    align-items:center;
-    justify-content:center;
-   
 }
 
 .left .score-board .draw-score-reset .btn-clear-scores {/* <button> resets all scores+draws back to 0 */
     background-color: BLACK;
     border: none;
     cursor: pointer;
-    display: flex;
+    display: inline;
     align-items:center;
     justify-content:center;
+    /* background-color: aqua; */
+    padding: 0 4em;
+
 }
+
+.left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
+    font-size: 1.8rem;
+    display: inline-flex;
+    align-items:center;
+    justify-content:center;
+    /* background-color: #FA645C; */
+    padding-right: 0.5em;
+}
+
+
 
 .left .score-board .draw-score-reset .btn-clear-scores .clear-scores:hover { /* <svg> on reset scores <button> */
     color: #FA645C;
@@ -336,16 +346,32 @@ aside.right { /* <aside> element that contains:
 
 .right .current-player-display {
     display: flex;
-    align-items: start;
+    align-items: center;
+    /* background-color: #FA645C; */
+    padding: 0;
+    /* border: 2px solid white; */
+    color: rgb(233, 233, 99);
+    width: 118%;
+    font-size: 2.5rem;
 
 }
 
 .right .current-player-display .current-player { /* <div> displaying whose turn it is */
-    color: yellow;
     display: flex;
-    text-align: center;
+    width: 118%;
+    /* text-align: center; */
     font-size: 2.5rem;
+    /* margin-left: -5%; */
+    
 }
+
+.party-hat {
+    /* background-color: blue; */
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
 
 /* player input -> lets user enter information like name */
 
@@ -354,6 +380,7 @@ aside.right { /* <aside> element that contains:
     grid-template-columns: 100%;
     grid-template-rows: 1fr 1fr;
     font-size: 2rem;
+    /* background-color: blue; */
 }
 
 .right .players .player { /* <div> element for a player that contains 2 elements:
@@ -363,7 +390,7 @@ aside.right { /* <aside> element that contains:
     display: grid;
     grid-template-columns: 120%;
     grid-template-rows: 50% 50%;
-    /* background-color: #FA645C; */
+    /* background-color: green; */
 }
 
 
@@ -375,7 +402,12 @@ aside.right { /* <aside> element that contains:
 
     display:flex;
     align-items: center;
+    
     gap: 0.75rem;
+}
+
+#player-2-symbol-display {
+    padding-left: 0.3rem;
 }
 
 

@@ -16,6 +16,26 @@
 
 8. Describe how some of your favorite functions work
 
+# summary / Description
+
+- This is a game of tic tac toe, with score counter
+  purpose, tooling, and development history
+  Description
+  What your project is / should be used for
+  What problem(s) your projects solves
+
+Brief Example
+This could be a code snippet showing how your project should be used (if it is meant to be integrated into another app)
+This could be a screenshot of your project running in the browser (if it is a stand-alone application)
+
+A small code example¶Show a telling example of what your project would normally be used for
+
+conver your specific experience and approach.
+
+List of Features / User Stories
+This typically will be a short list of the features / user stories that you planned during the development phase of the project
+To provide more detail, you can show how you categorized these features into Bronze (MVP), Silver, and Gold Levels and indicate which features you complete / have yet to complete
+
 # Deliverables
 
 1. A working game hosted online
@@ -99,3 +119,123 @@
 - MVP wireframe
 
 ![Wireframe for MVP](./assets/tictactoe_wirerame.jpg)
+
+## technologies used
+
+This typically would consist of all primary languages, frameworks, and libraries your app is composed of
+
+- This Game was writtin with vanilla JavaScript, HTML 5 and CSS (CSS Flexbox and Grid were used)
+- figma for building the wireframe
+- Visual Studio Code: used for coding with Html, CSS and JavaScript
+- Google Chrome Web Browser: used for launching the website For displaying the application
+
+Google Chrome Developer Tools: For troubleshooting and debugging
+
+Git/GitHub and Github pages(deployment)
+
+external resources
+
+- icons: svg (scalable vector graphics) from iconify (open source vector icon library)
+  - https://iconify.design/
+- google fonts
+  - https://fonts.google.com/specimen/Comfortaa
+- js confetti
+  - https://www.npmjs.com/package/js-confetti
+  - JavaScript Confetti library
+- TimelineMax gsap for transition animations of layover and start button
+  - https://cdnjs.com/libraries/gsap
+  - JavaScript library for building animations
+
+## Installation
+
+Installation Instructions / Getting Started
+This section should walk a reader, step by step, through the process of setting up your project
+For a tool meant to be integrated into other projects, this would likely outline the process of installing and accessing this tool in your project
+For an application, this would likely outline the process of forking, cloning, and starting the app locally
+
+- no need
+- just need a Web Browser with JavaScript Support and Internet Connectivity
+
+##Approach
+
+-> how winner is selected:
+-> Figma for control flow
+
+## Requirements met
+
+Build a web application from scratch, must be your own work.
+
+## MVP requirements
+
+## Stretch Technical Goals
+
+##methodology
+
+- wireframe
+- pseudocode
+- basic html/css
+- game logic in JS for MVP
+- addition features: add name, overlay to display message, display whose turn it is
+
+Good links to include are:
+A link to the project's main repository
+A link to the project's issue tracker
+
+# Template
+
+Project Title
+One Paragraph of project description goes here
+
+Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+Prerequisites
+What things you need to install the software and how to install them
+
+Give examples
+Installing
+A step by step series of examples that tell you how to get a development env running
+
+Say what the step will be
+
+Give the example
+And repeat
+
+until finished
+End with an example of getting some data out of the system or using it for a little demo
+
+Running the tests
+Explain how to run the automated tests for this system
+
+Break down into end to end tests
+Explain what these tests test and why
+
+Give an example
+And coding style tests
+Explain what these tests test and why
+
+Give an example
+Deployment
+Add additional notes about how to deploy this on a live system
+
+Built With
+Dropwizard - The web framework used
+Maven - Dependency Management
+ROME - Used to generate RSS Feeds
+Contributing
+Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+Versioning
+We use SemVer for versioning. For the versions available, see the tags on this repository.
+
+Authors
+Billie Thompson - Initial work - PurpleBooth
+See also the list of contributors who participated in this project.
+
+License
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+Acknowledgments
+Hat tip to anyone whose code was used
+Inspiration
+etc

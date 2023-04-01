@@ -60,7 +60,7 @@ const nameInputPlayer1 = document.querySelector('#player-1-name-input')
 const nameInputPlayer2 = document.querySelector('#player-2-name-input')
 const player1NameDisplays = document.querySelectorAll('.display-name-player-1')
 const player2NameDisplays = document.querySelectorAll('.display-name-player-2')
-const playerTurnDisplay = document.querySelector('.current-player')
+const playerTurnDisplay = document.querySelector('.current-player-display')
 const drawsDisplay = document.querySelector('.score-board .draw-score-reset .draw-score')
 let scorePlayer1 = document.querySelector('#player-1-score')
 let scorePlayer2 = document.querySelector('#player-2-score')
@@ -99,24 +99,25 @@ function startGame(){
 function yourTurn(name) {
     const msg1 = `${name},`
     const msg2 = `it's your turn!`
-    return msg1 + `<br>` + msg2
+    const msg3 = msg1 + `<br>` + msg2
+    playerTurnDisplay.innerHTML = msg3
 }
 
 function initialiseGame() {
     //the starting symbol should switch at every turn
     if (gamesPlayed === 0) { //if this is the first game
         xCurrentSymbol = true;          // x symbol starts
-        playerTurnDisplay.innerHTML = yourTurn(player1.name)
+        yourTurn(player1.name)
       
 
     } else if (gamesPlayed%2 === 0) {//x symbol starts for even number or games
         xCurrentSymbol = true
-        playerTurnDisplay.innerHTML = yourTurn(player1.name)
+        yourTurn(player1.name)
         
 
     } else {
         xCurrentSymbol = false      //o symbol starts for odd number of games
-        playerTurnDisplay.innerHTML = yourTurn(player2.name)
+        yourTurn(player2.name)
     }
     
     allCells.forEach((cell) => {      //start with empty grid
@@ -175,7 +176,7 @@ function switchTurns() {
     } else {
         name = undefined
     }
-    playerTurnDisplay.innerHTML = yourTurn(name)
+    yourTurn(name)
 
 }
 
@@ -264,6 +265,10 @@ function handlePlayerInfoSubmit(e) {
             nameInputPlayer1.value = ''   
         }
         player1Form.classList.remove('display')
+        if (xCurrentSymbol) {
+            yourTurn(player1.name)
+
+        }
     } else {
         if (nameInputPlayer2.value !== "") {
             player2.name = nameInputPlayer2.value
@@ -271,6 +276,10 @@ function handlePlayerInfoSubmit(e) {
             nameInputPlayer2.value = ''
         }
         player2Form.classList.remove('display')
+        if (!xCurrentSymbol) {
+            yourTurn(player2.name)
+
+        }
     }
 
     btnsAddInfo.forEach((btn) => {
