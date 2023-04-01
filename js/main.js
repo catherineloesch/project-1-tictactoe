@@ -91,8 +91,8 @@ btnsPlayerSubmitInfo.forEach(btn => {
 
 function startGame(){
     initialiseGame()
-    tl4.fromTo(startGameBtn, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut})
-    // startGameBtn.remove()
+    tl4.fromTo(startGameBtn, 1.5, {y: 0}, {y: 1000, ease: Power2.easeInOut})
+    setTimeout(function() {startGameBtn.remove()}, 1500);
    
 }
 
@@ -130,7 +130,8 @@ function initialiseGame() {
     })
 
     tl2.fromTo(message, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut})
-    // message.classList.remove('display') //remove wind/draw overlay
+    setTimeout(() => {message.classList.remove('display')}, 1000) // remove display class so overlay is not visible
+                                                                    // wait until after transition effect is finishes (1s -> 1000ms)
 }
 
 function handleUserInput(e) {
@@ -222,6 +223,9 @@ function gameEnd(draw) {
             scorePlayer2.innerHTML = player2.wins
             winnerAnnouncement.innerHTML = `${player2.name} wins the Game!`
         }
+        
+        const jsConfetti = new JSConfetti()
+        jsConfetti.addConfetti()
     }
     message.classList.add('display') //overlay appears only when class 'display' is added to message
     

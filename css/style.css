@@ -10,7 +10,7 @@
 :root {
     --cell-size: 150px;
     /* making the symbol slightly smaller than the grid cell */
-    --mark-size: calc(var(--cell-size) * 0.9)
+    --mark-size: calc(var(--cell-size) * 0.9);
 }
 
 /* element selectors */
@@ -355,8 +355,7 @@ aside.right { /* <aside> element that contains:
     font-size: 2rem;
 }
 
-.right .players .player { /* <div> element that contains 2 <div> elements -> one for each player
-                                    each player <div> contains 2 elements:
+.right .players .player { /* <div> element for a player that contains 2 elements:
                                 - <div> that contains <span> + <span> + <button>
                                 - <form> that contains <input> + <button> (hidden)
                              */
@@ -375,6 +374,7 @@ aside.right { /* <aside> element that contains:
 
     display:flex;
     align-items: center;
+    gap: 0.75rem;
 }
 
 
