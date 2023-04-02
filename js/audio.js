@@ -2,37 +2,37 @@
 //Howler.js library used (https://howlerjs.com/ | https://cdnjs.com/libraries/howler)
 
 const soundWin = new Howl({
-    src: ['../audio/success.mp3', '../audio/success.wav', '../audio/success.webm'],
+    src: ['./audio/success.mp3', './audio/success.wav', './audio/success.webm'],
     volume: 0.5
 })
 
 const soundDraw = new Howl({
-    src: ['../audio/draw.mp3', '../audio/draw.wav', '../audio/draw.webm'],
+    src: ['./audio/draw.mp3', './audio/draw.wav', './audio/draw.webm'],
     volume: 0.4
 })
 
 const soundMakeMove = new Howl({
-    src: ['../audio/clicks.mp3', '../audio/clicks.wav', '../audio/clicks.webm'],
+    src: ['./audio/clicks.mp3', './audio/clicks.wav', './audio/clicks.webm'],
     volume: 0.5
 })
 
 const soundClick = new Howl({
-    src: ['../audio/mouseClick.mp3', '../audio/mouseClick.wav', '../audio/mouseClick.webm'],
+    src: ['./audio/mouseClick.mp3', './audio/mouseClick.wav', './audio/mouseClick.webm'],
     volume: 0.5
 })
 
 const soundResetScores = new Howl({
-    src: ['../audio/game_button.mp3', '../audio/game_button.wav', '../audio/game_button.webm'],
+    src: ['./audio/game_button.mp3', './audio/game_button.wav', './audio/game_button.webm'],
     volume: 0.5
 })
 
 const soundResetGame = new Howl({
-    src: ['../audio/processing.mp3', '../audio/processing.wav', '../audio/processing.webm'],
+    src: ['./audio/processing.mp3', './audio/processing.wav', './audio/processing.webm'],
     volume: 1
 })
 
 const soundOn = new Howl({
-    src: ['../audio/notification.mp3', '../audio/notification.wav', '../audio/notification.webm'],
+    src: ['./audio/notification.mp3', './audio/notification.wav', './audio/notification.webm'],
     volume: 0.5
 })
 
