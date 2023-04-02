@@ -17,16 +17,16 @@ const soundMakeMove = new Howl({
 })
 
 const soundClick = new Howl({
-    src: ['../assets/audio/mouseClick.mp3', '../assets/audio/mouseClick.wav', '../assets/audio/mouseClick.webm'],
-    volume: 0.5
-})
-
-const soundResetGame = new Howl({
-    src: ['./../assets/audio/game_button.mp3', './../assets/audio/game_button.wav', './../assets/audio/game_button.webm'],
+    src: ['./audio/mouseClick.mp3', './audio/mouseClick.wav', './audio/mouseClick.webm'],
     volume: 0.5
 })
 
 const soundResetScores = new Howl({
+    src: ['./../assets/audio/game_button.mp3', './../assets/audio/game_button.wav', './../assets/audio/game_button.webm'],
+    volume: 0.5
+})
+
+const soundResetGame = new Howl({
     src: ['./../assets/audio/processing.mp3', './../assets/audio/processing.wav', './../assets/audio/processing.webm'],
     volume: 1
 })
