@@ -16,7 +16,7 @@
         //select new current player
 
 import { sadFace, noSound, playSound } from "./icons.js";
-import { soundWin, soundDraw, soundMakeMove, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
+import { soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
 // import { colorCodes } from "./colors.js";
 
 
@@ -108,7 +108,6 @@ const iconPlayer2 = document.querySelector('#player-2-symbol-display')
 
 //-------------------------------------------------------------------------
 
-//testing new stuff
 
 
 
@@ -213,9 +212,6 @@ function handleUserInput(e) {
     const currentSymbol = xCurrentSymbol ? xMove : oMove
     // display move on grid
     displayNewMove(cell, currentSymbol)
-    if (!mute) {
-        soundMakeMove.play()
-    }
 
     // check if current player won or if grid is full
     if (checkForWin(currentSymbol)) {   //if one of the player won
@@ -233,6 +229,13 @@ function handleUserInput(e) {
 
 function displayNewMove(cell, currentSymbol) {
     cell.classList.add(currentSymbol)
+    if (!mute && currentSymbol === xMove) {
+            soundMakeMoveX.play()
+
+    } else if (!mute && currentSymbol === oMove) {
+        soundMakeMoveO.play()
+    }
+
 }
 
 //after player makes move, it's the other player's turn

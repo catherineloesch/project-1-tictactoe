@@ -11,9 +11,14 @@ const soundDraw = new Howl({
     volume: 0.4
 })
 
-const soundMakeMove = new Howl({
+const soundMakeMoveX = new Howl({
     src: ['./audio/clicks.mp3', './audio/clicks.wav', './audio/clicks.webm'],
     volume: 0.5
+})
+
+const soundMakeMoveO = new Howl({
+    src: ['./audio/mouseClick2.mp3', './audio/mouseClick2.wav', './audio/mouseClick2.webm'],
+    volume: 0.3
 })
 
 const soundClick = new Howl({
@@ -36,4 +41,4 @@ const soundOn = new Howl({
     volume: 0.5
 })
 
-export {soundWin, soundDraw, soundMakeMove, soundClick, soundResetGame, soundResetScores, soundOn}
+export {soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO,soundClick, soundResetGame, soundResetScores, soundOn}
