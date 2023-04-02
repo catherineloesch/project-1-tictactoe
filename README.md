@@ -1,5 +1,7 @@
 # Readme sections
 
+gihub pages link - https://catherineloesch.github.io/project-1-tictactoe/
+
 1. List + explain technologies used and approach taken
 
 2. Installation instructions
@@ -245,3 +247,7 @@ Acknowledgments
 Hat tip to anyone whose code was used
 Inspiration
 etc
+
+ISSUES
+
+- mp3 files don't work on github pages

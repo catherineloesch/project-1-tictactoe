@@ -23,12 +23,12 @@ const soundClick = new Howl({
 
 const soundResetGame = new Howl({
     src: ['./../assets/audio/game_button.mp3', './../assets/audio/game_button.wav', './../assets/audio/game_button.webm'],
-    volume: 0.8
+    volume: 0.5
 })
 
 const soundResetScores = new Howl({
     src: ['./../assets/audio/processing.mp3', './../assets/audio/processing.wav', './../assets/audio/processing.webm'],
-    volume: 0.5
+    volume: 1
 })
 
 const soundOn = new Howl({

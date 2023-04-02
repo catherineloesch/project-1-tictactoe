@@ -86,10 +86,22 @@
             <section class="players">
                 <div class="player" id="player-1">
                     <div class="player-visible">
-                        <span class="player-symbol-display" id="player-1-symbol-display">
-                            <svg class="icon cross" xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 24 24"><path fill="currentColor" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
-                            </svg>
-                        </span>
+                        <div class="player-symbol" id="player-1-symbol">
+                              <span class="player-symbol-display" id="player-1-symbol-display">
+                                    <svg class="icon cross" xmlns="http://www.w3.org/2000/svg" width="3rem" height="3rem" viewBox="0 0 24 24"><path fill="currentColor" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+                                    </svg>
+                                </span>
+                            <ul class="color-dropdown" id="color-palette-player-1"> 
+                                <li class="color-option"><div class="color-tag player-1-color" id="red1"> &nbsp;</div></li>
+                                <li class="color-option"><div class="color-tag player-1-color" id="blue1">&nbsp;</div></li>
+                                <li class="color-option"><div class="color-tag player-1-color" id="green1">&nbsp;</div></li>
+                                <li class="color-option"><div class="color-tag player-1-color" id="yellow1">&nbsp;</div></li>
+                                <li class="color-option"><div class="color-tag player-1-color" id="pink1">&nbsp;</div></li>
+                                <li class="color-option"><div class="color-tag player-1-color" id="purple1">&nbsp;</div></li>
+                                <li class="color-option"><div class="color-tag player-1-color" id="orange1">&nbsp;</div></li>
+                            </ul>
+                        </div>
+                        
                         &nbsp;
                         <span class="display-name-player-1">Player 1</span>
                         <button class="btn btn-add-player-info" id="btn-add-info-player-1">
@@ -108,12 +120,23 @@
                 </div> 
                 <div class="player" id="player-2">
                     <div class="player-visible">
+                        <div class="player-symbol" id="player-2-symbol">
                         <span class="player-symbol-display" id="player-2-symbol-display">
                             <svg class="icon circle" xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z"/>
                             </svg>
                         </span>
+                        <ul class="color-dropdown" id="color-palette-player-2"> 
+                            <li class="color-option"><div class="color-tag player-2-color" id="red2"> &nbsp;</div></li>
+                            <li class="color-option"><div class="color-tag player-2-color" id="blue2">&nbsp;</div></li>
+                            <li class="color-option"><div class="color-tag player-2-color" id="green2">&nbsp;</div></li>
+                            <li class="color-option"><div class="color-tag player-2-color" id="yellow2">&nbsp;</div></li>
+                            <li class="color-option"><div class="color-tag player-2-color" id="pink2">&nbsp;</div></li>
+                            <li class="color-option"><div class="color-tag player-2-color" id="purple2">&nbsp;</div></li>
+                            <li class="color-option"><div class="color-tag player-2-color" id="orange2">&nbsp;</div></li>
+                        </ul>
                         &nbsp;
-                        <span class="display-name-player-2">Player 2</span>
+                    </div>
+                    <span class="display-name-player-2">Player 2</span>
                         <button class="btn btn-add-player-info" id="btn-add-info-player-2">
                             <svg class="icon add-player-info" xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 24 24"><path id="path-player-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 10h3m3 0h-3m0 0V7m0 3v3M1 20v-1a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v1m-7-8a4 4 0 1 0 0-8a4 4 0 0 0 0 8Z"/>
                             </svg>
@@ -127,6 +150,7 @@
                     </form>
                 </div>
             </section>
+            
         </aside>
     </main>
 

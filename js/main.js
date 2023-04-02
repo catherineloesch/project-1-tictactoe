@@ -17,7 +17,7 @@
 
 import { sadFace, noSound, playSound } from "./icons.js";
 import { soundWin, soundDraw, soundMakeMove, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
-
+// import { colorCodes } from "./colors.js";
 
 //variables
 const xMove = 'x'; // setting CSS 'x' class to a variable
@@ -27,6 +27,17 @@ const tl1 = new TimelineMax();
 const tl2 = new TimelineMax();
 const tl3 = new TimelineMax();
 const tl4 = new TimelineMax();
+
+const colorCodes = {
+    red: "rgb(250,100,92)",
+    blue: "rgb(64,200,225)",
+    green: "rgb(150, 223, 141)",
+    yellow: "rgb(237, 237, 122)",
+    pink: "rgb(246, 152, 168)",
+    purple: "rgb(202, 134, 202)",
+    orange: "rgb(255, 179, 128)",
+    white: "rgb(255,255,255)"
+}
 
 // mp3 sound files, located in audio folder ('./../assets/audio/success.mp3')
 // opensource sound files obtained from pixabay (https://pixabay.com/sound-effects/)
@@ -38,6 +49,7 @@ let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
 let gamesPlayed = 0;
 let drawScore = 0;
 let mute = false;
+let newColorPicked = []
 const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontal combinations
     [0, 3, 6], [1, 4, 7], [2, 5, 8], //vertical combinations
@@ -60,8 +72,6 @@ let player2 = {
 
 
 //CSS variables
-// console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--x-color'))
-
 
 
 //Selecting HTML elements + assigning them to variables
@@ -86,6 +96,28 @@ const btnSound = document.querySelector('.btn-sound')
 const clearScoresBtn = document.querySelector('.btn.btn-clear-scores')
 const message = document.querySelector('.message') // overlay that appears only when game ends (win or draw)
 const winnerAnnouncement = document.querySelector('.winner-announcement') //text text that appears on overlay after game ends (win or draw)
+
+//color dropdown
+const colorOptions = document.querySelectorAll('.color-tag')
+const colorDropDownPlayer1 = document.querySelector('#color-palette-player-1')
+const colorDropDownPlayer2 = document.querySelector('#color-palette-player-2')
+const iconPlayer1 = document.querySelector('#player-1-symbol-display')
+const iconPlayer2 = document.querySelector('#player-2-symbol-display')
+
+
+//-------------------------------------------------------------------------
+
+//testing new stuff
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+
 
 //Event Listeners
 startGameBtn.addEventListener('click', startGame)
@@ -113,8 +145,13 @@ btnsPlayerSubmitInfo.forEach(btn => {
     btn.addEventListener('click', handlePlayerInfoSubmit)
 })
 
-
 btnSound.addEventListener('click', handleSound) 
+iconPlayer1.addEventListener('click', handleIcon1Click)
+iconPlayer2.addEventListener('click', handleIcon2Click)
+colorOptions.forEach((color) => {
+    color.addEventListener('click', handleColorSelected)
+})
+
 
 //functions
 
@@ -371,6 +408,65 @@ grid.classList.remove(oMove)
 allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
 startGameBtn.style.opacity = "1";
 tl3.fromTo(startGameBtn, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut})
+
+function handleIcon1Click(e) {
+    e.preventDefault()
+    if (!mute) {
+        soundClick.play()
+    }
+    colorDropDownPlayer1.classList.add('show-colors')
+}
+
+function handleIcon2Click(e) {
+    e.preventDefault()
+    if (!mute) {
+        soundClick.play()
+    }
+    colorDropDownPlayer2.classList.add('show-colors')
+}
+
+function handleColorSelected(e) {
+    e.preventDefault()
+    if (!mute) {
+        soundClick.play()
+    }
+    const newColor = e.target.id.slice(0, -1)
+    const player = e.target.id[e.target.id.length-1]
+    newColorPicked = [player, newColor]
+
+    //After the color has been picked, the dropdown disappears
+    if (player === '1') {
+        colorDropDownPlayer1.classList.remove('show-colors')
+    } else {
+        colorDropDownPlayer2.classList.remove('show-colors')
+    }
+    console.log(newColorPicked)
+    
+    //change icon color
+
+    changeIconColor(newColorPicked)
+    //change symbol color
+    
+}
+
+
+let crossIcon = document.querySelector('.icon.cross')
+let circleIcon = document.querySelector('.icon.circle')
+
+console.log(circleIcon)
+
+
+// changing the color of icon that appears on screen next to name
+function changeIconColor(newColorPicked) {
+    if (newColorPicked[0] === '1') { //if player 1 picked, change X icon
+        crossIcon.style.color = colorCodes[newColorPicked[1]]
+        document.documentElement.style.setProperty('--x-color', colorCodes[newColorPicked[1]])
+    } else {
+        //if player 1 didn't pick, player 2 picked so change O icon
+        circleIcon.style.color = colorCodes[newColorPicked[1]]
+        document.documentElement.style.setProperty('--o-color', colorCodes[newColorPicked[1]])
+    }
+}
 
 
 
