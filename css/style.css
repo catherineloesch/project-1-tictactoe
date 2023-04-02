@@ -596,7 +596,7 @@ Overlay Message displaying winner or draw
 
 #color-palette-player-1 {/* <ul>  -> child*/
     display: none;
-    font-size: 0.6em;
+    font-size: 0.7em;
     list-style: none;
     position: absolute;
     right: 0;
@@ -606,7 +606,7 @@ Overlay Message displaying winner or draw
 
 #color-palette-player-1.show-colors {/* <ul>  -> child*/
     display: block;
-    font-size: 0.6em;
+    font-size: 0.7em;
     list-style: none;
     position: absolute;
     right: 0;
@@ -615,7 +615,7 @@ Overlay Message displaying winner or draw
 
 #color-palette-player-2 {/* <ul>  -> child*/
     display: none;
-    font-size: 0.6em;
+    font-size: 0.7em;
     list-style: none;
     position: absolute;
     right: 0;
@@ -624,7 +624,7 @@ Overlay Message displaying winner or draw
 
 #color-palette-player-2.show-colors {/* <ul>  -> child*/
     display: block;
-    font-size: 0.6em;
+    font-size: 0.7em;
     list-style: none;
     position: absolute;
     left: -2.3rem;
@@ -638,8 +638,8 @@ Overlay Message displaying winner or draw
     margin: 0;
     font-size: 1em;
     width: 2.8rem;
-    height: 1.4rem;
-    border: 2px solid black;
+    height: 1.35rem;
+    border: 2.5px solid black;
 }
 
 .color-tag {/* <a> */
@@ -656,8 +656,8 @@ Overlay Message displaying winner or draw
 } 
 
 #blue1, #blue2 {
-    background-color: rgb(64,200,225);
-    border: 2px solid rgb(64,200,225);
+    background-color: rgb(0,181,226);
+    border: 2px solid rgb(0,181,226);
 
 } 
 
@@ -685,12 +685,13 @@ Overlay Message displaying winner or draw
     background-color: rgb(247, 135, 2);
     border: 2px solid rgb(247, 135, 2);
     border-radius: 0px 0px 4px 4px;
+    height: 120%;
 }
 
 #white1, #white2 {
         background-color: rgb(255,255,255);
         border: 2px solid rgb(255,255,255);
-    }
+}
 
 
 

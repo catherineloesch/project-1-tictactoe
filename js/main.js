@@ -75,6 +75,10 @@ const iconPlayer2 = document.querySelector('#player-2-symbol-display') //icon pl
 const colorDropDownPlayer1 = document.querySelector('#color-palette-player-1')
 const colorDropDownPlayer2 = document.querySelector('#color-palette-player-2')
 const colorOptions = document.querySelectorAll('.color-tag') //colors to pick from
+const crossIcon = document.querySelector('.icon.cross') //svg showing player1 their symbol is x
+const circleIcon = document.querySelector('.icon.circle')//svg showing player2 their symbol is o
+
+
 
     
     //User input: adding their name
@@ -184,7 +188,7 @@ function initialiseGame() {
     tl2.fromTo(message, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut}) 
     setTimeout(() => {message.classList.remove('display')}, 1000)
     setTimeout(() => {message.classList.remove('display-win')}, 1000)
-    setTimeout(() => {message.classList.remove('display-draw')}, 1000)       // remove display class so overlay is not visible
+    setTimeout(() => {message.classList.remove('display-draw')}, 1000)       // remove display classes so overlay is not visible
                                                                         // wait until after transition effect is finished (1s -> 1000ms)
 }
                                                                    
@@ -297,106 +301,101 @@ function gameEnd(draw) { //argument is true if there's a draw and false if there
         jsConfetti.addConfetti()            //display confetti animation
        
     }    
-                                       
-    
-    
     tl1.fromTo(message, 0.8, {y: 1000}, {y: 0, ease: Power2.easeInOut}
     )
     gamesPlayed++
 }
 
 function handleSound(e) {
-    if ((e.target.id === 'btn-sound' && mute===true) || 
-    (e.target.id === 'no-sound-icon') ||
-    (e.target.id === 'no-sound-path')) {
-        mute = false;
-        soundOn.play()
-        btnSound.innerHTML = playSound
-        // console.log("I'm playing sounds now'!")
-    } else {
-        mute = true;
-        btnSound.innerHTML = noSound
-        // console.log("I'm on mute now!")
+    if ((e.target.id === 'btn-sound' && mute===true) || //if user presses sound button while mute is true
+    (e.target.id === 'no-sound-icon') ||                    
+    (e.target.id === 'no-sound-path')) {                    
+        mute = false;                               //set mute to false
+        soundOn.play()                             //play sound effect for sound on
+        btnSound.innerHTML = playSound             //change icon to sound on icon
+    } else {                                       //otherwise
+        mute = true;                               // set mute to true
+        btnSound.innerHTML = noSound               //change icon to mute icon
     }
 }
 
-// adding player names
-function displayInputFields(e) { 
-    if (!mute) {
+
+function displayInputFields(e) {  //when one of the add-info buttons is clicked
+    if (!mute) {                //if mute is false, play click sound when user presses button
         soundClick.play()
-    }           //when one of the add-info buttons is clicked
-    if (e.target.id === 'path-player-1' ||  //and its id matches a player-1 element
+    }          
+    if (e.target.id === 'path-player-1' ||  //if clicked id id matches a player-1 element
     e.target.id === 'add-info-player-1' ||      
     e.target.id === 'btn-add-info-player-1')
     {                                          
         player1Form.classList.add('display')  //add an input field to player-1
         nameInputPlayer1.focus();             //put cursor into input field
         nameInputPlayer1.select();
-    } else {                                  //otherwise (button doesn't match a player-1 element)
+    } else {                                  //otherwise (button doesn't match a player1 element)
         player2Form.classList.add('display')  //add an input field to player-2
-        nameInputPlayer2.focus();             ////put cursor into input field
+        nameInputPlayer2.focus();             //put cursor into input field
         nameInputPlayer2.select();
     }
 }
 
-function handlePlayerInfoSubmit(e) {
-    e.preventDefault()
+function handlePlayerInfoSubmit(e) { //when player click submit button after entering name
+    e.preventDefault()              //if mute is false, play click sound when user presses button
     if (!mute) {
         soundClick.play()
     }
-    // console.log(e.target)
-    if (e.target.parentNode.parentNode.id === 'player-1-input-form' ||
+    if (e.target.parentNode.parentNode.id === 'player-1-input-form' || //if clicked id matches a player1 element
     e.target.parentNode.parentNode.id === 'btn-submit-player-1' ||
     e.target.id === 'btn-submit-player-1'
     ) 
     {
-        if (nameInputPlayer1.value !== "") {
-            player1.name = nameInputPlayer1.value
-            player1NameDisplays.forEach(display => display.innerText = nameInputPlayer1.value)
-            nameInputPlayer1.value = ''   
+        if (nameInputPlayer1.value !== "") { //and if the user entered something into the box for player1
+            player1.name = nameInputPlayer1.value //replace the name of "player 1" with user input
+            player1NameDisplays.forEach(display => display.innerText = nameInputPlayer1.value) //display new player name on screen
+            nameInputPlayer1.value = ''   //clear input field
         }
-        player1Form.classList.remove('display')
-        if (xCurrentSymbol) {
-            yourTurn(player1.name)
+        player1Form.classList.remove('display') //remove input field
+        if (xCurrentSymbol) { //if x is the current symbol
+            yourTurn(player1.name) // display new name on the current player display
 
         }
-    } else {
-        if (nameInputPlayer2.value !== "") {
-            player2.name = nameInputPlayer2.value
-            player2NameDisplays.forEach(display => display.innerText = nameInputPlayer2.value)
-            nameInputPlayer2.value = ''
+    } else { //if id doesn't match a player-1 element
+        if (nameInputPlayer2.value !== "") { //and if the user entered something into the box for player2
+            player2.name = nameInputPlayer2.value //replace the name of "player 2" with user input
+            player2NameDisplays.forEach(display => display.innerText = nameInputPlayer2.value) //display new player name on screen
+            nameInputPlayer2.value = ''  //clear input field
         }
-        player2Form.classList.remove('display')
-        if (!xCurrentSymbol) {
-            yourTurn(player2.name)
+        player2Form.classList.remove('display')  //remove input field
+        if (!xCurrentSymbol) { //if x is not the current symbol, i.e. o is the current symbol
+            yourTurn(player2.name) // display new name on the current player display
 
         }
     }
 
     btnsAddInfo.forEach((btn) => {
-        removeEventListener('click', displayInputFields, {once: true})
-        btn.addEventListener('click', displayInputFields, {once: true})
+        removeEventListener('click', displayInputFields, {once: true}) //remove event listener so there are no duplicates
+        btn.addEventListener('click', displayInputFields, {once: true})//add new event listener so user can click button and change name again
     })
 }
 
-function clearScores() {
+function clearScores() { //set player scores back to 0
     player1.wins = 0;
     player2.wins = 0;
-    scorePlayer1.innerHTML = 0;
+    scorePlayer1.innerHTML = 0; //display changed number on screen
     scorePlayer2.innerHTML = 0;
-    drawScore = 0;
-    drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`
-    if (!mute) {
-        soundResetScores.play()
+    drawScore = 0;              //set draw number back to 0
+    drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}` //Display changed draw score on screen
+    if (!mute) {                //if mute is false
+        soundResetScores.play() // play sound effect for score reset
     }
 }
 
-//page loads
-grid.classList.remove(xMove)
+// WHEN PAGE LOADS
+grid.classList.remove(xMove) //make sure there are no symbols on the grid
 grid.classList.remove(oMove)
 allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
-btnStartGame.style.opacity = "1";
-tl3.fromTo(btnStartGame, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut})
+
+btnStartGame.style.opacity = "1"; //startGame btn is visible
+tl3.fromTo(btnStartGame, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut}) //starGame btn slides into screen
 
 function handleIcon1Click(e) {
     e.preventDefault()
@@ -439,10 +438,9 @@ function handleColorSelected(e) {
 }
 
 
-let crossIcon = document.querySelector('.icon.cross')
-let circleIcon = document.querySelector('.icon.circle')
 
-console.log(circleIcon)
+
+
 
 
 // changing the color of icon that appears on screen next to name

@@ -1,6 +1,8 @@
+//color codes for dropdown menu from which player can pick color for their symbol
+
 const colorCodes = {
     red: "rgb(255, 99, 71)",
-    blue: "rgb(64,200,225)",
+    blue: "rgb(0,181,226)",
     green: "rgb(80, 200, 120)",
     yellow: "rgb(255 239 0)",
     pink: "rgb(249, 120, 185)",
