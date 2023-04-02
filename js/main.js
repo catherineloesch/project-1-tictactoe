@@ -19,7 +19,7 @@ import { sadFace, noSound, playSound } from "./icons.js";
 import { soundWin, soundDraw, soundMakeMove, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
 // import { colorCodes } from "./colors.js";
 
-
+let testAudio = new Audio('../assets/audio/mouseClick.mp3')
 
 //variables
 const xMove = 'x'; // setting CSS 'x' class to a variable
@@ -159,7 +159,7 @@ colorOptions.forEach((color) => {
 
 function startGame(){
     if (!mute) {
-        soundClick.play()
+        testAudio.play()
     }
     initialiseGame()
     tl4.fromTo(startGameBtn, 1.2, {y: 0}, {y: 1000, ease: Power2.easeInOut})
