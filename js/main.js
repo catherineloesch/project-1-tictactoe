@@ -19,6 +19,8 @@ import { sadFace, noSound, playSound } from "./icons.js";
 import { soundWin, soundDraw, soundMakeMove, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
 // import { colorCodes } from "./colors.js";
 
+
+
 //variables
 const xMove = 'x'; // setting CSS 'x' class to a variable
 const oMove = 'o'; // setting CSS 'o' class to a variable
@@ -33,7 +35,7 @@ const colorCodes = {
     blue: "rgb(64,200,225)",
     green: "rgb(80, 200, 120)",
     yellow: "rgb(255 239 0)",
-    pink: "rgb(255, 105, 180)",
+    pink: "rgb(249, 120, 185)",
     purple: "rgb(207, 159, 255)",
     orange: "rgb(247, 135, 2)",
     white: "rgb(255,255,255)"

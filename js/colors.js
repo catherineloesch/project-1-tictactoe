@@ -8,3 +8,5 @@ const colorCodes = {
     orange: "rgb(255, 179, 128)",
     white: "rgb(255,255,255)"
 }
+
+export { colorCodes }
