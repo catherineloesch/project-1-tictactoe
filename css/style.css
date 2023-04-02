@@ -285,53 +285,6 @@ ________________________________________________________________________________
 .cell.o::before  {
     background-color: var(--o-color, white);
 }
-/* variables go here */
-
-.red {
-    --x-color: rgb(250,100,92);
-    --o-color: rgb(250,100,92);
-
-}
-
-.blue {
-    --x-color: rgb(64,200,225);
-    --o-color: rgb(64,200,225);
-}
-
-.green {
-    --x-color: rgb(150, 223, 141);
-    --o-color: rgb(150, 223, 141);
-}
-
-.yellow{
-    --x-color: rgb(237, 237, 122);
-    --o-color: rgb(237, 237, 122);
-}
-
-.pink {
-    --x-color: rgb(246, 152, 168);
-    --o-color: rgb(246, 152, 168);
-
-}
-
-.purple {
-    --x-color: rgb(202, 134, 202);
-    --o-color: rgb(202, 134, 202);
-
-}
-
-.orange {
-    --x-color: rgb(255, 179, 128);
-    --o-color: rgb(255, 179, 128);
-
-}
-
-.white {
-    --x-color: rgb(255,255,255);
-    --o-color: rgb(255,255,255);
-}
-
-
 
 
 /* preview lighter symbol when user hovers over empty cell */
@@ -411,7 +364,7 @@ aside.right { /* <aside> element that contains:
     /* background-color: #FA645C; */
     padding: 0;
     /* border: 2px solid white; */
-    color: rgb(233, 233, 99);
+    color: rgb(255 239 0);
     width: 118%;
     font-size: 2.5rem;
 
@@ -648,7 +601,7 @@ Overlay Message displaying winner or draw
     font-size: 0.6em;
     list-style: none;
     position: absolute;
-    right: 0;
+    left: -2.3rem;
     top: 2.5rem;
 }
     
@@ -660,6 +613,7 @@ Overlay Message displaying winner or draw
     font-size: 1em;
     width: 2.8rem;
     height: 1.4rem;
+    border: 2px solid black;
 }
 
 .color-tag {/* <a> */
@@ -669,8 +623,8 @@ Overlay Message displaying winner or draw
 }
 
 #red1, #red2  {
-    background-color: #FA645C;
-    border: 2px solid #FA645C;
+    background-color: rgb(255, 99, 71);
+    border: 2px solid rgb(255, 99, 71);
     border-radius: 4px 4px 0px 0px;
 
 } 
@@ -682,34 +636,34 @@ Overlay Message displaying winner or draw
 } 
 
 #green1, #green2 {
-    background-color: rgb(150, 223, 141);
-    border: 2px solid rgb(150, 223, 141);
+    background-color: rgb(80, 200, 120);
+    border: 2px solid rgb(80, 200, 120);
 } 
 
 #yellow1, #yellow2 {
-    background-color: rgb(237, 237, 122);
-    border: 2px solid rgb(237, 237, 122);
+    background-color: rgb(255 239 0);
+    border: 2px solid rgb(255 239 0);
 } 
 
 #pink1, #pink2 {
-    background-color: rgb(246, 152, 168);
-    border: 2px solid rgb(246, 152, 168);
+    background-color: rgb(249, 120, 185);
+    border: 2px solid rgb(249, 120, 185);
 } 
 
 #purple1, #purple2 {
-    background-color: rgb(202, 134, 202);
-    border: 2px solid rgb(202, 134, 202);
+    background-color: rgb(207, 159, 255);
+    border: 2px solid rgb(207, 159, 255);
 } 
 
 #orange1, #orange2 {
-    background-color: rgb(255, 179, 128);
-    border: 2px solid rgb(255, 179, 128);
+    background-color: rgb(247, 135, 2);
+    border: 2px solid rgb(247, 135, 2);
     border-radius: 0px 0px 4px 4px;
 }
 
 #white1, #white2 {
-        background-color: rgb(255,255,255)
-        border: 2px solid rgb(255,255,255)
+        background-color: rgb(255,255,255);
+        border: 2px solid rgb(255,255,255);
     }
 
 
@@ -728,7 +682,7 @@ Overlay Message displaying winner or draw
 #pink2:hover,
 #purple2:hover,
 #orange2:hover {
-    transform: scaleX(1.3);
+    transform: scaleX(1.1);
     transition: .4s;
     border-radius: 2px;
 }
