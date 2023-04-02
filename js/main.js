@@ -35,11 +35,16 @@ const soundWin = new Howl({
 })
 
 const soundDraw = new Howl({
-    src: ['./../assets/audio/error.mp3'],
+    src: ['./../assets/audio/draw.mp3'],
     volume: 0.4
 })
 
 const soundMakeMove = new Howl({
+    src: ['./../assets/audio/clicks.mp3'],
+    volume: 0.5
+})
+
+const soundClick = new Howl({
     src: ['./../assets/audio/mouseClick.mp3'],
     volume: 0.5
 })
@@ -53,6 +58,17 @@ const soundResetScores = new Howl({
     src: ['./../assets/audio/game_button.mp3'],
     volume: 0.5
 })
+
+// var sound = new Howl({
+//     src: ['sound.webm', 'sound.mp3', 'sound.wav'],
+//     autoplay: true,
+//     loop: true,
+//     volume: 0.5,
+//     onend: function() {
+//       console.log('Finished!');
+//     }
+//   });
+  
 
 let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
 let gamesPlayed = 0;
@@ -116,14 +132,17 @@ const winnerAnnouncement = document.querySelector('.winner-announcement') //text
 
 //Event Listeners
 startGameBtn.addEventListener('click', startGame)
-startNewGameBtn.addEventListener('click', initialiseGame)
+startNewGameBtn.addEventListener('click', () => {
+    if (!mute) {
+        soundClick.play()
+    }
+    initialiseGame()
+})
+
 resetGameBtn.addEventListener('click', () => {
-   
     if (!mute) {
         soundResetGame.play()
     }
-
-
     initialiseGame()
 })
 
@@ -143,6 +162,9 @@ btnSound.addEventListener('click', handleSound)
 //functions
 
 function startGame(){
+    if (!mute) {
+        soundClick.play()
+    }
     initialiseGame()
     tl4.fromTo(startGameBtn, 1.2, {y: 0}, {y: 1000, ease: Power2.easeInOut})
     setTimeout(function() {startGameBtn.remove()}, 1000);
@@ -315,7 +337,10 @@ function handleSound(e) {
 }
 
 // adding player names
-function displayInputFields(e) {            //when one of the add-info buttons is clicked
+function displayInputFields(e) { 
+    if (!mute) {
+        soundClick.play()
+    }           //when one of the add-info buttons is clicked
     if (e.target.id === 'path-player-1' ||  //and its id matches a player-1 element
     e.target.id === 'add-info-player-1' ||      
     e.target.id === 'btn-add-info-player-1')
@@ -332,6 +357,9 @@ function displayInputFields(e) {            //when one of the add-info buttons i
 
 function handlePlayerInfoSubmit(e) {
     e.preventDefault()
+    if (!mute) {
+        soundClick.play()
+    }
     console.log(e.target)
     if (e.target.parentNode.parentNode.id === 'player-1-input-form' ||
     e.target.parentNode.parentNode.id === 'btn-submit-player-1' ||
