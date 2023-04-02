@@ -502,8 +502,15 @@ Overlay Message displaying winner or draw
     flex-direction: column;
 }
 
-.message.display {
+.message.display-win {
     display: flex;
+    background-color: rgba(59, 82, 53, 0.97);
+    color: yellow;
+}
+
+.message.display-draw {
+    display: flex;
+    background-color: rgba(52, 66, 114, 0.97)
 }
 
 .message .btn {
@@ -516,12 +523,31 @@ Overlay Message displaying winner or draw
     cursor: pointer;
     margin-top: 1em;
     border-radius: 8px;
+}
+
+.message.display-draw .btn {
+    font-size: 2.5rem;
+    font-family: 'Comfortaa', futura, sans-serif;
+    background-color: rgb(128, 193, 229);
+    border: 3px solid rgb(47, 37, 94);
+    color:  rgb(47, 37, 94);
+    padding: .25em .5em;
+    cursor: pointer;
+    margin-top: 1em;
+    border-radius: 8px;
 } 
 
 .message .btn:hover {
     background-color: rgb(40, 61, 35);
     border: 3px solid rgb(164, 197, 153);
     color: rgb(164, 197, 153);
+    transition: 0.4s;
+}
+
+.message.display-draw .btn:hover {
+    background-color: rgb(47, 37, 94);
+    border: 3px solid rgb(128, 193, 229);
+    color: rgb(128, 193, 229);
     transition: 0.4s;
 }
 

@@ -1,11 +1,11 @@
 const colorCodes = {
-    red: "rgb(250,100,92)",
+    red: "rgb(255, 99, 71)",
     blue: "rgb(64,200,225)",
-    green: "rgb(150, 223, 141)",
-    yellow: "rgb(237, 237, 122)",
-    pink: "rgb(246, 152, 168)",
-    purple: "rgb(202, 134, 202)",
-    orange: "rgb(255, 179, 128)",
+    green: "rgb(80, 200, 120)",
+    yellow: "rgb(255 239 0)",
+    pink: "rgb(249, 120, 185)",
+    purple: "rgb(207, 159, 255)",
+    orange: "rgb(247, 135, 2)",
     white: "rgb(255,255,255)"
 }
 

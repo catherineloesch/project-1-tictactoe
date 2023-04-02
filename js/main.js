@@ -17,45 +17,19 @@
 
 import { sadFace, noSound, playSound } from "./icons.js";
 import { soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
-// import { colorCodes } from "./colors.js";
+import { colorCodes } from "./colors.js";
 
-
-//variables
-const xMove = 'x'; // setting CSS 'x' class to a variable
-const oMove = 'o'; // setting CSS 'o' class to a variable
-
+//timelines for transitions
 const tl1 = new TimelineMax();
 const tl2 = new TimelineMax();
 const tl3 = new TimelineMax();
 const tl4 = new TimelineMax();
 
-const colorCodes = {
-    red: "rgb(255, 99, 71)",
-    blue: "rgb(64,200,225)",
-    green: "rgb(80, 200, 120)",
-    yellow: "rgb(255 239 0)",
-    pink: "rgb(249, 120, 185)",
-    purple: "rgb(207, 159, 255)",
-    orange: "rgb(247, 135, 2)",
-    white: "rgb(255,255,255)"
-}
-
-// mp3 sound files, located in audio folder ('./../assets/audio/success.mp3')
-// opensource sound files obtained from pixabay (https://pixabay.com/sound-effects/)
-// Howler: https://cdnjs.com/libraries/howler
-
-  
-
-let xCurrentSymbol; // true if current symbol is x, false if current symbol is o
-let gamesPlayed = 0;
-let drawScore = 0;
-let mute = false;
-let newColorPicked = []
-const winningCombinations = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontal combinations
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], //vertical combinations
-    [0, 4, 8], [2, 4, 6] //diagonal combinations
-]
+//VARIABLES
+const xMove = 'x'; // setting CSS 'x' class to a variable -> x appears on cell when user clicks
+const oMove = 'o'; // setting CSS 'o' class to a variable -> o appears on cell when user clicks
+let xCurrentSymbol; // boolean -> returns true if current symbol is x, false if current symbol is o
+                    //i.e. true if player1 is currently playing, false if player2 is currently playing
 
 //default: player 1 has x and player 2 has o
 let player1 = {
@@ -70,102 +44,111 @@ let player2 = {
     wins: 0
 }
 
+const winningCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontal combinations
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], //vertical combinations
+    [0, 4, 8], [2, 4, 6] //diagonal combinations
+]
 
+let gamesPlayed = 0; //number of games played
+let drawScore = 0; //number of draws
 
-//CSS variables
+let mute = false; //when false -> no sounds play, when true sound effects play
+let newColorPicked = [] //first element of array is which player picked the color, second is which color they picked
 
 
 //Selecting HTML elements + assigning them to variables
+//center section of screen
 const grid = document.querySelector('.grid')
 const allCells = document.querySelectorAll('.cell') // -> NodeList(9)
-const player1Form = document.querySelector('#player-1-input-form')
-const player2Form = document.querySelector('#player-2-input-form')
-const nameInputPlayer1 = document.querySelector('#player-1-name-input')
-const nameInputPlayer2 = document.querySelector('#player-2-name-input')
-const player1NameDisplays = document.querySelectorAll('.display-name-player-1')
-const player2NameDisplays = document.querySelectorAll('.display-name-player-2')
-const playerTurnDisplay = document.querySelector('.current-player-display')
-const drawsDisplay = document.querySelector('.score-board .draw-score-reset .draw-score')
-let scorePlayer1 = document.querySelector('#player-1-score')
-let scorePlayer2 = document.querySelector('#player-2-score')
-const startGameBtn = document.querySelector('.center .start-game-btn')
-const startNewGameBtn = document.querySelector('.message .btn') //button appears in overlay + starts new game after a game ends (win or draw)
-const btnsAddInfo = document.querySelectorAll('.btn-add-player-info') //NodeList(2)
-const btnsPlayerSubmitInfo = document.querySelectorAll('.btn-submit-player-input') //NodeList(2)
-const resetGameBtn = document.querySelector('.settings .btn-reset')
-const btnSound = document.querySelector('.btn-sound')
-const clearScoresBtn = document.querySelector('.btn.btn-clear-scores')
-const message = document.querySelector('.message') // overlay that appears only when game ends (win or draw)
-const winnerAnnouncement = document.querySelector('.winner-announcement') //text text that appears on overlay after game ends (win or draw)
 
-//color dropdown
-const colorOptions = document.querySelectorAll('.color-tag')
+const btnStartGame = document.querySelector('.center .start-game-btn')
+const btnResetGame = document.querySelector('.settings .btn-reset')
+const btnSound = document.querySelector('.btn-sound')
+
+//right section of screen
+const playerTurnDisplay = document.querySelector('.current-player-display') //display telling users whose turn it is
+
+    //User input: picking a color for their symbol
+const iconPlayer1 = document.querySelector('#player-1-symbol-display') //icon player1 clicks to pick color
+const iconPlayer2 = document.querySelector('#player-2-symbol-display') //icon player2 clicks to pick color
 const colorDropDownPlayer1 = document.querySelector('#color-palette-player-1')
 const colorDropDownPlayer2 = document.querySelector('#color-palette-player-2')
-const iconPlayer1 = document.querySelector('#player-1-symbol-display')
-const iconPlayer2 = document.querySelector('#player-2-symbol-display')
+const colorOptions = document.querySelectorAll('.color-tag') //colors to pick from
+
+    
+    //User input: adding their name
+const btnsAddInfo = document.querySelectorAll('.btn-add-player-info') //NodeList(2)
+const btnsPlayerSubmitInfo = document.querySelectorAll('.btn-submit-player-input') //NodeList(2)
+const player1Form = document.querySelector('#player-1-input-form')
+const player2Form = document.querySelector('#player-2-input-form')
+const nameInputPlayer1 = document.querySelector('#player-1-name-input') //input field where player1 enters name
+const nameInputPlayer2 = document.querySelector('#player-2-name-input') //input field where player2 enters name
+const player1NameDisplays = document.querySelectorAll('.display-name-player-1') //elements on screen that display player1's name
+const player2NameDisplays = document.querySelectorAll('.display-name-player-2') //elements on screen that display player2's name
+
+//left section of screen
+let scorePlayer1 = document.querySelector('#player-1-score')
+let scorePlayer2 = document.querySelector('#player-2-score')
+
+const btnClearScores = document.querySelector('.btn.btn-clear-scores') //when clicked -> sets scores and draw number back to 0
+const drawsDisplay = document.querySelector('.score-board .draw-score-reset .draw-score')
+
+//Overlay after win/draw
+const message = document.querySelector('.message') // overlay that appears only when game ends (win or draw)
+const winnerAnnouncement = document.querySelector('.winner-announcement') //text text that appears on overlay after game ends (win or draw)
+const btnStartNewGame = document.querySelector('.message .btn') //button appears in overlay + starts new game after a game ends (win or draw)
 
 
-//-------------------------------------------------------------------------
 
 
+//EVENT LISTENERS
+btnStartGame.addEventListener('click', startGame) //Starts first game
 
-
-
-
-
-
-
-//----------------------------------------------------------------------------
-
-
-//Event Listeners
-startGameBtn.addEventListener('click', startGame)
-startNewGameBtn.addEventListener('click', () => {
+btnStartNewGame.addEventListener('click', () => { //starts new game after win/draw
     if (!mute) {
         soundClick.play()
     }
     initialiseGame()
 })
 
-resetGameBtn.addEventListener('click', () => {
+btnResetGame.addEventListener('click', () => { //clears the grid
     if (!mute) {
         soundResetGame.play()
     }
     initialiseGame()
 })
 
-clearScoresBtn.addEventListener('click', clearScores)
+btnSound.addEventListener('click', handleSound) //mute/unmute btn
+btnClearScores.addEventListener('click', clearScores) //sets scores+draws back to 0
 
-btnsAddInfo.forEach(btn => {
-    btn.addEventListener('click', displayInputFields, {once: true})
-})
-
-btnsPlayerSubmitInfo.forEach(btn => {
-    btn.addEventListener('click', handlePlayerInfoSubmit)
-})
-
-btnSound.addEventListener('click', handleSound) 
-iconPlayer1.addEventListener('click', handleIcon1Click)
-iconPlayer2.addEventListener('click', handleIcon2Click)
-colorOptions.forEach((color) => {
+iconPlayer1.addEventListener('click', handleIcon1Click) //clicked when player1 wants to change color of their symbol
+iconPlayer2.addEventListener('click', handleIcon2Click)//clicked when player2 wants to change color of their symbol
+colorOptions.forEach((color) => { //clicked when user picks a color from palette
     color.addEventListener('click', handleColorSelected)
 })
 
+btnsAddInfo.forEach(btn => { //when btn is clicked, input fields appear for user to enter name
+    btn.addEventListener('click', displayInputFields, {once: true})
+})
 
-//functions
+btnsPlayerSubmitInfo.forEach(btn => { //clicked when user submits their name
+    btn.addEventListener('click', handlePlayerInfoSubmit)
+})
 
+
+//FUNCTIONS
 function startGame(){
     if (!mute) {
         soundClick.play()
     }
     initialiseGame()
-    tl4.fromTo(startGameBtn, 1.2, {y: 0}, {y: 1000, ease: Power2.easeInOut})
-    setTimeout(function() {startGameBtn.remove()}, 1000);
+    tl4.fromTo(btnStartGame, 1.2, {y: 0}, {y: 1000, ease: Power2.easeInOut}) //after start game btn is clicked it moves down
+    setTimeout(function() {btnStartGame.remove()}, 1000);                   //and then it disappears
    
 }
 
-function yourTurn(name) {
+function yourTurn(name) { //Display's the name of whose turn it is on top right of screen
     const msg1 = `${name},`
     const msg2 = `it's your turn!`
     const msg3 = msg1 + `<br>` + msg2
@@ -173,78 +156,74 @@ function yourTurn(name) {
 }
 
 function initialiseGame() {
-    //the starting symbol should switch at every turn
-    if (gamesPlayed === 0) { //if this is the first game
-        xCurrentSymbol = true;          // x symbol starts
-        yourTurn(player1.name)
-      
+    if (gamesPlayed === 0) {    //if this is the first game
+        xCurrentSymbol = true;  // x symbol/player1 starts by default
+        yourTurn(player1.name)  //player1's name is displayed on screen 
+                                //to tell them it's their turn
 
-    } else if (gamesPlayed%2 === 0) {//x symbol starts for even number or games
-        xCurrentSymbol = true
+    } else if (gamesPlayed%2 === 0) {   //After the first round(0), players take turns starting game
+        xCurrentSymbol = true           // so x symbol starts for even number or games (i.e. 0, 2, 4, 6, etc)
         yourTurn(player1.name)
         
-
-    } else {
-        xCurrentSymbol = false      //o symbol starts for odd number of games
-        yourTurn(player2.name)
+    } else {                         //player2 starts the second round(1)
+        xCurrentSymbol = false      //so o symbol starts for odd number of games (i.e. 1, 3, 5, 7, etc)
+        yourTurn(player2.name)     
     }
     
     allCells.forEach((cell) => {      //start with empty grid
         cell.classList.remove(xMove) //remove all x symbols in grid
         cell.classList.remove(oMove) //remove all o symbols in grid
-        //attaching an eventListener to each cell so we know when player clicks on it
-        cell.removeEventListener('click', handleUserInput) //remove previous eventListeners so there are no duplicates
-        cell.addEventListener('click', handleUserInput,  {once: true}) //same cell can only be clicked once
-        activateHoverSymbol()
+       
+        cell.removeEventListener('click', handleUserInput) //remove any previous eventListeners so there are no duplicates
+        cell.addEventListener('click', handleUserInput,  {once: true})  //attaching an eventListener to each cell so we know when a player clicks on it
+                                                                        //each cell cell can only be clicked once
+        activateHoverSymbol() //when hovering over a cell, a preview of player's symbol appears
        
     })
 
-    tl2.fromTo(message, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut})
-    setTimeout(() => {message.classList.remove('display')}, 1000) // remove display class so overlay is not visible
-                                                                    // wait until after transition effect is finishes (1s -> 1000ms)
+    tl2.fromTo(message, 1, {y: 0}, {y: 1000, ease: Power2.easeInOut}) 
+    setTimeout(() => {message.classList.remove('display')}, 1000)
+    setTimeout(() => {message.classList.remove('display-win')}, 1000)
+    setTimeout(() => {message.classList.remove('display-draw')}, 1000)       // remove display class so overlay is not visible
+                                                                        // wait until after transition effect is finished (1s -> 1000ms)
 }
-
+                                                                   
 function handleUserInput(e) {
     const cell = e.target
-    // make the move
-    // if current player uses x, use CSS x class for x symbol
-    // if current player uses o, use CSS o class for o symbol
+    // if current player uses x, use CSS "x" class
+    // if current player uses o, use CSS "o" class
     const currentSymbol = xCurrentSymbol ? xMove : oMove
     // display move on grid
     displayNewMove(cell, currentSymbol)
 
     // check if current player won or if grid is full
-    if (checkForWin(currentSymbol)) {   //if one of the player won
-        gameEnd(false)                  //the game ends
+    if (checkForWin(currentSymbol)) {   //if one of the players won
+        gameEnd(false)                  //the game ends (the argument is false because there is no draw)
     } else if (checkForDraw()) {        //if there is a draw
-        gameEnd(true)                   //the game ends
+        gameEnd(true)                   //the game ends (argument is true because there is a draw)
     } else {                            //if no win or draw the game continues
         switchTurns()                   //and it's the other player's turn
         activateHoverSymbol()
     }
-    // check if current player won or if grid is full
-    // if there is no winner and no draw
-    // select new current player
 }
 
 function displayNewMove(cell, currentSymbol) {
-    cell.classList.add(currentSymbol)
-    if (!mute && currentSymbol === xMove) {
-            soundMakeMoveX.play()
-
-    } else if (!mute && currentSymbol === oMove) {
-        soundMakeMoveO.play()
+    cell.classList.add(currentSymbol) //adding the symbol of current player to the the cell they clicked on
+    if (!mute && currentSymbol === xMove) {         //if mute is false 
+            soundMakeMoveX.play()                   //play sound effect for x
+    } else if (!mute && currentSymbol === oMove) {  //or
+        soundMakeMoveO.play()                       //sound effect for o
     }
 
 }
 
-//after player makes move, it's the other player's turn
-// if current player uses x, we switch to o
-// if current player uses o, we switch to x
 
-function switchTurns() {
-    xCurrentSymbol = !xCurrentSymbol
-    let name;
+
+
+
+function switchTurns() {             //after player makes move, it's the other player's turn             
+    xCurrentSymbol = !xCurrentSymbol// if current player uses x, switch to o
+    let name;                       // if current player uses o, switch to x
     if ((xCurrentSymbol && player1.symbol === xMove) || (!xCurrentSymbol && player1.symbol === oMove)) {
         name = player1.name
     } else if ((xCurrentSymbol && player1.symbol !== xMove) || (!xCurrentSymbol && player1.symbol !== oMove)) {
@@ -256,7 +235,7 @@ function switchTurns() {
 
 }
 
-function activateHoverSymbol() {
+function activateHoverSymbol() { //when hovering over a cell, a preview of player's symbol appears
     grid.classList.remove(xMove)
     grid.classList.remove(oMove)
     if (xCurrentSymbol) {
@@ -266,54 +245,60 @@ function activateHoverSymbol() {
     }
 }
 
-function checkForWin(currentSymbol) {
-    const result = winningCombinations.some((combo) => {
-        return combo.every(index => {
-            return Array.from(allCells)[index].classList.contains(currentSymbol) //need to turn html collection into array
-        })
+function checkForWin(currentSymbol) {   //checking grid to see if player won after making a move
+    const result = winningCombinations.some((combo) => { //for each possible winning combination (array of 3 indexes e.g. [0, 1, 2])
+        return combo.every(index => {                    //is there a match for EVERY single one of those 3 indexes 
+            return Array.from(allCells)[index].classList.contains(currentSymbol) // in the array of all the cells that contain the current symbol??
+        }) //need to turn html collection into array with Array.from()
     })
-    return result
+    return result  //true all 3 indexes of any of the winning combinations match -> i.e. win
+                   //false if there is no match i.e. -> there's either a draw or the game continues and it's the other player's turn
 
 }
 
-function checkForDraw() { //returns true if every cell has either an x or an o
+function checkForDraw() { //checking grid to see if it is full
     const result = Array.from(allCells).every(cell => { //need to turn html collection into array
-        return cell.classList.contains(xMove) || cell.classList.contains(oMove)
+        return cell.classList.contains(xMove) || cell.classList.contains(oMove) //for every cell, does it contain either an x or an o??
     })
-    return result
+    return result //returns true if every cell has either an x or an o -> i.e. there's a draw
+                  //returns false otherwise -> i.e. there's no draw
 }
 
-
-function gameEnd(draw) {
-    if (draw) {
-        drawScore++
-        drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`
-        winnerAnnouncement.innerHTML = `${sadFace} Neither player wins the game!`
-        if (!mute) {
-            soundDraw.play()
+function gameEnd(draw) { //argument is true if there's a draw and false if there's a win
+    if (draw) {         //if there is a draw
+        drawScore++     //increase the draw number by 1
+        drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}` //display the new number of draws on screen
+        winnerAnnouncement.innerHTML = `${sadFace} Neither player wins the game!` //show overlay message informing players that there is a draw
+        message.classList.add('display-draw') //overlay appears only when class 'display' is added to message
+        if (!mute) {                                //if mute is false
+            soundDraw.play()                        //play draw sound effect
         }
-    } else {
-        if (xCurrentSymbol && (player1.symbol === xMove)
-                || (!xCurrentSymbol && (player1.symbol === oMove))) {
-                    player1.wins++
-                    scorePlayer1.innerHTML = player1.wins
-                    winnerAnnouncement.innerHTML = `${player1.name} wins the Game!`
-                    if (!mute) {
-                        soundWin.play()
+    } else {       //when the game ends but there is no draw -> there is a win
+        if (xCurrentSymbol && (player1.symbol === xMove) //if x is the current symbol when game ends,
+                || (!xCurrentSymbol && (player1.symbol === oMove))) {   //player1 wins
+                    player1.wins++    //increase player1 win number by 1
+                    scorePlayer1.innerHTML = player1.wins //display new win number on screen
+                    winnerAnnouncement.innerHTML = `${player1.name} wins the Game!` //inform players that player1 won overlay message
+                    message.classList.add('display-win') //overlay appears only when class 'display' is added to message
+                    if (!mute) {    //if mute is false
+                        soundWin.play()     //play the win sound effect
                     }
-        } else {
-            player2.wins++
-            scorePlayer2.innerHTML = player2.wins
-            winnerAnnouncement.innerHTML = `${player2.name} wins the Game!`
-            if (!mute) {
-                soundWin.play()
+        } else { //when there's a win but player1 is not the winner -> player2 wins
+            player2.wins++  //increase player2 win number by 1
+            scorePlayer2.innerHTML = player2.wins //display new win number on screen
+            winnerAnnouncement.innerHTML = `${player2.name} wins the Game!`  //inform players that player2 won overlay message
+            message.classList.add('display-win') //overlay appears only when class 'display' is added to message
+            if (!mute) {    //if mute is false
+                soundWin.play() //play the win sound effect
             }
         }
         
-        const jsConfetti = new JSConfetti()
-        jsConfetti.addConfetti()
-    }
-    message.classList.add('display') //overlay appears only when class 'display' is added to message
+        const jsConfetti = new JSConfetti() //https://www.npmjs.com/package/js-confetti
+        jsConfetti.addConfetti()            //display confetti animation
+       
+    }    
+                                       
+    
     
     tl1.fromTo(message, 0.8, {y: 1000}, {y: 0, ease: Power2.easeInOut}
     )
@@ -410,8 +395,8 @@ function clearScores() {
 grid.classList.remove(xMove)
 grid.classList.remove(oMove)
 allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
-startGameBtn.style.opacity = "1";
-tl3.fromTo(startGameBtn, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut})
+btnStartGame.style.opacity = "1";
+tl3.fromTo(btnStartGame, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut})
 
 function handleIcon1Click(e) {
     e.preventDefault()
@@ -480,5 +465,4 @@ function changeIconColor(newColorPicked) {
 // top:46.5%;
 //     left:50%;
 
-//     startGameBtn
 

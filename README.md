@@ -251,3 +251,16 @@ etc
 ISSUES
 
 - mp3 files don't work on github pages
+
+```
+function checkForWin(currentSymbol) {
+    const result = winningCombinations.some((combo) => {
+        return combo.every(index => {
+            return Array.from(allCells)[index].classList.contains(currentSymbol) //need to turn html collection into array
+        })
+    })
+    return result
+
+}
+´´´
+```

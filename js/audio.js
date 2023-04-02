@@ -1,5 +1,6 @@
-//open source sound effects from pixabay (https://pixabay.com/sound-effects/)
-//Howler.js library used (https://howlerjs.com/ | https://cdnjs.com/libraries/howler)
+//.mp3 sound files are located in the audio folder
+// all files are open source sound effects from pixabay (https://pixabay.com/sound-effects/)
+// Howler.js library used (https://howlerjs.com/ | https://cdnjs.com/libraries/howler)
 
 const soundWin = new Howl({
     src: ['./audio/success.mp3', './audio/success.wav', './audio/success.webm'],
