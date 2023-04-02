@@ -17,7 +17,7 @@ const soundMakeMove = new Howl({
 })
 
 const soundClick = new Howl({
-    src: ['./audio/mouseClick.mp3', './audio/mouseClick.wav', './audio/mouseClick.webm'],
+    src: ['../audio/mouseClick.mp3', './audio/mouseClick.wav', './audio/mouseClick.webm'],
     volume: 0.5
 })
 

@@ -20,7 +20,6 @@ import { soundWin, soundDraw, soundMakeMove, soundClick, soundResetGame, soundRe
 // import { colorCodes } from "./colors.js";
 
 
-
 //variables
 const xMove = 'x'; // setting CSS 'x' class to a variable
 const oMove = 'o'; // setting CSS 'o' class to a variable
