@@ -289,3 +289,112 @@ describe how some of your favorite functions work
 - [ ] What would you do next?
 - [ ] How did you plan your project?
 - [ ] What did you learn?
+
+---
+
+1. Description
+
+A game of Tic Tac Toe / Naughts & Crosses built with HTML/CSS/JS.
+First Project General Assembly Software Engineering Immersive Course.
+
+---
+
+2)Deployment link
+The project was deployed on GitHub pages:
+https://catherineloesch.github.io/project-1-tictactoe/
+
+---
+
+3)Getting Started/Code Installation
+
+Explain how the reader accesses your code. Include a step by step approach.
+
+---
+
+4. Timeframe & Working Team
+
+Solo project, given 5 working days to complete
+
+---
+
+5. Technologies Used
+
+List every technology you used to complete the project. This can be in one long list, or broken down into categories (Back End, Front End, Development Tools).
+
+---
+
+6. Brief
+
+Include the brief set by your instructional team here. This sets the context of the project you were working towards and mimics briefs you will be set later in your future roles.
+This can either be in bullets or in a paragraph.
+
+---
+
+7. Planning
+
+- Did you do any sketches? If so, discuss this and include images.
+- Any wireframes of the front end and UI? You did? Then explain this and include images.
+- Any ERDs? Same here, explain and include images.
+- Use a project management tool to plan the sprint? If so, talk through this - what tool did you use? How you allocated tickets/responsibilities, sprint timeline etc. Also include screenshots of this.
+- Any pseudocode?
+- If it was a group or pair project - Discuss who was designated which tasks. This is very
+  important, as engineers want to understand who owned the different code elements when looking at a group project.
+
+---
+
+8. Build/Code Process
+
+-> longest section of your ReadMe
+-> steps you took to code the project.
+-> your approach and problem solving from the start of the project through to the end.
+-> minimum of 3-4 code snippets,
+-> highlighting code you're particularly proud of and these code snippets will have descriptions on what you did, how and why to set the context of the snippet you include.
+REASONING
+key sections of the project build.
+go through different stages
+
+---
+
+9. Challenges
+
+- What technical challenges did you come across?
+- Why were these challenges?
+- What problem solving did you do to rectify them?
+- Team dynamics/ Project management
+- Tools/Tech you used
+
+---
+
+10. Wins
+
+- Interesting problem solving you did
+- Strong sections of code
+- Collaboration with other team members
+- Visual design of the project
+
+aspects of your project you are most proud of.
+
+---
+
+11. Key Learnings/Takeaways
+
+most important parts of your ReadMe from an engineers’ perspective
+Engineers love to understand what you learn from each project and how it has shaped you as an engineer.
+
+See this as your opportunity to show the engineers how your skills grew during each project sprint.
+Things you could discuss here:
+
+- What Technologies/Tools do you now feel more confident with? Tell them specifically what you learnt about these.
+- What engineering processes did you become more comfortable with? Standups? Pair programming? Project management? Tell them what you learnt from these processes?
+
+---
+
+12.Bugs
+
+In either sentences or bullets, explain what the bugs are. If you have no bugs, you can leave this section blank.
+
+13. Future Improvements
+
+It’s common to get to the end of your project and have ideas on what you would do if you have more time, as well as how you might improve it.
+If you do, you should detail this here. It’s great to give that context on potential future improvements, to share your creative or technical ideas with the engineers reading your ReadMes.
+In either sentences or bullets, explain what your future improvements would be.

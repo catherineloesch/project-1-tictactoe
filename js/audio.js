@@ -42,4 +42,23 @@ const soundOn = new Howl({
     volume: 0.5
 })
 
-export {soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO,soundClick, soundResetGame, soundResetScores, soundOn}
+const soundSave = new Howl({
+    src: ['./audio/save.mp3', './audio/save.wav', './audio/save.webm'],
+    volume: 0.5
+})
+
+const soundRetrieve = new Howl({
+    src: ['./audio/snap.mp3', './audio/snap.wav', './audio/snap.webm'],
+    volume: 0.5
+})
+
+export {soundWin, 
+    soundDraw,
+    soundMakeMoveX,
+    soundMakeMoveO,
+    soundClick,
+    soundResetGame,
+    soundResetScores,
+    soundOn,
+    soundSave,
+    soundRetrieve}

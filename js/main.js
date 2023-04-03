@@ -21,7 +21,7 @@ import { Session } from "./Session.js";
 
 //visuals
 import { sadFace, noSound, playSound } from "./icons.js";
-import { soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
+import { soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO, soundClick, soundResetGame, soundResetScores, soundOn, soundSave, soundRetrieve } from "./audio.js";
 import { colorCodes } from "./colors.js";
 
 //timelines for transitions
@@ -446,6 +446,9 @@ function changeIconColor(newColorPicked) {
 
 //when save button clicked
 function handleSave() {
+    if (!mute) {
+        soundSave.play()
+    }
     const xCells = []
     for (let i=0; i<9; i++) {
         if (allCells[i].classList.contains(xMove)) {
@@ -492,6 +495,9 @@ function retrieveSavedData() {
     console.log(savedData)
 
     if (savedData) {
+        if (!mute) {
+            soundRetrieve.play()
+        }
     player1 = savedData.player1 //retrieving player information
     player2 = savedData.player2
     drawScore = savedData.draws //retrieveing draw information
