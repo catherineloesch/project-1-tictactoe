@@ -2,6 +2,8 @@
 
 gihub pages link - https://catherineloesch.github.io/project-1-tictactoe/
 
+repo link - https://github.com/catherineloesch/project-1-tictactoe
+
 1. List + explain technologies used and approach taken
 
 2. Installation instructions
@@ -89,6 +91,10 @@ To provide more detail, you can show how you categorized these features into Bro
 - As a user, I should not be able to continue playing once I win, lose, or tie
 
 - As a user, I should be able to play the game again without refreshing the page
+
+  - as a user, I should be able to change the color of my X/O
+  - as a user, I want to be able to enter my name and be shown my score and when it is my turn
+  - as a user, I want to be able to mute the sound effects of the game
 
 ## Silver Plan
 
@@ -250,7 +256,8 @@ etc
 
 ISSUES
 
-- mp3 files don't work on github pages
+- mp3 files don't work on github pages : Failed to load resource: the server responded with a status of 404 ()
+- removed audio folder from assets folder and put it in main project folder-> that solved the issue
 
 ```
 function checkForWin(currentSymbol) {
@@ -264,3 +271,21 @@ function checkForWin(currentSymbol) {
 }
 ´´´
 ```
+
+function checkForWin(currentSymbol) { //checking grid to see if player won after making a move
+const result = winningCombinations.some((combo) => { //for each possible winning combination (array of 3 indexes e.g. [0, 1, 2])
+return combo.every(index => { //is there a match for EVERY single one of those 3 indexes
+return Array.from(allCells)[index].classList.contains(currentSymbol) // in the array of all the cells that contain the current symbol??
+}) //need to turn html collection into array with Array.from()
+})
+return result
+
+}
+
+describe how some of your favorite functions work
+
+- [ ] What would you do differently?
+- [ ] What are you most proud of?
+- [ ] What would you do next?
+- [ ] How did you plan your project?
+- [ ] What did you learn?

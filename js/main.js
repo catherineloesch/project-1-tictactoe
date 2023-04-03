@@ -15,6 +15,11 @@
     //if there is no winner and no draw
         //select new current player
 
+//Classes
+import { Player } from "./Player.js";
+import { Session } from "./Session.js";
+
+//visuals
 import { sadFace, noSound, playSound } from "./icons.js";
 import { soundWin, soundDraw, soundMakeMoveX, soundMakeMoveO, soundClick, soundResetGame, soundResetScores, soundOn } from "./audio.js";
 import { colorCodes } from "./colors.js";
@@ -26,23 +31,12 @@ const tl3 = new TimelineMax();
 const tl4 = new TimelineMax();
 
 //VARIABLES
+let player1
+let player2
 const xMove = 'x'; // setting CSS 'x' class to a variable -> x appears on cell when user clicks
 const oMove = 'o'; // setting CSS 'o' class to a variable -> o appears on cell when user clicks
 let xCurrentSymbol; // boolean -> returns true if current symbol is x, false if current symbol is o
                     //i.e. true if player1 is currently playing, false if player2 is currently playing
-
-//default: player 1 has x and player 2 has o
-let player1 = {
-    name: "Player 1",
-    symbol: xMove,
-    wins: 0
-}
-
-let player2 = {
-    name: "Player 2",
-    symbol: oMove,
-    wins: 0
-}
 
 const winningCombinations = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], //horizontal combinations
@@ -62,9 +56,11 @@ let newColorPicked = [] //first element of array is which player picked the colo
 const grid = document.querySelector('.grid')
 const allCells = document.querySelectorAll('.cell') // -> NodeList(9)
 
-const btnStartGame = document.querySelector('.center .start-game-btn')
-const btnResetGame = document.querySelector('.settings .btn-reset')
-const btnSound = document.querySelector('.btn-sound')
+const btnStartGame = document.querySelector('.center .start-game-btn') //click to start first game
+const btnResetGame = document.querySelector('.settings .btn-reset') //click to start new game after win/draw
+const btnSave = document.querySelector('.btn-save') //click to save game session to keep playing later
+const btnRetrieveData = document.querySelector('.btn-retrieve-data') //retrieve data from previously saved session
+const btnSound = document.querySelector('.btn-sound') //toggle sound effects on/off
 
 //right section of screen
 const playerTurnDisplay = document.querySelector('.current-player-display') //display telling users whose turn it is
@@ -106,6 +102,7 @@ const btnStartNewGame = document.querySelector('.message .btn') //button appears
 
 
 
+
 //EVENT LISTENERS
 btnStartGame.addEventListener('click', startGame) //Starts first game
 
@@ -124,6 +121,8 @@ btnResetGame.addEventListener('click', () => { //clears the grid
 })
 
 btnSound.addEventListener('click', handleSound) //mute/unmute btn
+btnSave.addEventListener('click', handleSave) //save game session to keep playing later
+btnRetrieveData.addEventListener('click', retrieveSavedData)
 btnClearScores.addEventListener('click', clearScores) //sets scores+draws back to 0
 
 iconPlayer1.addEventListener('click', handleIcon1Click) //clicked when player1 wants to change color of their symbol
@@ -152,26 +151,28 @@ function startGame(){
    
 }
 
-function yourTurn(name) { //Display's the name of whose turn it is on top right of screen
-    const msg1 = `${name},`
+function yourTurn(player) { //Display's the name of whose turn it is on top right of screen
+    if (player) {
+    const msg1 = `${player.name},`
     const msg2 = `it's your turn!`
     const msg3 = msg1 + `<br>` + msg2
-    playerTurnDisplay.innerHTML = `<div class='your-turn'>${msg3}</div>`
+    playerTurnDisplay.innerHTML = `<div style="color:${colorCodes[player.color]};" class='your-turn'>${msg3}</div>`
+    }
 }
 
 function initialiseGame() {
     if (gamesPlayed === 0) {    //if this is the first game
         xCurrentSymbol = true;  // x symbol/player1 starts by default
-        yourTurn(player1.name)  //player1's name is displayed on screen 
+        yourTurn(player1)  //player1's name is displayed on screen 
                                 //to tell them it's their turn
 
     } else if (gamesPlayed%2 === 0) {   //After the first round(0), players take turns starting game
         xCurrentSymbol = true           // so x symbol starts for even number or games (i.e. 0, 2, 4, 6, etc)
-        yourTurn(player1.name)
+        yourTurn(player1)
         
     } else {                         //player2 starts the second round(1)
         xCurrentSymbol = false      //so o symbol starts for odd number of games (i.e. 1, 3, 5, 7, etc)
-        yourTurn(player2.name)     
+        yourTurn(player2)     
     }
     
     allCells.forEach((cell) => {      //start with empty grid
@@ -190,6 +191,18 @@ function initialiseGame() {
     setTimeout(() => {message.classList.remove('display-win')}, 1000)
     setTimeout(() => {message.classList.remove('display-draw')}, 1000)       // remove display classes so overlay is not visible
                                                                         // wait until after transition effect is finished (1s -> 1000ms)
+}
+
+function clearScores() { //set player scores back to 0
+    player1.wins = 0;
+    player2.wins = 0;
+    scorePlayer1.innerHTML = 0; //display changed number on screen
+    scorePlayer2.innerHTML = 0;
+    drawScore = 0;              //set draw number back to 0
+    drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}` //Display changed draw score on screen
+    if (!mute) {                //if mute is false
+        soundResetScores.play() // play sound effect for score reset
+    }
 }
                                                                    
 function handleUserInput(e) {
@@ -221,21 +234,16 @@ function displayNewMove(cell, currentSymbol) {
 
 }
 
-
-
-
-
 function switchTurns() {             //after player makes move, it's the other player's turn             
     xCurrentSymbol = !xCurrentSymbol// if current player uses x, switch to o
-    let name;                       // if current player uses o, switch to x
+                         // if current player uses o, switch to x
     if ((xCurrentSymbol && player1.symbol === xMove) || (!xCurrentSymbol && player1.symbol === oMove)) {
-        name = player1.name
+        yourTurn(player1)
     } else if ((xCurrentSymbol && player1.symbol !== xMove) || (!xCurrentSymbol && player1.symbol !== oMove)) {
-        name = player2.name
+        yourTurn(player2)
     } else {
-        name = undefined
+        yourTurn(undefined)
     }
-    yourTurn(name)
 
 }
 
@@ -355,7 +363,7 @@ function handlePlayerInfoSubmit(e) { //when player click submit button after ent
         }
         player1Form.classList.remove('display') //remove input field
         if (xCurrentSymbol) { //if x is the current symbol
-            yourTurn(player1.name) // display new name on the current player display
+            yourTurn(player1) // display new name on the current player display
 
         }
     } else { //if id doesn't match a player-1 element
@@ -366,7 +374,7 @@ function handlePlayerInfoSubmit(e) { //when player click submit button after ent
         }
         player2Form.classList.remove('display')  //remove input field
         if (!xCurrentSymbol) { //if x is not the current symbol, i.e. o is the current symbol
-            yourTurn(player2.name) // display new name on the current player display
+            yourTurn(player2) // display new name on the current player display
 
         }
     }
@@ -377,26 +385,8 @@ function handlePlayerInfoSubmit(e) { //when player click submit button after ent
     })
 }
 
-function clearScores() { //set player scores back to 0
-    player1.wins = 0;
-    player2.wins = 0;
-    scorePlayer1.innerHTML = 0; //display changed number on screen
-    scorePlayer2.innerHTML = 0;
-    drawScore = 0;              //set draw number back to 0
-    drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}` //Display changed draw score on screen
-    if (!mute) {                //if mute is false
-        soundResetScores.play() // play sound effect for score reset
-    }
-}
 
-// WHEN PAGE LOADS
-grid.classList.remove(xMove) //make sure there are no symbols on the grid
-grid.classList.remove(oMove)
-allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
-
-btnStartGame.style.opacity = "1"; //startGame btn is visible
-tl3.fromTo(btnStartGame, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut}) //starGame btn slides into screen
-
+// when cross icon is clicked, show color dropdown
 function handleIcon1Click(e) {
     e.preventDefault()
     if (!mute) {
@@ -405,6 +395,7 @@ function handleIcon1Click(e) {
     colorDropDownPlayer1.classList.add('show-colors')
 }
 
+// when circle icon is clicked, show color dropdown
 function handleIcon2Click(e) {
     e.preventDefault()
     if (!mute) {
@@ -413,14 +404,15 @@ function handleIcon2Click(e) {
     colorDropDownPlayer2.classList.add('show-colors')
 }
 
+//when user clicks on a color, color dropdown disappears
 function handleColorSelected(e) {
     e.preventDefault()
     if (!mute) {
         soundClick.play()
     }
-    const newColor = e.target.id.slice(0, -1)
-    const player = e.target.id[e.target.id.length-1]
-    newColorPicked = [player, newColor]
+    const newColor = e.target.id.slice(0, -1) //first part of id is the color name
+    const player = e.target.id[e.target.id.length-1] //last letter of id is 1 for player 1, 2 for player 2
+    newColorPicked = [player, newColor] //saving player + new color into an array and assigning it to a variable
 
     //After the color has been picked, the dropdown disappears
     if (player === '1') {
@@ -428,39 +420,161 @@ function handleColorSelected(e) {
     } else {
         colorDropDownPlayer2.classList.remove('show-colors')
     }
-    console.log(newColorPicked)
-    
-    //change icon color
-
-    changeIconColor(newColorPicked)
-    //change symbol color
-    
+    changeIconColor(newColorPicked) //the symvols on screen + icon will change to new color picked    
 }
 
-
-
-
-
-
-
-// changing the color of icon that appears on screen next to name
+// changing the color of icon that appears on screen next to name + symbols on grid
 function changeIconColor(newColorPicked) {
     if (newColorPicked[0] === '1') { //if player 1 picked, change X icon
-        crossIcon.style.color = colorCodes[newColorPicked[1]]
-        document.documentElement.style.setProperty('--x-color', colorCodes[newColorPicked[1]])
-    } else {
-        //if player 1 didn't pick, player 2 picked so change O icon
-        circleIcon.style.color = colorCodes[newColorPicked[1]]
-        document.documentElement.style.setProperty('--o-color', colorCodes[newColorPicked[1]])
+        crossIcon.style.color = colorCodes[newColorPicked[1]] //change icon to color picked by player 1
+        document.documentElement.style.setProperty('--x-color', colorCodes[newColorPicked[1]]) //change color of symbols on grid
+        player1.color = newColorPicked[1] //change key-value pair in player1 instance
+        if (xCurrentSymbol) {
+            yourTurn(player1)
+        }
+        
+    } else {//if player 1 didn't pick, player 2 picked so change O icon
+        circleIcon.style.color = colorCodes[newColorPicked[1]] //change icon to color picked by player 2
+        document.documentElement.style.setProperty('--o-color', colorCodes[newColorPicked[1]]) //change color of symbols on grid
+        player2.color = newColorPicked[1] //change key-value pair in player2 instance
+        if (!xCurrentSymbol) {
+            yourTurn(player2)
+        }
     }
 }
 
 
+//when save button clicked
+function handleSave() {
+    const xCells = []
+    for (let i=0; i<9; i++) {
+        if (allCells[i].classList.contains(xMove)) {
+            xCells.push(i)
+        }
+    }
+
+    const oCells = []
+    for (let i=0; i<9; i++) {
+        if (allCells[i].classList.contains(oMove)) {
+            oCells.push(i)
+        }
+    }
+
+    player1.cells = xCells
+    player2.cells = oCells
+
+    const saveForLater = new Session(player1, player2, drawScore, gamesPlayed, mute)
+    localStorage.setItem('lastGameSession', JSON.stringify(saveForLater))
+}
 
 
-//timeline
 
-// top:46.5%;
-//     left:50%;
+// WHEN PAGE LOADS
+window.onload = () => {
+    grid.classList.remove(xMove) //make sure there are no symbols on the grid
+    grid.classList.remove(oMove)
+    allCells.forEach(cell => cell.removeEventListener('click', handleUserInput))
+
+    btnStartGame.style.opacity = "1"; //startGame btn is visible
+    tl3.fromTo(btnStartGame, 1.5, {y: 1000}, {y: 0, ease: Power2.easeInOut}) //starGame btn slides into screen
+
+    //default: player 1 has x and player 2 has o
+    player1 = new Player("Player 1", xMove)
+    player2 = new Player("Player 2", oMove)
 
 
+}
+
+
+//Retrieving local data
+function retrieveSavedData() {
+    let savedData = JSON.parse(localStorage.getItem('lastGameSession'))
+    console.log(savedData)
+
+    if (savedData) {
+    player1 = savedData.player1 //retrieving player information
+    player2 = savedData.player2
+    drawScore = savedData.draws //retrieveing draw information
+    gamesPlayed = savedData.gamesPlayed
+
+    scorePlayer1.innerHTML = player1.wins //display player win numbers on screen
+    scorePlayer2.innerHTML = player2.wins
+    drawsDisplay.innerHTML = `Draws: &nbsp; ${drawScore}`//display draw number on screen
+
+    //retrieve player data
+    player1NameDisplays.forEach(display => display.innerText = player1.name) //display player names on screen
+    player2NameDisplays.forEach(display => display.innerText = player2.name)
+
+    crossIcon.style.color = colorCodes[player1.color] //change icon to color picked by player 1
+    document.documentElement.style.setProperty('--x-color', colorCodes[player1.color]) //change color of symbols on grid
+    
+    circleIcon.style.color = colorCodes[player2.color] //change icon to color picked by player 2
+    document.documentElement.style.setProperty('--o-color', colorCodes[player2.color]) //change color of symbols on grid
+
+    mute = savedData.mute    //apply sound data retrieved
+    if (mute) {
+        btnSound.innerHTML = noSound
+    } else {
+        btnSound.innerHTML = playSound 
+    }
+    
+    //1) Clear the current grid
+    allCells.forEach((cell) => {      //start with empty grid
+        cell.classList.remove(xMove) //remove all x symbols in grid
+        cell.classList.remove(oMove) //remove all o symbols in grid
+       
+        cell.removeEventListener('click', handleUserInput) //remove any previous eventListeners so there are no duplicates
+        cell.addEventListener('click', handleUserInput,  {once: true})  //attaching an eventListener to each cell so we know when a player clicks on it
+                                                                        //each cell cell can only be clicked once
+    })
+
+    //2)Retrieve cell data + add it to the empty grid
+    const xCells = player1.cells
+    const oCells = player2.cells
+
+    allCells.forEach((cell, index) => {
+        if (xCells.includes(index)) {
+            cell.classList.add(xMove) //place O Symbol on grid
+            cell.removeEventListener('click', handleUserInput) //user can't click a cell that contains O symbol
+        }
+    })
+    allCells.forEach((cell, index) => {
+        if (oCells.includes(index)) {
+            cell.classList.add(oMove) //place O Symbol on grid
+            cell.removeEventListener('click', handleUserInput) //user can't click a cell that contains O symbol
+        }
+    })
+
+    tl4.fromTo(btnStartGame, 1.2, {y: 0}, {y: 1000, ease: Power2.easeInOut}) //after start game btn is clicked it moves down
+    setTimeout(function() {btnStartGame.remove()}, 1000);                   //and then it disappears
+   
+
+    //3) Checking whose turn it is
+    if (xCells.length > oCells.length) {
+        xCurrentSymbol = false
+        yourTurn(player2)
+    
+    } else if (oCells.length > xCells.lenght) {
+        xCurrentSymbol = true
+        yourTurn(player1)
+     
+    } else { //same number of x and o on grid
+        if (gamesPlayed === 0) {    //if this is the first game
+            xCurrentSymbol = true;  // x symbol/player1 starts by default
+            yourTurn(player1)  //player1's name is displayed on screen 
+                               //to tell them it's their turn
+        } else if (gamesPlayed%2 === 0) {   //After the first round(0), players take turns starting game
+            xCurrentSymbol = true           // so x symbol starts for even number or games (i.e. 0, 2, 4, 6, etc)
+            yourTurn(player1)
+          
+        } else {                         //player2 starts the second round(1)
+            xCurrentSymbol = false      //so o symbol starts for odd number of games (i.e. 1, 3, 5, 7, etc)
+            yourTurn(player2) 
+               
+        }
+    }
+    
+
+    activateHoverSymbol() //when hovering over a cell, a preview of player's symbol appears
+}
+    }  

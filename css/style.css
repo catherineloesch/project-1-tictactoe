@@ -58,8 +58,10 @@ svg {
 /* <svg> elements when user hovers over them*/
 .add-player-info:hover,
 .submit-player-info:hover,
-.reset:hover,
+#reset-icon:hover,
 .clear-scores:hover,
+.btn-save:hover,
+.btn-retrieve-data:hover,
 #no-sound-icon:hover,
 #play-sound-icon:hover {
     transform: scale(1.3);
@@ -320,11 +322,11 @@ ________________________________________________________________________________
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 4em;
+    gap: 2em;
     padding-top: 0.5rem;
 }
 
-.center .settings .btn-reset, .btn-sound { /* <button> resets game and clears the board */
+.center .settings .btn-reset, .btn-sound, .btn-save, .btn-retrieve-data { /* <button> resets game and clears the board */
     /* margin: 0 2em; */
     /* padding: 0; */
     background-color: black;
@@ -332,13 +334,21 @@ ________________________________________________________________________________
     cursor: pointer;
 }
 
-.reset:hover { /* <svg> on reset <button> */
+#reset-icon:hover { /* <svg> on reset <button> */
     color: rgb(64,200,225);
 
 }
 
 #no-sound-icon:hover, #play-sound-icon:hover {
     color:rgb(237, 237, 122);
+}
+
+#save-icon:hover {
+    color: rgb(238, 131, 184);
+}
+
+#retrieve-icon:hover {
+    color: rgb(163, 117, 205)
 }
 
 /*  
@@ -656,8 +666,8 @@ Overlay Message displaying winner or draw
 } 
 
 #blue1, #blue2 {
-    background-color: rgb(0,181,226);
-    border: 2px solid rgb(0,181,226);
+    background-color: rgb(31, 81, 255);
+    border: 2px solid rgb(31, 81, 255)
 
 } 
 
@@ -677,8 +687,8 @@ Overlay Message displaying winner or draw
 } 
 
 #purple1, #purple2 {
-    background-color: rgb(207, 159, 255);
-    border: 2px solid rgb(207, 159, 255);
+    background-color: rgb(154,97,208);
+    border: 2px solid rgb(154,97,208);
 } 
 
 #orange1, #orange2 {
