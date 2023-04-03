@@ -35,14 +35,8 @@ Build a web application from scratch, must be your own work.
 
 ##methodology
 
-- wireframe
-- pseudocode
-- basic html/css
-- game logic in JS for MVP
-- addition features: add name, overlay to display message, display whose turn it is
-
 Good links to include are:
-A link to the project's main repository
+
 A link to the project's issue tracker
 
 # Template
@@ -292,18 +286,29 @@ I started the planning procress by makes 3 different plans:
 - create an AI opponent
 - make web page fully responsive so that it can be used from a smartphone or smaller screen
 - enable 2 players to play online with each other using a third party service (e.g.WebSockets or Firebase)
+- enable user to an icon (either X or O or additional icons)
 
 After lining out my bronze, silver and gold plans, I created a wireframe:
 
 <br>
 
 ![MVP Wireframe](./assets/tictactoe_wirerame.jpg)
+<br><br>
 
-After completing the wireframe I wrote some pseudocode for my MVP.
+After completing the wireframe I wrote some pseudocode for my MVP:
+<br><br>
+
+<img src='./assets/MVP_Pseudocode.jpg' alt='MVP Pseudocode' width='65%' height='65%'>
 
 ---
 
 # 8. Build/Code Process
+
+- basic html/css
+- game logic in JS for MVP
+- addition features: add name, overlay to display message, display whose turn it is
+
+<img src='./assets/basic_grid.jpg' alt='Basic grid created with HTML and CSS during first stage of project' width='45%' height='45%'>
 
 -> longest section of your ReadMe
 -> steps you took to code the project.
@@ -332,6 +337,8 @@ go through different stages
 - Team dynamics/ Project management
 - Tools/Tech you used
 
+After deploying my project on Github pages I notices that the sound effects were not working. The console was displaying a 404 error for each .mp3 file, which I though was odd because they worked fine when I ran the website in the same browser(Goodle Chrome) using live server. I double-checked all the paths in the JavaScript code linking to the .mp3 files which were located in the a folder called 'audio' inside the 'assets' folder. The paths were pointing to the corrects files, which were still working when I used live server. After doing some online reading on this issue I came across a forum discussion where someone recommended putting the audio files directly into the project folder rather than an 'assests' folder as this can cause some issues. So I moved the audio folder from the assets folder into the project folder (i.e. the same location as the javascript files) and updated the file paths to point to the right location. This solved the issue and the audio effects finally worked on Github pages well.
+
 ---
 
 # 10. Wins
@@ -358,14 +365,10 @@ Things you could discuss here:
 
 ---
 
-# 12. Bugs
+# 12. Future Improvements
 
-In either sentences or bullets, explain what the bugs are. If you have no bugs, you can leave this section blank.
-
----
-
-# 13. Future Improvements
-
-It’s common to get to the end of your project and have ideas on what you would do if you have more time, as well as how you might improve it.
-If you do, you should detail this here. It’s great to give that context on potential future improvements, to share your creative or technical ideas with the engineers reading your ReadMes.
-In either sentences or bullets, explain what your future improvements would be.
+- use localStorage to save game data locally and enable player to continue where they left off after page refreshes or the internet connection is interrupted
+- create an AI opponent
+- make web page fully responsive so that it can be used from a smartphone or smaller screen
+- enable 2 players to play online with each other using a third party service (e.g.WebSockets or Firebase)
+- enable user to an icon (either X or O or additional icons)
