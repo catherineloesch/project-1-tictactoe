@@ -1,174 +1,24 @@
 # Readme sections
 
-gihub pages link - https://catherineloesch.github.io/project-1-tictactoe/
+1.  approach taken
 
-repo link - https://github.com/catherineloesch/project-1-tictactoe
+2.  Unsolved problems
 
-1. List + explain technologies used and approach taken
+3.  Document your planning and tell a story about your development process and problem-solving strategy.
 
-2. Installation instructions
+4.  List unsolved problems which would be fixed in future iterations.
 
-3. Unsolved problems
+5.  Describe how you solved for the winner
 
-4. Link to wireframes and user stories.
-
-5. Document your planning and tell a story about your development process and problem-solving strategy.
-
-6. List unsolved problems which would be fixed in future iterations.
-
-7. Describe how you solved for the winner
-
-8. Describe how some of your favorite functions work
+6.  Describe how some of your favorite functions work
 
 # summary / Description
 
-- This is a game of tic tac toe, with score counter
-  purpose, tooling, and development history
-  Description
-  What your project is / should be used for
-  What problem(s) your projects solves
-
-Brief Example
-This could be a code snippet showing how your project should be used (if it is meant to be integrated into another app)
-This could be a screenshot of your project running in the browser (if it is a stand-alone application)
-
-A small code example¶Show a telling example of what your project would normally be used for
-
-conver your specific experience and approach.
+convey your specific experience and approach.
 
 List of Features / User Stories
 This typically will be a short list of the features / user stories that you planned during the development phase of the project
 To provide more detail, you can show how you categorized these features into Bronze (MVP), Silver, and Gold Levels and indicate which features you complete / have yet to complete
-
-# Deliverables
-
-1. A working game hosted online
-
-2. A link to hosted working game in the URL section of your Github repository
-
-3. A git repository hosted on Github, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-
-- Explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
-
-## MVP/Bronze Plan - Minimum viable Product
-
-- build a dynamic game that allows two players to compete ina game of Tic Tac Toe from the same computer
-
-- - Include separate HTML / CSS / JavaScript files
-
-- Render a game board in the browser
-
-- Switch turns between X and O (or whichever markers you select)
-
-- Visually display which side won if a player gets three in a row, or show a draw if neither player wins
-
-- adhere to KISS + DRY principles
-
-- Use JavaScript for DOM manipulation
-
-- Deploy game online
-
-- Use semantic markup for HTML and CSS
-
-- well-formatted, and well-commented code
-
-- HTML page with a table of 9 cells
-  - Just enough Javascript to show you who the current player is and change the background color of a cell when you click on it.
-  - Just enough CSS to make the cells visible.
-
-## User Stories
-
-- As a user, I should be able to start a new tic tac toe game
-
-- As a user, I should be able to click on a square to add X first and then O, and so on
-
-- As a user, I should be shown a message after each turn for if I win, lose, tie or who's turn it is next
-
-- As a user, I should not be able to click the same square twice
-
-- As a user, I should be shown a message when I win, lose or tie
-
-- As a user, I should not be able to continue playing once I win, lose, or tie
-
-- As a user, I should be able to play the game again without refreshing the page
-
-  - as a user, I should be able to change the color of my X/O
-  - as a user, I want to be able to enter my name and be shown my score and when it is my turn
-  - as a user, I want to be able to mute the sound effects of the game
-
-## Silver Plan
-
-- Enough CSS to make it actually look like a game, and enough Javascript for a "reset" button.
-
-## Gold Plan
-
-- Keep track of multiple game rounds with a win, lose and tie counter
-
-- Allow players to customize their tokens (X, O, name, picture, etc)
-
-- Use localStorage to persist data locally to allow games to continue after page refresh or loss of internet connectivity
-
-- Involve Audio in your game
-
-- Create an AI opponent: teach JavaScript to play an unbeatable game against you
-
-- Make your site fully responsive so that it is playable from a mobile phone
-
-- Get inventive with your styling e.g. use hover effects or animations
-
-- Allow 2 players to play online with each other using any means such as WebSockets, Firebase, or other 3rd-party services.
-
-- play against computer
-
-- Gold: CSS transitions or animations, showing "X" and "O" instead of colors, and Javascript that tells you when the game is over and who won.
-
-## Planning
-
-- MVP wireframe
-
-![Wireframe for MVP](./assets/tictactoe_wirerame.jpg)
-
-## technologies used
-
-This typically would consist of all primary languages, frameworks, and libraries your app is composed of
-
-- This Game was writtin with vanilla JavaScript, HTML 5 and CSS (CSS Flexbox and Grid were used)
-- figma for building the wireframe
-- Visual Studio Code: used for coding with Html, CSS and JavaScript
-- Google Chrome Web Browser: used for launching the website For displaying the application
-
-Google Chrome Developer Tools: For troubleshooting and debugging
-
-Git/GitHub and Github pages(deployment)
-
-external resources
-
-- icons: svg (scalable vector graphics) from iconify (open source vector icon library)
-  - https://iconify.design/
-- google fonts
-  - https://fonts.google.com/specimen/Comfortaa
-- js confetti
-  - https://www.npmjs.com/package/js-confetti
-  - JavaScript Confetti library
-- TimelineMax gsap for transition animations of layover and start button
-  - https://cdnjs.com/libraries/gsap
-  - JavaScript library for building animations
-- opensource mp3 sound files
-
-  - https://pixabay.com/sound-effects/
-
-- https://howlerjs.com/
-  https://cdnjs.com/libraries/howler
-
-## Installation
-
-Installation Instructions / Getting Started
-This section should walk a reader, step by step, through the process of setting up your project
-For a tool meant to be integrated into other projects, this would likely outline the process of installing and accessing this tool in your project
-For an application, this would likely outline the process of forking, cloning, and starting the app locally
-
-- no need
-- just need a Web Browser with JavaScript Support and Internet Connectivity
 
 ##Approach
 
@@ -292,57 +142,168 @@ describe how some of your favorite functions work
 
 ---
 
-1. Description
+# 1. Description
 
-A game of Tic Tac Toe / Naughts & Crosses built with HTML/CSS/JS.
-First Project General Assembly Software Engineering Immersive Course.
+### **A game of Tic Tac Toe a.k.a. Naughts & Crosses built with HTML/CSS/JS.** <br>
 
----
+The goal was to build a web application from scratch for my first project of the General Assembly Software Engineering Immersive Course. The result is a dynamic game that allows two players to compete from the same computer.
 
-2)Deployment link
-The project was deployed on GitHub pages:
-https://catherineloesch.github.io/project-1-tictactoe/
+<br>
 
----
-
-3)Getting Started/Code Installation
-
-Explain how the reader accesses your code. Include a step by step approach.
+![Example of Tic Tac Toe Game ](./assets/TicTacToe_example.jpg)
 
 ---
 
-4. Timeframe & Working Team
+<br>
 
-Solo project, given 5 working days to complete
+# 2. Deployment link
 
----
-
-5. Technologies Used
-
-List every technology you used to complete the project. This can be in one long list, or broken down into categories (Back End, Front End, Development Tools).
+- The project is hosted online GitHub pages: https://catherineloesch.github.io/project-1-tictactoe/
+- Git repository: https://github.com/catherineloesch/project-1-tictactoe
 
 ---
 
-6. Brief
+# 3. Getting Started/Code Installation
 
-Include the brief set by your instructional team here. This sets the context of the project you were working towards and mimics briefs you will be set later in your future roles.
-This can either be in bullets or in a paragraph.
-
----
-
-7. Planning
-
-- Did you do any sketches? If so, discuss this and include images.
-- Any wireframes of the front end and UI? You did? Then explain this and include images.
-- Any ERDs? Same here, explain and include images.
-- Use a project management tool to plan the sprint? If so, talk through this - what tool did you use? How you allocated tickets/responsibilities, sprint timeline etc. Also include screenshots of this.
-- Any pseudocode?
-- If it was a group or pair project - Discuss who was designated which tasks. This is very
-  important, as engineers want to understand who owned the different code elements when looking at a group project.
+No installations are required to run this game. Th only tools needed are a web browser with JavaScript Support and internet connectivity.
 
 ---
 
-8. Build/Code Process
+# 4. Timeframe & Working Team
+
+This was an individual project, written by myself.
+Timeframe: 5 days (3 working days) to complete.
+
+---
+
+# 5. Technologies Used
+
+This game was written in vanilla JavaScript, HTML and CSS
+(CSS Flexbox Grid were used)
+
+### Additional tools:
+
+- Figma for building the wireframe
+- Visual Studio Code: code editor used for writing HTML, CSS and JavaScript
+- Google Chrome Web Browser: used for launching the website, displaying the application
+  - Google Chrome Developer Tools: For troubleshooting and debugging
+- Git/GitHub (for version control) and Github pages(for deployment)
+  <br>
+
+### External web resources:
+
+- icons
+  - all icons used are Scalable Vector Graphics from iconify (open source svg library)
+    - https://iconify.design/
+- Google Fonts
+  - Comfortaa, designed by Johan Aakerlund
+    - https://fonts.google.com/specimen/Comfortaa
+- Animation
+  - JavaScript Confetti library
+    - https://www.npmjs.com/package/js-confetti
+  - TimelineMax/GSAP library for timing animations
+    - https://cdnjs.com/libraries/gsap
+    - https://greensock.com/docs/v2/TimelineMax
+- Audio
+  - all sound effects used are open-source .mp3 sound files from Pixabay
+    - https://pixabay.com/sound-effects/
+  - Howler audio library
+    - https://howlerjs.com/
+    - https://cdnjs.com/libraries/howler
+    - https://github.com/goldfire/howler.js/
+
+---
+
+# 6. Deliverables
+
+- A working game hosted online
+- A git repository hosted on Github, including
+  - a link to the hosted game
+  - frequent commits dating back to the very beginning of the project
+- The Tic Tac Toe game should:
+  - Render a game board in the browser
+  - Switch turns between X and O (or whichever markers you select)
+  - Visually display which side won if a player gets three in a row, or show a draw if neither player wins
+  - include separate HTML / CSS / JavaScript files
+  - adhere to KISS (Keep It Simple Stupid) and DRY (Don't Repeat Yourself) principles
+  - use JavaScript for DOM manipulation
+  - use semantic markup for HTML and CSS while adhering to best practices
+  - write code that is well-formatted and well-commented
+
+## User Stories
+
+- As a user, I should be able to start a new tic tac toe game.
+- As a user, I should be able to click on a square to add X first and then O, and so on.
+- As a user, I should be shown a message after each turn for if I win, lose, tie or who's turn it is next.
+- As a user, I should not be able to click the same square twice.
+- As a user, I should be shown a message when I win, lose or tie.
+- As a user, I should not be able to continue playing once I win, lose, or tie.
+- As a user, I should be able to play the game again without refreshing the page.
+
+---
+
+# 7. Planning
+
+I started the planning procress by makes 3 different plans:
+
+1. A bronze plan that fullfills all the requirements for the MVP.
+2. A silver plan with additional features I would like to add to my project if time allows for it.
+3. A gold plan with more features that my ideal project would contain, with the intention of implementing some of them if there's enough time.
+
+## Bronze Plan: MVP (Minimum viable product)
+
+- make a Tic Tac Toe game that works with the following features:
+  - write code that follows KISS/DRY principles and make separate files for HTML, CSS and JavaScript
+  - use semantic markup when writing HTML and CSS and use JavaScript for DOM manipulation
+  - make sure code has comments explaining logic and adequate formatting
+  - render error-free in browser
+  - render a 3x3 grid in the browser
+    - use HTML+CSS to make sure cells are clearly visible
+  - two player can compete from the same computer following traditional Tic Tac Toe rules
+    - https://www.gamesver.com/all-about-tic-tac-toe-purpose-rules-how-to-play-strategy/
+  - create button that enables user to start a game
+  - when a player clicks a square either a an X or O will display depending on which player's turn it is
+  - players can't click the same cell twice
+  - automatically switch turns between 2 players (i.e. between X and O icons)
+  - let players know whose turn it is
+  - if a player has 3 in a row, display a message announcing their win
+  - after there's a win, player should can't click more squares to place icons
+  - if all nine cells are marked and there's no win, display a message announcing a draw
+  - create button allowing player to reset the game without page refreshing
+- host project on github pages
+
+## Silver Plan
+
+- keep track of wins and losses
+- display wins and losses on a score board
+- enable user to reset scores
+- enable user to enter name and have it displayed instead of "Player 1" or "Player 2"
+- Make game look more polished with CSS features
+- let user pick a color for their icon
+- display a message when it's their turn to play in the color they selected
+- add sounds effects
+- add animation effects
+- enable user to mute sound effects
+- show player preview of their icon when they hover over an empty cell
+
+## Gold Plan
+
+- use localStorage to save game data locally and enable player to continue where they left off after page refreshes or the internet connection is interrupted
+- create an AI opponent
+- make web page fully responsive so that it can be used from a smartphone or smaller screen
+- enable 2 players to play online with each other using a third party service (e.g.WebSockets or Firebase)
+
+After lining out my bronze, silver and gold plans, I created a wireframe:
+
+<br>
+
+![MVP Wireframe](./assets/tictactoe_wirerame.jpg)
+
+After completing the wireframe I wrote some pseudocode for my MVP.
+
+---
+
+# 8. Build/Code Process
 
 -> longest section of your ReadMe
 -> steps you took to code the project.
@@ -353,9 +314,17 @@ REASONING
 key sections of the project build.
 go through different stages
 
+- create a repository on github for the project
+- clone it to local machine
+- create new HTML/CSS/JavaScript files
+- connect CSS and JavaScript files to HTML and test they work
+- basic board
+- pseudocode for logic
+- deploy on gitHub Pages
+
 ---
 
-9. Challenges
+# 9. Challenges
 
 - What technical challenges did you come across?
 - Why were these challenges?
@@ -365,7 +334,7 @@ go through different stages
 
 ---
 
-10. Wins
+# 10. Wins
 
 - Interesting problem solving you did
 - Strong sections of code
@@ -376,7 +345,7 @@ aspects of your project you are most proud of.
 
 ---
 
-11. Key Learnings/Takeaways
+# 11. Key Learnings/Takeaways
 
 most important parts of your ReadMe from an engineers’ perspective
 Engineers love to understand what you learn from each project and how it has shaped you as an engineer.
@@ -389,11 +358,13 @@ Things you could discuss here:
 
 ---
 
-12.Bugs
+# 12. Bugs
 
 In either sentences or bullets, explain what the bugs are. If you have no bugs, you can leave this section blank.
 
-13. Future Improvements
+---
+
+# 13. Future Improvements
 
 It’s common to get to the end of your project and have ideas on what you would do if you have more time, as well as how you might improve it.
 If you do, you should detail this here. It’s great to give that context on potential future improvements, to share your creative or technical ideas with the engineers reading your ReadMes.

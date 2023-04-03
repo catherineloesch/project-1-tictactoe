@@ -1,19 +1,23 @@
+
+
+
 //when new game starts, make sure cells are all empty
-//determine current player
+//determine who is the current player
 //making a move
-    //get user input
+    //get user input -> which cell did they click on?
     //check if position is available on board
-        //if position is taken, tell user to pick other cell i.e. make new input
-        //if position is available, make the move
-        //display move on board
+        //if position is available -> add player icon to the cell
 //check if there is a winner or if board is full
     //if there is a winner
         //tell the user they won
-        //update score board
+        //end game -> users can't make any more moves
     //if board is full
         //tell users it's a draw
+        //end game -> users can't make any more moves
     //if there is no winner and no draw
-        //select new current player
+        //switch to other player to make new move
+
+
 
 //Classes
 import { Player } from "./Player.js";
