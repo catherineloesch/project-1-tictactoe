@@ -248,8 +248,8 @@ function activateHoverSymbol() { //when hovering over a cell, a preview of playe
 
 function checkForWin(currentSymbol) {   //checking grid to see if player won after making a move
     const result = winningCombinations.some((combo) => { //for each possible winning combination (array of 3 indexes e.g. [0, 1, 2])
-        return combo.every(index => {                    //is there a match for EVERY single one of those 3 indexes 
-            return Array.from(allCells)[index].classList.contains(currentSymbol) // in the array of all the cells that contain the current symbol??
+        return combo.every(index => {   //for each of the 3 indexes, find cells in grid with matching indexes to check their classList
+            return Array.from(allCells)[index].classList.contains(currentSymbol) // do the 3 cells that match those indexes contain 'x' or 'o' class?
         }) //need to turn html collection into array with Array.from()
     })
     return result  //true all 3 indexes of any of the winning combinations match -> i.e. win
@@ -439,14 +439,14 @@ function handleSave() {
         soundSave.play()
     }
     const xCells = []
-    for (let i=0; i<9; i++) {
+    for (let i=0; i<9; i++) {//Find all cells with 'x' class
         if (allCells[i].classList.contains(xMove)) {
             xCells.push(i)
         }
     }
 
     const oCells = []
-    for (let i=0; i<9; i++) {
+    for (let i=0; i<9; i++) {//Find all cells with 'o' class
         if (allCells[i].classList.contains(oMove)) {
             oCells.push(i)
         }
