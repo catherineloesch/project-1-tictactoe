@@ -302,7 +302,9 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
 .center .settings {
     display:flex;
     justify-content: center;
-    align-items: center;}
+    align-items: center;
+    gap: 1.5em;
+}
 
 .center .settings .btn-reset, .btn-sound, .btn-save, .btn-retrieve-data { /* <button> resets game and clears the board */
     /* margin: 0 2em; */
