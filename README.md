@@ -1,117 +1,18 @@
-# Project Title
+# Project 1 - Tic Tac Toe
 
 ## Overview
 
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
-
-# Readme sections
-
-1.  approach taken
-
-2.  Unsolved problems
-
-3.  Document your planning and tell a story about your development process and problem-solving strategy.
-
-4.  List unsolved problems which would be fixed in future iterations.
-
-5.  Describe how you solved for the winner
-
-6.  Describe how some of your favorite functions work
-
-# summary / Description
-
-List of Features / User Stories
-This typically will be a short list of the features / user stories that you planned during the development phase of the project
-To provide more detail, you can show how you categorized these features into Bronze (MVP), Silver, and Gold Levels and indicate which features you complete / have yet to complete
-
-# Template
-
-Project Title
-One Paragraph of project description goes here
-
-Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-Prerequisites
-What things you need to install the software and how to install them
-
-Give examples
-Installing
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-Give the example
-And repeat
-
-until finished
-End with an example of getting some data out of the system or using it for a little demo
-
-Running the tests
-Explain how to run the automated tests for this system
-
-Break down into end to end tests
-Explain what these tests test and why
-
-Give an example
-And coding style tests
-Explain what these tests test and why
-
-Give an example
-Deployment
-Add additional notes about how to deploy this on a live system
-
-Built With
-Dropwizard - The web framework used
-Maven - Dependency Management
-ROME - Used to generate RSS Feeds
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-
-ISSUES
-
-- mp3 files don't work on github pages : Failed to load resource: the server responded with a status of 404 ()
-- removed audio folder from assets folder and put it in main project folder-> that solved the issue
-
-```
-function checkForWin(currentSymbol) {
-    const result = winningCombinations.some((combo) => {
-        return combo.every(index => {
-            return Array.from(allCells)[index].classList.contains(currentSymbol) //need to turn html collection into array
-        })
-    })
-    return result
-
-}
-´´´
-```
-
-function checkForWin(currentSymbol) { //checking grid to see if player won after making a move
-const result = winningCombinations.some((combo) => { //for each possible winning combination (array of 3 indexes e.g. [0, 1, 2])
-return combo.every(index => { //is there a match for EVERY single one of those 3 indexes
-return Array.from(allCells)[index].classList.contains(currentSymbol) // in the array of all the cells that contain the current symbol??
-}) //need to turn html collection into array with Array.from()
-})
-return result
-
-}
-
-describe how some of your favorite functions work
-
-- [ ] What would you do differently?
-- [ ] What are you most proud of?
-- [ ] What would you do next?
-- [ ] How did you plan your project?
-- [ ] What did you learn?
+1. Description
+2. Deployment Link
+3. Installation
+4. Technologies Used
+5. Deliverables
+6. Planning
+7. Build Process
+8. Challenges
+9. Wins
+10. Key Learnings & Takeaways
+11. Future Improvements
 
 ---
 
@@ -139,7 +40,7 @@ This version enables useres to enter their name and pick a colour for their symb
 
 ---
 
-# 3. Getting Started/Code Installation
+# 3. Installation
 
 No installations are required to run this game. Th only tools needed are a web browser with JavaScript Support and internet connectivity.
 
@@ -201,7 +102,7 @@ This game was written in vanilla JavaScript, HTML and CSS.
   - use semantic markup for HTML and CSS while adhering to best practices
   - write code that is well-formatted and well-commented
 
-  ## Potential extra features
+## Potential Extra Features
 
 - keeping track of multiple game rounds including wins, losses and draws
 - give players the option to customise their icons (e.g. X, O, name, picture)
@@ -279,18 +180,15 @@ I started the planning procress by makes 3 different plans:
 After lining out my bronze, silver and gold plans, I created a wireframe:
 
 <br>
-
-![MVP Wireframe](./assets/tictactoe_wirerame.jpg)
-<br><br>
+<img src='./assets/tictactoe_wirerame.jpg' alt='Wireframe for MVP' width='80%' height='80%'>
+<br>
 
 After completing the wireframe I wrote some pseudocode for my MVP to guide me while writing the JavaScript components:
-<br><br>
+<br>
 
 <img src='./assets/MVP_Pseudocode.jpg' alt='MVP Pseudocode' width='65%' height='65%'>
 
----
-
-## 7. Build/Code Process -> longest section of your ReadMe-> minimum of 3-4 code snippets,REASONING
+## 7. Build Process
 
 -> highlighting code you're particularly proud of and these code snippets will have descriptions on what you did, how and why to set the context of the snippet you include.
 
@@ -305,18 +203,18 @@ After I had my MVP/bronze plan, wireframe and pseudocode laid out, I took the fi
 
 After getting all those documents set up, I started writing the HTML for the game board, consisting of a `<div>` element that contains 9 more `<div>` elements, one for each cell of the grid. I used CSS grid to get the 3x3 format and removed the outer border:
 
-<img src='./assets/basic_grid.jpg' alt='Basic grid created with HTML and CSS during first stage of project' width='45%' height='45%'>
+<img src='./assets/basic_grid.jpg' alt='Basic grid created with HTML and CSS during first stage of project' width='35%' height='35%'>
 
 As the font size and style con affect for letters look on a website, I didn't want to use the letters 'X' and 'O' so I created the X and O symbols in CSS the `::before` and `::after` pseudo-elements, which allow you to add content to a specific part of an element, in my case, each of the cells.
 
 - https://css-tricks.com/almanac/selectors/a/after-and-before/
 
-<img src='./assets/grid_icons.jpg' alt='X and O icons created in CSS' width='45%' height='45%'>
+<img src='./assets/grid_icons.jpg' alt='X and O icons created in CSS' width='35%' height='35%'>
 
 I created two different CSS classes, one called `'x'` and one called `'o'`. If the `'x'` class is added to a cell, it displays the X symbol, if a cell has the `'o'` added to its list, it displays an O, if neither 'x' nor 'o' are present it is just an empty cell. I used a similar approach using a different colour and the `:hover` selector making the same symbol appear in the cell when the user hovers over it, giving them a 'preview'.
 
-<img src='./assets/grid_hover_o.jpg' alt='Hover effect on grid giving preview of O icon' width='45%' height='45%'>
-<img src='./assets/grid_hover_x.jpg' alt='Hover effect on grid giving preview of X icon' width='45%' height='45%'>
+<img src='./assets/grid_hover_o.jpg' alt='Hover effect on grid giving preview of O icon' width='35%' height='35%'>
+<img src='./assets/grid_hover_x.jpg' alt='Hover effect on grid giving preview of X icon' width='35%' height='35%'>
 
 With the basic grid setup done, I tackled the JavaScript component. I started by using `.querySelectorAll()` to save all the cells I just created to a variable. Since I had given each cell a CSS class of `.cell` I used the class selector to target them. Since I needed to find out out when a user is clicking on a cell, I attached an eventListener to each cell. I then realised that by setting things up that way, the eventListener will fire up each time a user presses a cell, even if already has an symbol in it. Since a cell can't be selected more than once during each round of the game, the eventListener needs to be disabled after the first click.
 
@@ -389,7 +287,7 @@ function checkForDraw() { //checking grid to see if it is full
 
 I wanted an overlay message to appear on screen each time there's a win or there's a draw. I created a `<div>` containing the message and added a button so the user can later press it to start a new game after they finished one.
 
-<img src='./assets/win_message.jpg' alt='Message Overlay that appears after a user wins the game' width='70%' height='70%'>
+<img src='./assets/win_message.jpg' alt='Message Overlay that appears after a user wins the game' width='45%' height='45%'>
 
 Similarly to the grid, I created a CSS class called `.display-win` that will be added to the div if there's a win. In that case the `display` setting will be set to `flex`. When there's no win, the message should not be visible so the `display` attribute will be set to `none`:
 
@@ -421,24 +319,23 @@ Similarly to the grid, I created a CSS class called `.display-win` that will be 
 
 I used a similar logic to write a different message if there's a draw:
 
-<img src='./assets/draw_message.jpg' alt='Message Overlay that appears when there`s a draw' width='70%' height='70%'>
+<img src='./assets/draw_message.jpg' alt='Message Overlay that appears when there`s a draw' width='45%' height='45%'>
 
 Rather than using Player 1 and Player 2 I thought it would also be nice for user to be able to add their name and have it appear on screen, telling them when it's their turn.
 For that purpose, I added 2 `<input>` fields to the HTML, again using a similar logic than the one used for the X/O symbols and the message overlays: the <input> fields and accompanying submit `<button>` elements only appear on screen after a button is clicked and an event listener is triggered. This will add a CSS the CSS '.display' class that sets their `display` attribute to `flex` which makes them appear on screen. After the player submits their name, another eventListener is triggered that will remove the `.display` class and set the `display` attribute back to `none`.
 
-<img src='./assets/input_hidden.jpg' alt='Input fields for player names not visible on website' width='75%' height='75%'>
-<img src='./assets/input_visible.jpg' alt='Input fields for player names visible after button is clicked' width='75%' height='75%'>
-<img src='./assets/name_example.jpg' alt='Example of names being entered in input boxes' width='75%' height='75%'>
-
-<img src='./assets/name_example2.jpg' alt='Example of names appearing on screen after submitted' width='75%' height='75%'>
+<img src='./assets/input_hidden.jpg' alt='Input fields for player names not visible on website' width='35%' height='35%'>
+<img src='./assets/input_visible.jpg' alt='Input fields for player names visible after button is clicked' width='35%' height='35%'>
+<img src='./assets/name_example.jpg' alt='Example of names being entered in input boxes' width='35%' height='35%'>
+<img src='./assets/name_example2.jpg' alt='Example of names appearing on screen after submitted' width='35%' height='35%'>
 
 <br>
 
 I then added a display above the names appearing on screen that tells the user it's their turn.
 
-<img src='./assets/turn_display_example.jpg' alt='Example of name appearing in turn display' width='75%' height='75%'>
+<img src='./assets/turn_display_example.jpg' alt='Example of name appearing in turn display' width='60%' height='60%'>
 
-<img src='./assets/turn_display_example2.jpg' alt='Example of name appearing in turn display' width='75%' height='75%'>
+<img src='./assets/turn_display_example2.jpg' alt='Example of name appearing in turn display' width='60%' height='60%'>
 
 <br>
 
@@ -453,7 +350,7 @@ On the third day, I focused on the layout and CSS. I chaned the main layout from
 
 I decided to make a score board as well showing the number of wins for each player and the number of draws, which are updated at the end of each round of the game. I included a reset button for the scores as well so the user can clear the board at any point in time.
 
-<img src='./assets/score_board.jpg' alt='Example of name appearing in turn display' width='45%' height='45%'>
+<img src='./assets/score_board.jpg' alt='Example of name appearing in turn display' width='25%' height='25%'>
 
 ### Day 4 - 01/04/2023
 
@@ -471,7 +368,7 @@ I added some sound effects that play whenever a user clicks a button or clicks a
 
 I made some layout changes and added a 'start game' button that enables user to launch first game when the page first loads. I also added a welcome message as the display announcing whose turn it is was empty whenever the page first loaded before the user clicked the start button.
 
-<img src='./assets/btn_start_game.jpg' alt='start button over grid when page first loads' width='50%' height='50%'>
+<img src='./assets/btn_start_game.jpg' alt='start button over grid when page first loads' width='35%' height='35%'>
 
 I also reorganised some of the code, moving the SVG data into a separte .js file.
 
@@ -479,10 +376,10 @@ I also reorganised some of the code, moving the SVG data into a separte .js file
 
 I wanted the user to be able to customise their symbols on the grid but didn't want to move away from the classic X and O symbols. So instead I decided to give the user the option to change the colour of their symbol. I felt the most straightforward way to do this would be to create a dropdown menu that lets user pick a colour. Like the name inputs, I wanted the dropdown menu to appear on the screen when the user clicks the symbol next to their name and for the menu to disappear once they picked a colour. Again, I set the `display` property to `none` and created a class called `show-colors` that, once an EventListener is triggered, would set the the `display` class set to `block`and have the dropdown show up on screen. Once a colour is picked, the class is removed and the menu disappears again.
 
-<img src='./assets/colour_dropdown.jpg' alt='Colour dropdown menu after click on symbol' width='45%' height='45%'>
-<img src='./assets/colour_dropdown2.jpg' alt='color dropdown menu after click on symbol' width='41%' height='41%'>
-<img src='./assets/colour_symbols.jpg' alt='Example of symbols appearing colour' width='75%' height='75%'>
-<img src='./assets/colour_symbols2.jpg' alt='Example of symbols appearing in colour' width='75%' height='75%'>
+<img src='./assets/colour_dropdown.jpg' alt='Colour dropdown menu after click on symbol' width='25%' height='25%'>
+<img src='./assets/colour_dropdown2.jpg' alt='color dropdown menu after click on symbol' width='22.5%' height='22.5%'>
+<img src='./assets/colour_symbols.jpg' alt='Example of symbols appearing colour' width='60%' height='60%'>
+<img src='./assets/colour_symbols2.jpg' alt='Example of symbols appearing in colour' width='60%' height='60%'>
 
 <br>
 
@@ -602,7 +499,7 @@ The paths were pointing to the corrects files, which were still working when I u
 
 The other issue I encountered while working on this project was using localStorage. Whilst trying to retrieve data from localStorage and logging it to the console I kept receiving the same error message: `"[object Object]" is not valid JSON`:
 
-<img src='./assets/localStorage_error.jpg' alt='error received while trying to retrieve data from localStorage' width='100%' height='100%'>
+<img src='./assets/localStorage_error.jpg' alt='error received while trying to retrieve data from localStorage' width='70%' height='70%'>
 
 I was unfamiliar with the JSON file format so I did some online research to learn about it.
 
@@ -614,7 +511,7 @@ JSON exists as a string and needs to be converted to a native JavaScript object 
 LocalStorage only supports string datatypes. So you have to convert JavaScript code into JSON data when saving it to localStorage and convert the JSON data back into JavaScript code when retrieving it.
 Luckily, this conversion is fairly straightforward to do with the `JSON.stringify()`and `JSON.parse()` methods, so once I figured out the syntax of those new-to-me methods I was able to retrieve all the data I had saved and no longer received error messages.
 
-<img src='./assets/localStorage.jpg' alt='object returned from localStorage after using JSON.stringify() and JSON.parse()' width='100%' height='100%'>
+<img src='./assets/localStorage.jpg' alt='object returned from localStorage after using JSON.stringify() and JSON.parse()' width='80%' height='8%'>
 
 ```JavaScript
 localStorage.setItem('lastGameSession', JSON.stringify(saveForLater))
@@ -642,7 +539,7 @@ the process of building a game from scratch and having a result that works is ve
 
 ---
 
-# 10. Key Learnings/Takeaways
+# 10. Key Learnings & Takeaways
 
 - Working on this project has definitely improved my understanding of JavaScript and CSS. I enjoyed challenging myself with new tools and frameworks and feel a lot more confident writing JavaScript than I did before the project.
 
