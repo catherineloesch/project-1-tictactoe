@@ -381,7 +381,13 @@ function handleIcon1Click(e) {
     if (!mute) {
         soundClick.play()
     }
-    colorDropDownPlayer1.classList.add('show-colors')
+    if (colorDropDownPlayer1.classList.contains('show-colors')) {
+        colorDropDownPlayer1.classList.remove('show-colors')
+
+    } else {
+        colorDropDownPlayer1.classList.add('show-colors')
+    }
+   
 }
 
 // when circle icon is clicked, show color dropdown
@@ -390,7 +396,12 @@ function handleIcon2Click(e) {
     if (!mute) {
         soundClick.play()
     }
-    colorDropDownPlayer2.classList.add('show-colors')
+    if (colorDropDownPlayer2.classList.contains('show-colors')) {
+        colorDropDownPlayer2.classList.remove('show-colors')
+
+    } else {
+        colorDropDownPlayer2.classList.add('show-colors')
+    }
 }
 
 //when user clicks on a color, color dropdown disappears

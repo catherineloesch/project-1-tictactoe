@@ -33,8 +33,6 @@ This version lets users enter their name and pick a colour for their symbol (X o
 # 2. Deployment link
 
 - The project is hosted online on GitHub pages: https://catherineloesch.github.io/project-1-tictactoe/
-- Git repository: https://github.com/catherineloesch/project-1-tictactoe
-- Issue tracker: https://github.com/catherineloesch/project-1-tictactoe/issues
 
 ---
 
@@ -186,12 +184,14 @@ After completing the wireframe I wrote some pseudocode for my MVP to guide me wh
 
 ## 7. Build Process
 
+This was a solo project, with instructions and deliverables detailed on 29/03/2023 and a submission deadline to be met on 04/04/2023.
+
 ### Day1 - 29/03/2023
 
 After I had my MVP/bronze plan, wireframe and pseudocode laid out, I took the first few steps toward building the project:
 
 - I created a repository on GitHub for the project.
-- I cloned it to local machine.
+- I connected the gihub repository to a directory on my local machine.
 - I created new HTML/CSS/JavaScript files in it.
 - I connected the CSS and JavaScript files to the HTML file and made sure they work
 
@@ -205,7 +205,7 @@ As the font size and style can affect how letters are displayed on a website, I 
 
 <img src='./assets/grid_icons.jpg' alt='X and O icons created in CSS' width='30%' height='30%'>
 
-I created two different CSS classes, one called `'x'` and one called `'o'`. If the `'x'` class is added to a cell, it displays the X symbol, if a cell has the `'o'` class added to its classList, it displays an O. If neither 'x' nor 'o' are present it is just an empty cell. I used a similar approach in combination with the a different colour and the `:hover` selector to make making the same symbol appear in the cell when the user hovers over it, giving them a 'preview'.
+I created two different CSS classes, one called `'x'` and one called `'o'`. If the `'x'` class is added to a cell, it displays the X symbol, if a cell has the `'o'` class added to its classList, it displays an O. If neither 'x' nor 'o' are present, it is just an empty cell. I used a similar approach in combination with a different colour and the `:hover` selector to make the same symbol appear in the cell when the user hovers over it, giving them a 'preview'.
 
 <img src='./assets/grid_hover_o.jpg' alt='Hover effect on grid giving preview of O icon' width='30%' height='30%'>
 <img src='./assets/grid_hover_x.jpg' alt='Hover effect on grid giving preview of X icon' width='30%' height='30%'>
