@@ -2,47 +2,38 @@
 
 ## Overview
 
-1. Description
-2. Deployment Link
-3. Installation
-4. Technologies Used
-5. Deliverables
-6. Planning
-7. Build Process
-8. Challenges
-9. Wins
-10. Key Learnings & Takeaways
-11. Future Improvements
+1. [Description](#description)
+2. [Deployment Link](#deployment-link)
+3. [Installation](#installation)
+4. [Technologies Used](#technologies)
+5. [Deliverables](#deliverables)
+6. [Planning](#planning)
+7. [Build Process(#build-process)]
+8. [Challenges](#challenges)
+9. [Wins](#wins)
+10. [Key Learnings & Takeaways](#takeaways)
+11. [Future Improvements](#future-improvements)
 
 ---
 
-# 1. Description
+## <a name="description"></a> 1. Description
 
-### **A game of Tic Tac Toe a.k.a. Naughts & Crosses built with HTML/CSS/JS.** <br>
+A classic game of Tic Tac Toe built from scratch in 7 days using HTML/CSS/JS. This solo project was the first application built as part of the curriculum for the General Assembly Software Engineering Immersive Course, with the objective of building a dynamic game that allows two players to compete from the same computer. <br>
+This version lets users enter their name and pick a colour. After they start the game, a preview of their symbol will appear in any empty cell when they hover over it and a display notifies them about whose turn it is, who wins or if there's a draw. Users can also reset the game and keep track of the number of draws and wins. The game features animations and sound effects, which can be muted and the LocalStorage option enables users to continue their gaming session where they left off after the page reloads or the internet connection is interrupted.
 
-The goal of this project was to create a web application from scratch as part of the curriculum for the General Assembly Software Engineering Immersive Course. With the objective of building a dynamic game that allows two players to compete from the same computer, I used HTML, CSS and JavaScript to create a version of the classic Tic Tac Toe game (a.k.a. Noughts&Crosses).
-<br>
-
-This version lets users enter their name and pick a colour for their symbol (X or O). After they press the button to start the game, a preview of their symbol will appear in any empty cell when they hover over it. They can make a move by clicking on an empty cell and their symbol will appear inside that cell before switching turns. A display on the screen lets the users know whose turn it is to make a move. They are also notified when one of them wins or if there's a draw. Users can reset the game by clearing the grid at any time. The application will also keep track of the number of draws and wins of each player, both of which can be reset as well. The game also features animations and sound effects, which can be muted. LocalStorage also gives users the option to continue their game where they left off after the page reloads or the internet connection is interrupted.
 <br>
 
 ![Screenshot of Tic Tac Toe game built for this project](./assets/TicTacToe_example.jpg)
 
----
-
-# 2. Deployment link
+## <a name="deployment-link"></a> 2. Deployment link
 
 - The project is hosted online on GitHub pages: https://catherineloesch.github.io/project-1-tictactoe/
 
----
-
-# 3. Installation
+## <a name="installation"></a> 3. Installation
 
 No installations are required to run this game. The only tools needed are a web browser with JavaScript support and internet connectivity.
 
----
-
-# 4. Technologies Used
+## <a name="technologies"></a> 4. Technologies Used
 
 This game was written in vanilla JavaScript, HTML and CSS.
 
@@ -79,9 +70,7 @@ This game was written in vanilla JavaScript, HTML and CSS.
     - https://cdnjs.com/libraries/howler
     - https://github.com/goldfire/howler.js/
 
----
-
-# 5. Deliverables
+## <a name="deliverables"></a> 5. Deliverables
 
 - A working game hosted online
 - A git repository hosted on Github, including:
@@ -117,9 +106,7 @@ This game was written in vanilla JavaScript, HTML and CSS.
 - As a user, I should not be able to click the same square twice.
 - As a user, I should be able to play the game again without refreshing the page.
 
----
-
-# 6. Planning
+## <a name="planning"></a>6. Planning
 
 I started the planning process by makeing 3 different plans:
 
@@ -182,7 +169,7 @@ After completing the wireframe I wrote some pseudocode for my MVP to guide me wh
 
 <img src='./assets/MVP_Pseudocode.jpg' alt='MVP Pseudocode' width='65%' height='65%'>
 
-## 7. Build Process
+## <a name="build-process"></a> 7. Build Process
 
 This was a solo project, with instructions and deliverables detailed on 29/03/2023 and a submission deadline to be met on 04/04/2023.
 
@@ -468,9 +455,7 @@ Using the `JSON.stringify()` method to convert the JavaScript object into a stri
 
 I used the time left on the final day of development to refactor, organise and clean up the code and project folder.
 
----
-
-# 8. Challenges
+# 8. <a name="challenges"></a> Challenges
 
 ### Issues playing .mp3 files after deployment to GitHub pages
 
@@ -502,9 +487,7 @@ console.log(savedData)
 
 Despite the roadblocks, I'm glad I challenged myself to attempt this feature. Figuring out how to solve this problem on my own was very satisfying as this was a new data format and storage method I hadn't worked with before and thus out of my comfort zone.
 
----
-
-# 9. Wins
+## 8. <a name="wins"></a> Wins
 
 - solving the localStorange problem on my own was a big win for me
 - building my first game from scratch and having a result that works is very satisfying
@@ -512,9 +495,7 @@ Despite the roadblocks, I'm glad I challenged myself to attempt this feature. Fi
 - using CSS variables for the first time
 - writing the JavaScript logic for the game and getting it work felt great
 
----
-
-# 10. Key Learnings & Takeaways
+## <a name="takeaways"></a> 10. Key Learnings & Takeaways
 
 - Working on this project has definitely improved my understanding of JavaScript and CSS. I enjoyed challenging myself with new tools and frameworks and feel a lot more confident writing JavaScript than I did before the project.
 - learning about JSON and local storage was very interesting
@@ -523,9 +504,7 @@ Despite the roadblocks, I'm glad I challenged myself to attempt this feature. Fi
   - This was the first time I used a wireframe as a guide to plan a project. I found the process of thinking about the different parts of it and drawing it really useful and will continue to make use of wireframes in the future.
 - Getting error and code breaking are quite useful at understanding how the a language works, so studing error messages carefully can help improve my code and make it more robust. Figuring this out made me less afraid of making mistaking whilst writing code.
 
----
-
-# 11. Future Improvements
+## <a name="future-improvements"></a> 11. Future Improvements
 
 - Having the users choose who goes first
 - I would like to learn how to create an AI opponent for this game
