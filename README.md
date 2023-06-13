@@ -8,7 +8,7 @@
 4. [Technologies Used](#technologies)
 5. [Deliverables](#deliverables)
 6. [Planning](#planning)
-7. [Build Process] (#build-process)
+7. [Build Process](#build-process)
 8. [Challenges](#challenges)
 9. [Wins](#wins)
 10. [Key Learnings & Takeaways](#takeaways)
