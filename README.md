@@ -27,7 +27,7 @@ This version lets users enter their name and pick a colour. After they start the
 
 ## <a name="deployment-link"></a> 2. Deployment link
 
-- The project is hosted online on GitHub pages: https://catherineloesch.github.io/project-1-tictactoe/
+- The project is hosted online on GitHub pages: https://katieloesch.github.io/project-1-tictactoe/
 
 ## <a name="installation"></a> 3. Installation
 
