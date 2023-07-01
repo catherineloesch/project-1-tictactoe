@@ -459,7 +459,8 @@ I used the time left on the final day of development to refactor, organise and c
 
 ### Post submission work
 
-01/07/2023
+#### 01/07/2023
+
 After finishing the GA Course, I continued working on this project. When I was originally building this application, I ran out of time to make it fully responsive for different screen sizes before the submission deadline. This is something I wanted to update after the initial deployment, so after finishing the course I added a new .css file with media queries to make the game easy to navigate on different screen sizes.
 
 I also deployed the application to [my custom domain](http://katieloesch.co.uk) which I acquired once I finished the GA course to host my portoflio website, so rather than using GitHub Pages the application is now available at http://tictactoe.katieloesch.co.uk.
@@ -471,7 +472,8 @@ I also deployed the application to [my custom domain](http://katieloesch.co.uk) 
 The first issue I encountered was while deploying my project on Github pages. I noticed that the sound effects were not playing. The console was displaying a 404 error for each .mp3 file, which I thought was odd because they worked when I ran the website in the same browser(Google Chrome) using live-server. I double-checked all the paths in the JavaScript code linking to the .mp3 files which were located in the a folder called 'audio' inside the 'assets' folder.
 The paths were pointing to the corrects files, which were still working when I used live server. My first course of action was to google the issue and error. After doing some online reading and discussing it with a classmate, I came across a forum discussion that recommended putting the audio files directly into the project folder rather than an 'assests' folder as this can potentially cause some issues. So I moved the audio folder from the assets folder into the project folder (i.e. the same location as the JavaScript files) and updated the file paths to point to the right location. This solved the issue and the audio effects finally worked on GitHub pages well.
 
-update (01/07/2023):
+#### update (01/07/2023):
+
 After finishing the GA course I deployed the project to [my custom domain](http://katieloesch.co.uk) which I acquired from [Hostinger](https://www.hostinger.co.uk) and I didn't have any issues with the audio when deploying.
 
 ### issues saving and retrieving data from localStorage
@@ -526,5 +528,6 @@ Despite the roadblocks, I'm glad I challenged myself to attempt this feature. Fi
 - I would also like to give users the option to compete at this game online using a third-party service such as WebSockets or Firebase
 - it would also be great to have the user choose a symbol from a range of different symbols or avatars rather than just the colour.
 
-update (01/07/2023)
+#### update (01/07/2023)
+
 After finishing the GA Course, I added a new .css file with media queries to make the game easy to navigate on different screen sizes.
