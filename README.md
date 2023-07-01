@@ -27,7 +27,7 @@ This version lets users enter their name and pick a colour. After they start the
 
 ## <a name="deployment-link"></a> 2. Deployment link
 
-- The project is hosted online on GitHub pages: https://katieloesch.github.io/project-1-tictactoe/
+http://tictactoe.katieloesch.co.uk/
 
 ## <a name="installation"></a> 3. Installation
 
@@ -53,8 +53,10 @@ This game was written in vanilla JavaScript, HTML and CSS.
 - icons
   - all icons used are Scalable Vector Graphics from iconify (open source svg library)
     - https://iconify.design/
-- Google Fonts
+- font
   - Comfortaa, designed by Johan Aakerlund
+  - available at:
+    - https://en.bestfonts.pro/font/comfortaa#google_vignette
     - https://fonts.google.com/specimen/Comfortaa
 - Animation
   - JavaScript Confetti library
@@ -455,12 +457,22 @@ Using the `JSON.stringify()` method to convert the JavaScript object into a stri
 
 I used the time left on the final day of development to refactor, organise and clean up the code and project folder.
 
+### Post submission work
+
+01/07/2023
+After finishing the GA Course, I continued working on this project. When I was originally building this application, I ran out of time to make it fully responsive for different screen sizes before the submission deadline. This is something I wanted to update after the initial deployment, so after finishing the course I added a new .css file with media queries to make the game easy to navigate on different screen sizes.
+
+I also deployed the application to [my custom domain](http://katieloesch.co.uk) which I acquired once I finished the GA course to host my portoflio website, so rather than using GitHub Pages the application is now available at http://tictactoe.katieloesch.co.uk.
+
 # 8. <a name="challenges"></a> Challenges
 
 ### Issues playing .mp3 files after deployment to GitHub pages
 
 The first issue I encountered was while deploying my project on Github pages. I noticed that the sound effects were not playing. The console was displaying a 404 error for each .mp3 file, which I thought was odd because they worked when I ran the website in the same browser(Google Chrome) using live-server. I double-checked all the paths in the JavaScript code linking to the .mp3 files which were located in the a folder called 'audio' inside the 'assets' folder.
 The paths were pointing to the corrects files, which were still working when I used live server. My first course of action was to google the issue and error. After doing some online reading and discussing it with a classmate, I came across a forum discussion that recommended putting the audio files directly into the project folder rather than an 'assests' folder as this can potentially cause some issues. So I moved the audio folder from the assets folder into the project folder (i.e. the same location as the JavaScript files) and updated the file paths to point to the right location. This solved the issue and the audio effects finally worked on GitHub pages well.
+
+update (01/07/2023):
+After finishing the GA course I deployed the project to [my custom domain](http://katieloesch.co.uk) which I acquired from [Hostinger](https://www.hostinger.co.uk) and I didn't have any issues with the audio when deploying.
 
 ### issues saving and retrieving data from localStorage
 
@@ -513,3 +525,6 @@ Despite the roadblocks, I'm glad I challenged myself to attempt this feature. Fi
   - Spending more time learning about responsive design and improving those skills will be a key goal for me moving forward
 - I would also like to give users the option to compete at this game online using a third-party service such as WebSockets or Firebase
 - it would also be great to have the user choose a symbol from a range of different symbols or avatars rather than just the colour.
+
+update (01/07/2023)
+After finishing the GA Course, I added a new .css file with media queries to make the game easy to navigate on different screen sizes.
