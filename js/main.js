@@ -142,9 +142,9 @@ function yourTurn(player) { //Display's the name of whose turn it is on top righ
     const msg2 = `it's your turn!`
     const msg3 = msg1 + `<br>` + msg2
     if (player.color === "white") {
-        playerTurnDisplay.innerHTML = `<div style="color:${colorCodes["yellow"]};" class='your-turn'>${msg3}</div>`
+        playerTurnDisplay.innerHTML = `<div class='your-turn-display' style="color:${colorCodes["yellow"]};" class='your-turn'>${msg3}</div>`
     } else {
-        playerTurnDisplay.innerHTML = `<div style="color:${colorCodes[player.color]};" class='your-turn'>${msg3}</div>`
+        playerTurnDisplay.innerHTML = `<div class='your-turn-display' style="color:${colorCodes[player.color]};" class='your-turn'>${msg3}</div>`
 
     }}
 }

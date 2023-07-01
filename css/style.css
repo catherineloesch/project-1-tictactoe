@@ -1,50 +1,65 @@
-*, *::after, *::before {
-    box-sizing: border-box;
-    /* border: 1px solid grey; */
+/* custom fonts */
+@font-face {
+    font-family: 'comfortaa';
+    src: url('./../assets/fonts/Comfortaa/comfortaa-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'comfortaa';
+    src: url('./../assets/fonts/Comfortaa/comfortaa-bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal; 
 }
 
 /* variables */
 :root {
     --cell-size: 150px;
+    
     /* making the symbol slightly smaller than the grid cell */
     --icon-size: calc(var(--cell-size) * 0.9);
 
     --x-color: white;
     --o-color: white;
+
+    --font-main: 'comfortaa', 'futura', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/* element selectors */
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+}
 
 body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-    place-content: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: black;
     color: white;
-    font-family: 'Comfortaa', futura, sans-serif;
+}
+
+.app-title {
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 55px;
+    text-align: center;
 }
 
 main {
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 0.25fr 0.5fr 0.25fr;
-    grid-template-areas: "left center right";
-
-    /*
-    
-    column 1:   <aside class="left">      | 0.25fr
-    column 2:   <section class="center">  | 0.5fr
-    column 3:   <aside class="right">     | 0.251fr
-
-     */
-}
-
-h1 {
-    font-size: 4.18vw;
+    width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
@@ -52,9 +67,11 @@ h1 {
 svg {
     color: white;
     background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* <svg> elements when user hovers over them*/
 .add-player-info:hover,
 .submit-player-info:hover,
 #reset-icon:hover,
@@ -62,89 +79,102 @@ svg {
 .btn-save:hover,
 .btn-retrieve-data:hover,
 #no-sound-icon:hover,
-#play-sound-icon:hover {
-    transform: scale(1.3);
-    /* color: rgb(136, 216, 109); */
+#play-sound-icon:hover,
+.player-symbol:hover {
+    transform: scale(1.15);
     transition: 0.3s;
 }
 
+ul {
+    list-style: none;
+}
 
-/*
-left section of screen: score board -> column 1/3 in gid in <main>
+/* 
+----------------------------------------------------------------------------------------------------------------
+LEFT section of screen | score board
+----------------------------------------------------------------------------------------------------------------
 */
 
-aside.left {
-    grid-area: left;
-    display: grid;
-    grid-template-columns: 120%;
-    grid-template-rows: 100%;
-       
+.left {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
 }
 
-aside.left .score-board { /* <section> containing score board */
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 15% 45% 40%;
+.left .score-board {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-aside.left .score-board .score-board-title { /* <h3> title on score board */
+.left .score-board .score-board-title { 
+    width: 100%;
     display: flex;
     flex-direction : column;
-    justify-content: flex-start;
-    font-size: 1.8vw;
-}
-aside.left .score-board .player-scores { /* <div> containing both players name + score */
-    font-size: 1.65vw;
-    /* background-color: blueviolet; */
-    
+    align-items: center;
+    justify-content: center;
+    font-size: 2.15rem;
 }
 
-.left .player-scores .score-board-display { /* <ul> containing one player's name + score */
-    display: inline-block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    margin: 1.8vw;
-}
-
-.left .score-board .player-scores .score { /* <li> displaying a player score */
-    font-size: 2.2vw;
-    padding-top: 2.5vw;
-}
-
-.left .score-board .draw-score-reset { /* <div> showing number of draws + reset button */
+.left .score-board .player-scores {
     width: 100%;
-    height: 50%;
+    font-size: 2rem;
+    display: flex;
+    flex-direction : row;
+    align-items: center;
+    justify-content: center; 
+}
+
+.left .player-scores .score-board-display {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto; 
+}
+
+.left .score-board .player-scores .score {
+    width: 100%;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.left .score-board .draw-score-reset {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left .score-board .draw-score-reset .btn-clear-scores {
     display: flex;
     justify-content: center;
-    align-content: center;
-    justify-items: center;
-    gap: 2.6vw;
-
-}
-
-.left .score-board .draw-score-reset .btn-clear-scores {/* <button> resets all scores+draws back to 0 */
-    background-color: black;
+    align-items: center;
     border: none;
     cursor: pointer;
-    display: inline;
-    align-items:center;
-    justify-content:center;
-    padding: 0 4vw;
-
+    margin-left: 15%;
+    background-color: black;
 }
 
-.left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
-    font-size: 1.8vw;
-    display: inline-flex;
+.left .score-board .draw-score-reset .draw-score {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
     align-items:center;
-    justify-content:center;
-    padding-right: 0.5vw;
+    justify-content: center;
 }
 
-
-
-.left .score-board .draw-score-reset .btn-clear-scores .clear-scores:hover { /* <svg> on reset scores <button> */
+.left .score-board .draw-score-reset .btn-clear-scores .clear-scores:hover {
     color: #FA645C;
 }
 
@@ -154,35 +184,36 @@ aside.left .score-board .player-scores { /* <div> containing both players name +
     align-items: center;
 }
 
-/*
-center section of screen: grid+start game/reset buttons -> column 2/3 in gid in <main>
+/* 
+----------------------------------------------------------------------------------------------------------------
+CENTER section of screen | grid
+----------------------------------------------------------------------------------------------------------------
 */
 
-
-/* .center: <section> elemement at center of sceen, column 2/3 in gid in <main> */
-
-
 .center {
-    grid-area: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+    gap: 5rem;
 }
 
-/* overlay button that starts the game and then disappears */
-.center .start-game-btn {
-    font-size: 2vw;
-    font-family: 'Comfortaa', futura, sans-serif;
+.center .start-game-btn { /* overlay button that starts the game and then disappears */
+    font-size: 2.2rem;
     background-color: black;
     border: 2px solid white;
     color:  white;
-    padding: 4vh 2vw;
+    padding: 1.5rem;
     cursor: pointer;
     border-radius: 8px;
     position:absolute;
-    top:40vh;
-    left:50vw;
+    top:51%;
+    left:50%;
     transform:translate(-50%, -50%);
     z-index: 1000;
     opacity: 0;
-    
 }
 
 .center .start-game-btn:hover {
@@ -192,7 +223,6 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
     transition: 0.4s;
 }
 
-/* grid */
 .center .grid {
     width: 100%;
     height: 100%;
@@ -265,18 +295,17 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
 .cell.o::before,
 .grid.o .cell:not(.x):not(.o):hover::before {
     width: calc(var(--icon-size)* 0.9);
-    height: calc(var(--icon-size)* 0.9);
-    
+    height: calc(var(--icon-size)* 0.9);  
 }
 
 /* slightly smaller circle i.e. "inside" circle */
 .cell.x::before, .cell.x::after {
     background-color: var(--x-color, white);
 }
+
 .cell.o::before  {
     background-color: var(--o-color, white);
 }
-
 
 /* preview lighter symbol when user hovers over empty cell */
 .grid.x .cell:not(.x):not(.o):hover::before,
@@ -288,8 +317,7 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
 .cell.o::before,
 .grid.o .cell:not(.x):not(.o):hover::before {
     width: calc(var(--icon-size)* 0.9);
-    height: calc(var(--icon-size)* 0.9);
-    
+    height: calc(var(--icon-size)* 0.9);  
 }
 
 .cell.o::after,
@@ -308,20 +336,21 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
     display:flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5vw;
+    gap: 2rem;
 }
 
-.center .settings .btn-reset, .btn-sound, .btn-save, .btn-retrieve-data { /* <button> resets game and clears the board */
-    /* margin: 0 2em; */
-    /* padding: 0; */
+.center .settings .btn-reset, .btn-sound, .btn-save, .btn-retrieve-data {
     background-color: black;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     border: none;
     cursor: pointer;
 }
 
-#reset-icon:hover { /* <svg> on reset <button> */
+#reset-icon:hover {
     color: rgb(64,200,225);
-
 }
 
 #no-sound-icon:hover, #play-sound-icon:hover {
@@ -336,231 +365,197 @@ center section of screen: grid+start game/reset buttons -> column 2/3 in gid in 
     color: rgb(163, 117, 205)
 }
 
-/*  
-
-right section of screen: players + turn display -> column 3/3 in gid in <main> 
-
+/* 
+----------------------------------------------------------------------------------------------------------------
+RIGHT section of screen | player info
+----------------------------------------------------------------------------------------------------------------
 */
 
-
-
-aside.right { /* <aside> element that contains:
-                    <section class="current-player-display"> -> displays current player
-                    <section class="players"> -> players
-                */
-    grid-area: right;
-    display: grid;
-    grid-template-columns: 80%;
-    grid-template-rows: 0.5fr 1fr;
-       
+.right { 
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   height: 100%;
+   width: 30%;
+   gap: 2rem;     
 }
 
 .right .current-player-display {
-    grid-area: 'display';
     display: flex;
     align-items: center;
-    /* background-color: #FA645C; */
-    padding: 0;
-    /* border: 2px solid white; */
+    justify-content: center;
     color: rgb(255 239 0);
-    width: 118%;
-    font-size: 2.2vw;
-
+    width: 100%;
 }
 
 .right .current-player-display .current-player { /* <div> displaying whose turn it is */
     display: flex;
-    width: 118%;
-    /* text-align: center; */
-    font-size: 2.4vw;
-    /* margin-left: -5%; */
-    
-}
-
-.your-turn {
-    margin: 0;
-    padding: 0;
-    /* background-color: red; */
-    width: 118%;
-}
-/* player input -> lets user enter information like name */
-
-.right .players { /* <section> element -> contains 2 <div> elements, one for each player */
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 1fr 1fr;
-    font-size: 1.8vw;
-    /* background-color: blue; */
-}
-
-.right .players .player { /* <div> element for a player that contains 2 elements:
-                                - <div> that contains <span> + <span> + <button>
-                                - <form> that contains <input> + <button> (hidden)
-                             */
-    display: grid;
-    grid-template-columns: 120%;
-    grid-template-rows: 0.5fr 0.5fr;
-    /* background-color: green; */
-}
-
-
-.right .players .player .player-visible { /* <div> element that contains 3 elements:
-                                            - <span> -> contains <svg> for player symbol 
-                                            - <span> -> player name
-                                            - <button> -> contains <svg> for add info
-                                            */
-
-    display:flex;
     align-items: center;
-    
-    gap: 0.7vh;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.75rem;
+}
+
+.svg-party-hat {
+    margin-bottom: 3%;
+}
+
+.your-turn-display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.welcome {
+    color: white;
+    font-size: 2.75rem !important;
+    display: flex;
+    justify-content: flex-start !important;
+    flex-direction: row;
+    width: 80% !important;
+}
+
+.right .players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.75rem;
+    gap: 5rem;
+}
+
+.right .players .player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+}
+
+.right .players .player .player-visible {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    gap: 2rem;   
+}
+
+.player-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-symbol-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #player-2-symbol-display {
-    padding-left: 0.3vw;
+    margin-left: 5px;
 }
 
-
-/* buttons for adding and submitting user info */
 .right .players .player .player-visible .btn-add-player-info,
 .right .players .player .player-input-form .btn-submit-player-input {
-    margin: 0 1vw;
-    padding: 0;
-    background-color: black;
     border: none;
-    cursor: pointer;
+    background-color: black;
 }
 
-/* buttons hover effect */
 .right .players .player .player-visible .btn-add-player-info .add-player-info:hover,
 .right .players .player .player-input-form .btn-submit-player-input .submit-player-info:hover{
     color: rgb(150, 223, 141);
+    cursor: pointer;
 } 
 
-/* <form> element contains: <div> | <input> | <button> */
 .player-input-form {    
-    display: none;      /* unless user clicks add-info button, form is hidden */
-    /* background: pink; */
+    display: none;
 }
 
-.player-input-form.display { /* when user clicks add-info button: 'display' class is added */
-          /* when display class is added, the <form> element is visible */
-   
-    /* width: 90%; */
+.player-input-form.display { 
     display:flex;
     align-items: center;
-    gap: 0.2vw;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 1rem;
+    width: 80%;
+    margin-top: 4rem;
 }
 
 .right .players .player .player-input-form .name-input {
     background-color: black;
-    border-radius: 8px;
-    width: 13.5vw;
-    height: 2.5em;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 10px;
     border: 2px solid rgb(150, 223, 141);
     color: rgb(150, 223, 141);
-    font-family: 'Comfortaa', futura, sans-serif;
-    font-size: 1.8vh;
+    font-family: var(--font-main);
     outline: none;
     box-shadow: none;
-    
 }
+
 .right .players .player .player-input-form .name-input::placeholder {
     color: rgb(150, 223, 141);
     opacity: 0.5;
 }
 
-/* svg for submit info */
 .right .players .player .player-input-form .btn-submit-player-input .submit-player-info {
     color: rgb(150, 223, 141);
 }
 
-
 /* colour dropdown menu */
-#player-1-symbol{ 
-    float: left;
+.player-symbol {
     position: relative;
-}
-
-#player-2-symbol{ 
-    float: left;
-    position: relative;
+    z-index: 0;
 }
 
 .player-symbol:hover {
     cursor: pointer;
 }
 
-#player-1-symbol-display{
-    text-decoration: none;
+.color-dropdown {
+    display: none;
 }
 
-#color-palette-player-1 {
-    display: none;
-    font-size: 0.7vw;
-    list-style: none;
+.color-dropdown.show-colors {
     position: absolute;
-    right: 0;
-    left: -2vw;
-    top: 2.5vh;
+    left: 0;
+    bottom: -2.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
     z-index: 1000;
+    border: 2px solid black;
 }
 
-#color-palette-player-1.show-colors {
-    display: block;
-    font-size: 0.7vw;
-    list-style: none;
-    position: absolute;
-    right: 0;
-    top: 5vh;
-}
-
-#color-palette-player-2 {
-    display: none;
-    font-size: 0.7vw;
-    list-style: none;
-    position: absolute;
-    right: 0;
-    top: 2.5vh;
-}
-
-#color-palette-player-2.show-colors {
-    display: block;
-    font-size: 0.7vw;
-    list-style: none;
-    position: absolute;
-    left: -1.9vw;
-    top: 2vw;
-}
-
-.color-option {      /* <li> elements for each colour option */
-
-    position: relative;
-    padding: 0;
-    margin: 0;
-    font-size: 1vw;
-    width: 2.5vw;
-    height: 2.25vh;
-    border: 2.5px solid black;
-}
-
-.color-tag {
-    text-decoration: none;
-    display: block;
-
+.color-option {
+    font-size: 1.2rem;
+    width: 2.5rem;
+    border: 1px solid black;
+    z-index: 1000;
 }
 
 #red1, #red2  {
     background-color: rgb(255, 99, 71);
     border: 2px solid rgb(255, 99, 71);
-    border-radius: 4px 4px 0px 0px;
-
+    border-radius: 5px 0px 0px 5px;
 } 
 
 #blue1, #blue2 {
     background-color: rgb(31, 81, 255);
-    border: 2px solid rgb(31, 81, 255)
-
+    border: 2px solid rgb(31, 81, 255);
 } 
 
 #green1, #green2 {
@@ -586,16 +581,14 @@ aside.right { /* <aside> element that contains:
 #orange1, #orange2 {
     background-color: rgb(247, 135, 2);
     border: 2px solid rgb(247, 135, 2);
-    border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 5px 5px 0px;
     height: 120%;
 }
 
 #white1, #white2 {
-        background-color: rgb(255,255,255);
-        border: 2px solid rgb(255,255,255);
+    background-color: rgb(255,255,255);
+    border: 2px solid rgb(255,255,255);
 }
-
-
 
 #red1:hover, 
 #blue1:hover, 
@@ -611,20 +604,12 @@ aside.right { /* <aside> element that contains:
 #pink2:hover,
 #purple2:hover,
 #orange2:hover {
-    transform: scaleX(1.1);
-    transition: .4s;
-    border-radius: 2px;
+    transform: scaleY(1.2);
+    transition: .3s;
 }
 
 
-
-
-/* 
-
-Overlay Message displaying winner or draw
-
-*/
-
+/* Overlay Message displaying winner or draw */
 .message {
     display: none;
     position: fixed;
@@ -637,7 +622,7 @@ Overlay Message displaying winner or draw
     justify-content: center;
     align-items: center;
     color: yellow;
-    font-size: 5vw;
+    font-size: 6rem;
     flex-direction: column;
 }
 
@@ -653,26 +638,24 @@ Overlay Message displaying winner or draw
 }
 
 .message .btn {
-    font-size: 2.1vw;
-    font-family: 'Comfortaa', 'futura', sans-serif;
+    font-size: 2.3rem;
     background-color: rgb(164, 197, 153);
     border: 3px solid rgb(40, 61, 35);
     color:  rgb(40, 61, 35);
-    padding: 1.2vh .8vw;
+    padding: 1rem;
     cursor: pointer;
-    margin-top: 6vh;
+    margin-top: 4rem;
     border-radius: 8px;
 }
 
 .message.display-draw .btn {
-    font-size: 2.1vw;
-    font-family: 'Comfortaa', 'futura', sans-serif;
+    font-size: 2.3rem;
     background-color: rgb(128, 193, 229);
     border: 3px solid rgb(47, 37, 94);
     color:  rgb(47, 37, 94);
-    padding: 1.2vh .8vw;
+    padding: 1rem;
     cursor: pointer;
-    margin-top: 6vh;
+    margin-top: 4rem;
     border-radius: 8px;
 } 
 
@@ -695,701 +678,11 @@ Overlay Message displaying winner or draw
     color: yellow;
 
 }
+
 .message .draw-sad-face {
     display:flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 4vh;
- 
-}
-
-/* MEDIA QUERIES */
-
-
-@media only screen and (max-width: 1600px) {
-
-    #color-palette-player-1.show-colors {
-        left: -2.4vw;
-        top: 5vh;
-    }
-
-    #color-palette-player-2.show-colors {
-        left: -2.4vw;
-        top: 2.5vw;
-    }    
-}
-
-@media only screen and (max-width: 1440px) {
-
-    .center .start-game-btn {
-        font-size: 3.2vw;
-    
-        top:51vh;
-        left:50vw;
-    }
-
-    .right .players .player .player-input-form .name-input {
- 
-        width: 28vw;
-        height: 6vh;
-        font-size: 3.5vh;
-    }
-
-    
-    #color-palette-player-1.show-colors {
-        display: block;
-        right: 0;
-        left: -2.5vw;
-        top: 5vh;
-        }
-  
-    
-        #color-palette-player-2.show-colors {
-        font-size: 0.7vw;
-        left: -2.6vw;
-        top: 3vw;
-        }
-    
-        .color-option {     
-        font-size: 3vw;
-        width: 3vw;
-        height: 5vh;
-        border: 2.5px solid black;
-        }
-    }
-
-
-@media only screen and (max-width: 1350px) {
-    h1 {
-        font-size: 6vw;
-    }
-    main {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.25fr 0.5fr 0.25fr;
-        grid-template-areas:
-        "center"
-        "left"
-        "right";
-    
-    }
-
-    aside.left {
-        margin-top: 20vh;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-    }
-
-    aside.left .score-board {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.15fr 0.45fr 0.40fr;
-    }
-
-    aside.left .score-board .score-board-title {
-        font-size: 3.5vw;
-    }
-    aside.left .score-board .player-scores {
-        font-size: 3vw;
-    }
-
-    .left .score-board .player-scores .score {
-        font-size: 4vw;
-        padding-top: 3.5vw;
-        padding-bottom: 3vw;
-    }
-
-    .left .score-board .draw-score-reset .draw-score {
-        font-size: 3vw;
-        display: inline-flex;
-        align-items:center;
-        justify-content:center;
-        padding-right: 0.5vw;
-    }
-
-
-
-    .player-scores, .scores-title, .score, .current-player-display {
-        display:flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .left .score-board .draw-score-reset {
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        justify-items: center;
-        vertical-align: middle;
-        height: 10vh;
-        gap: 3vw;
-        margin-bottom: 10vh;
-
-    }
-
-    svg {
-        width: 7vw;
-        height: 7vh;
-        
-    }
-
-    .center .start-game-btn {
-        font-size: 3vw;
-        cursor: pointer;
-        top:50vh;
-        left:50vw;
-    }
-
-    .center .settings {
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1.5vw;
-        margin-top: 5vh;
-    }
-
-    aside.right {
-        grid-area: right;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .right .current-player-display {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        font-size: 4vw;
-        margin-bottom: 3vh;
-    }
-
-    .right .current-player-display .current-player {
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        margin-bottom: 5vh;
-    }
-
-
-    .right .players {
-        margin-top: 5vh;
-    font-size: 3vw;
-
-    }
-
-    .right .players .player { 
-    display: grid;
-    grid-template-rows: 0.5fr 0.5fr;
-    margin-bottom: 12vh;
-    }
-
-
-    .right .players .player .player-visible {
-    display:flex;
-    align-items: center;
-    gap: 2.5vw;
-    }
-
-    #player-2-symbol-display {
-    padding-left: 0.3vw;
-    }
-
-
-    .right .players .player .player-visible .btn-add-player-info,
-    .right .players .player .player-input-form .btn-submit-player-input {
-    margin: 0 2vw;
-    }
-
-    .player-input-form.display { 
-        display:flex;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-        gap: 0.2vw;
-        padding-top: 4vh;
-    }
-
-    .right .players .player .player-input-form .name-input {
-        width: 28vw;
-        height: 7vh;
-        font-size: 4vh;
-    }
-
-    #color-palette-player-1.show-colors {
-    left: -1.7vw;
-    top: 7vh;
-    }
-
-    #color-palette-player-2.show-colors {
-    left: -1.5vw;
-    top: 4vw;
-    }
-
-    .color-option {     
-    font-size: 4vw;
-    width: 3.5vw;
-    height: 5.5vh;
-    border: 2.5px solid black;
-    }
-
-}
-
-
-@media only screen and (max-width: 1000px) {
-
-        #color-palette-player-1.show-colors {
-        display: block;
-        font-size: 0.7vw;
-        list-style: none;
-        position: absolute;
-        right: 0;
-        left: -2.5vw;
-        top: 6.5vh;
-        }
-    
-        #color-palette-player-2.show-colors {
-        font-size: 0.7vw;
-        left: -2.3vw;
-        top: 5vw;
-        }
-    
-        .color-option {     
-        font-size: 5vw;
-        width: 4vw;
-        height: 6vh;
-        border: 2.5px solid black;
-        }
-
-        svg {
-            width: 7vw;
-            height: 7vh;
-            
-        }
-
-   
-}
-
-
-@media only screen and (max-width: 950px) {
-
-    .center .start-game-btn {
-        font-size: 4vw;
-        top:50vh;
-        left:50vw;
-    }
-
-
-    .right .players .player .player-input-form .name-input {
- 
-        width: 28vw;
-        height: 6vh;
-
-        font-size: 3.5vh;
-
-    }
-
-    
-    #color-palette-player-1.show-colors {
-    display: block;
-    font-size: 0.7vw;
-    list-style: none;
-    position: absolute;
-    right: 0;
-    left: -3.5vw;
-    top: 6vh;
-    }
-
-
-    #color-palette-player-2.show-colors {
-    font-size: 0.7vw;
-    left: -3.3vw;
-    top: 5vw;
-    }
-
-    .right .players {
-        margin-top: 5vh;
-        font-size: 3.5vw;
-
-    }
-
-    .color-option {     
-    font-size: 5vw;
-    width: 5vw;
-    height: 5vh;
-    border: 2.5px solid black;
-    }
-    svg {
-        width: 7vw;
-        height: 7vh;
-        
-    }
-
-   
-}
-
-
-@media only screen and (max-width: 850px) {
-
-    h1 {
-        font-size: 12vw;
-    }
-
-    .center .start-game-btn {
-        font-size: 4.5vw;
-        top:75vh;
-        left:50vw;
-    }
-
-    .right .players .player .player-input-form .name-input {
-        width: 28vw;
-        height: 6vh;
-        font-size: 3.5vh;
-
-    }
-    svg {
-        width: 8vw;
-        height: 8vh;
-        
-    }
-
-    
-        #color-palette-player-1.show-colors {
-        display: block;
-        font-size: 0.7vw;
-        list-style: none;
-        position: absolute;
-        right: 0;
-        left: -3.8vw;
-        top: 7vh;
-        }
-  
-    
-        #color-palette-player-2.show-colors {
-        font-size: 0.7vw;
-        left: -3.5vw;
-        top: 6vw;
-        }
-    
-        .color-option {     
-        font-size: 5vw;
-        width: 5vw;
-        height: 5vh;
-        border: 2.5px solid black;
-        }
-
-        .right .current-player-display {
-            font-size: 7vw;
-        
-        }
-
-        aside.left .score-board .score-board-title { /* <h3> title on score board */
-            font-size: 7vw;
-        }
-    
-    
-        aside.left .score-board .player-scores { /* <div> containing both players name + score */
-            font-size: 5vw;
-            
-        }
-        
-    
-        
-        .left .score-board .player-scores .score { /* <li> displaying a player score */
-            font-size: 6vw;
-            
-        }
-        
-    
-        .left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
-            font-size: 5vw;
-        }
-
-        .right .players {
-      
-            font-size: 5vw;
-
-            }
-    
-
-   
-}
-
-
-
-@media only screen and (max-width: 750px) {
-
-    h1 {
-        font-size: 10vw;
-    }
-
-    .center .start-game-btn {
-        font-size: 5vw;
-        top: 65vh;
-    
-    }
-
-    .right .players .player .player-input-form .name-input {
- 
-        width: 35vw;
-        height: 7vh;
-
-        font-size: 3.5vh;
-
-    }
-    svg {
-        width: 8vw;
-        height: 8vh;
-        
-    }
-
-    aside.left .score-board .score-board-title { /* <h3> title on score board */
-        display: flex;
-        flex-direction : column;
-        justify-content: flex-start;
-        font-size: 5vw;
-    }
-
-
-    aside.left .score-board .player-scores { /* <div> containing both players name + score */
-        font-size: 4vw;
-        
-    }
-    
-
-    
-    .left .score-board .player-scores .score { /* <li> displaying a player score */
-        font-size: 5vw;
-        padding-top: 2.5vw;
-        
-    }
-    
-
-    .left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
-        font-size: 4vw;
-    }
-
-    
-        #color-palette-player-1.show-colors {
-        display: block;
-        font-size: 0.7vw;
-        list-style: none;
-        position: absolute;
-        right: 0;
-        left: -4.9vw;
-        top: 7vh;
-        }
-  
-    
-        #color-palette-player-2.show-colors {
-        font-size: 0.7vw;
-        left: -4.5vw;
-        top: 7vw;
-        }
-    
-        .color-option {     
-        font-size: 5vw;
-        width: 7vw;
-        height: 5vh;
-        border: 2.5px solid black;
-        }
-
-        .right .players { /* <section> element -> contains 2 <div> elements, one for each player */
-            font-size: 5vw;
-        }
-        .right .current-player-display {
-            font-size: 7vw;
-        
-        }
-  
-
-   
-}
-
-
-@media only screen and (max-width: 700px) {
-
-    h1 {
-        font-size: 12vw;
-    }
-
-    .center .start-game-btn {
-        font-size: 6.5vw;
-        cursor: pointer;
-        top:55vh;
-        left:50vw;
-    }
-
-
-    .right .players .player .player-input-form .name-input {
- 
-        width: 35vw;
-        height: 7vh;
-        font-size: 3.5vh;
-
-    }
-    svg {
-        width: 8vw;
-        height: 8vh;
-        
-    }
-
-
-
-    aside.left .score-board .score-board-title { /* <h3> title on score board */
-
-        font-size: 6vw;
-    }
-
-
-    aside.left .score-board .player-scores { /* <div> containing both players name + score */
-        font-size: 5vw;
-        
-    }
-    
-
-    
-    .left .score-board .player-scores .score { /* <li> displaying a player score */
-        font-size: 6vw;
-        
-    }
-    
-
-    .left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
-        font-size: 5vw;
-    }
-        #color-palette-player-1.show-colors {
-        left: -5.2vw;
-        top: 8vh;
-        }
-  
-    
-        #color-palette-player-2.show-colors {
-        font-size: 0.7vw;
-        left: -5vw;
-        top: 8vw;
-        }
-    
-        .color-option {     
-        font-size: 5vw;
-        width: 7vw;
-        height: 5vh;
-        border: 2.5px solid black;
-        }
-
-        .right .players { /* <section> element -> contains 2 <div> elements, one for each player */
-            font-size: 5vw;
-        }
-
-        .right .current-player-display {
-            font-size: 7vw;
-        
-        }
-  
-
-   
-}
-
-
-@media only screen and (max-width: 650px) {
-
-
-        #color-palette-player-1.show-colors {
-        left: -5.9vw;
-        top: 8vh;
-        }
-  
-    
-        #color-palette-player-2.show-colors {
-        left: -5.8vw;
-        top: 9vw;
-        }
-
-   
-}
-
-@media only screen and (max-width: 550px) {
-
-    h1 {
-        font-size: 15vw;
-    }
-
-    .center .start-game-btn {
-        font-size: 8vw;
-    }
-
-
-    .right .players .player .player-input-form .name-input {
- 
-        width: 45vw;
-        height: 7vh;
-        font-size: 3.5vh;
-
-    }
-    svg {
-        width: 8vw;
-        height: 8vh;
-        
-    }
-
-
-
-    aside.left .score-board .score-board-title { /* <h3> title on score board */
-
-        font-size: 6vw;
-    }
-
-
-    aside.left .score-board .player-scores { /* <div> containing both players name + score */
-        font-size: 5vw;
-        
-    }
-    
-
-    
-    .left .score-board .player-scores .score { /* <li> displaying a player score */
-        font-size: 6vw;
-        
-    }
-    
-
-    .left .score-board .draw-score-reset .draw-score { /* <div> showing number of draws */
-        font-size: 5vw;
-    }
-        #color-palette-player-1.show-colors {
-        left: -5.2vw;
-        top: 8vh;
-        }
-  
-    
-        #color-palette-player-2.show-colors {
-        font-size: 0.7vw;
-        left: -5vw;
-        top: 8vw;
-        }
-    
-        .color-option {     
-        font-size: 5vw;
-        width: 7vw;
-        height: 5vh;
-        border: 2.5px solid black;
-        }
-
-        .right .players { /* <section> element -> contains 2 <div> elements, one for each player */
-            font-size: 5vw;
-        }
-
-        .right .current-player-display {
-            font-size: 7vw;
-        
-        }
-  
-
-   
+    margin-bottom: 0.5rem;
 }

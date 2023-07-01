@@ -1,0 +1,220 @@
+@media only screen and (max-width: 1500px) {
+    .btn-clear-scores { margin-left: 12%; }
+    .player-input-form.display { width: 80%; }
+    .name-input { width: 70%; }
+}
+
+@media only screen and (max-width: 1350px) {
+
+    body { height: 100%; }
+
+    main {
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .app-title {
+        font-size: 4.5rem;
+        margin-top: 3rem;
+    }
+
+    .start-game-btn { top:46% !important;}
+
+    /* reordering the left/center/right sections to center/right/left */
+    .flex-item:nth-of-type(1) {
+        order: 3;
+        padding-bottom: 5rem;
+     }
+
+    .flex-item:nth-of-type(2) {  
+        order: 1;
+    }
+
+    .flex-item:nth-of-type(3) { 
+        order: 2;
+        border-top: 2px solid rgba(255, 255, 255, 0.4);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        width: 80%;
+    }
+
+    .your-turn-display { justify-content: center; }
+
+    .player-visible { justify-content: center !important; }
+
+    .player-input-form.display {
+        justify-content: center; 
+        width: 60%;
+    }
+
+    .welcome { justify-content: center !important; }
+
+    .left { width: 100%; }
+
+    .draw-score-reset { width: 30% !important; }
+}
+
+@media only screen and (max-width: 1050px) {
+    .left { margin-bottom: 30rem; }
+    .start-game-btn { top:25% !important; }
+    .message { margin-top: -30rem; }
+}
+
+@media only screen and (max-width: 1000px) {
+    .left { margin-bottom: 5rem; }
+    .message { margin-top: 0rem; }
+}
+
+@media only screen and (max-width: 900px) {
+    .draw-score-reset { width: 40% !important; }
+    .left { margin-bottom: 15rem; }
+    .start-game-btn { top:35% !important; }
+}
+
+@media only screen and (max-width: 800px) {
+    .message {
+        font-size: 4rem;
+        padding: 10px;
+    }
+
+    .message .draw-sad-face svg { scale: 0.75; }
+
+    .message .btn, .message.display-draw .btn {
+        font-size: 2rem;
+        padding: 0.7rem;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+
+    .start-game-btn {
+        font-size: 2rem !important;
+        padding: 1.2rem !important;
+        top:46% !important;
+        left:50%;
+    }
+
+    .left { margin-bottom: 1rem; }
+
+    .name-input {
+        width: 70% !important;
+        font-size: 1rem !important;
+    }
+
+    .draw-score-reset { width: 85% !important; }
+}
+
+@media only screen and (max-width: 600px) {
+    .start-game-btn { top:42% !important; }
+}
+
+@media only screen and (max-width: 500px) {
+    :root {
+        --cell-size: 130px;      
+    }
+
+    .start-game-btn {
+        top:43% !important;
+        font-size: 1.5rem !important;
+    }
+
+    .message {
+        font-size: 3rem;
+        padding: 10px;
+    }
+
+    .message .btn, .message.display-draw .btn {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .message .draw-sad-face svg { scale: 0.6; }
+    .settings svg { scale: 0.8; }
+    .player-input-form.display { width: 80%; }
+    .welcome { font-size: 2rem !important; }
+    .display-name-player { font-size: 1.4rem; }
+    .your-turn-display { font-size: 1.5rem; }
+    .color-dropdown.show-colors { bottom: -3rem; }
+
+    .color-option { 
+        font-size: 1rem;
+        width: 2rem;
+  
+    }
+
+    .score-board-title { font-size: 1.75rem !important; }
+    .draw-score { font-size: 1.5rem !important; }
+    .btn-clear-scores svg { scale: 0.8; }
+}
+
+
+@media only screen and (max-width: 450px) {
+    :root {
+        --cell-size: 120px;      
+    }
+
+    .app-title { font-size: 4rem; }
+    .start-game-btn { top:40% !important; }
+
+    .color-option { 
+        font-size: 1rem;
+        width: 1.7rem;
+    }
+
+    .color-dropdown.show-colors { bottom: -2.4rem; }
+    .settings { gap: 1rem !important; }
+}
+
+@media only screen and (max-width: 400px) {
+
+    :root {
+        --cell-size: 110px;      
+    }
+
+    .start-game-btn { top:40% !important; }
+    .app-title { font-size: 3.5rem; }
+    .player-input-form.display { width: 100%; }
+
+    .name-input {
+        width: 100% !important;
+        font-size: 0.8rem !important;
+    }
+
+    .player-visible {
+        gap: 1rem !important; 
+        width: 100% !important;
+    }
+
+    .btn-add-player-info svg { scale: 0.8; }
+    .message .draw-sad-face { flex-direction: column; }
+}
+
+@media only screen and (max-width: 370px) {
+
+    :root {
+        --cell-size: 100px;      
+    }
+
+    .app-title { font-size: 3rem; }
+
+    .start-game-btn {
+        top:38% !important;
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+
+    :root {
+        --cell-size: 80px;      
+    }
+
+    .app-title { font-size: 2.75rem; }
+
+    .start-game-btn {
+        font-size: 1.2rem !important;
+        top:40% !important;
+        width: 56%;
+    }
+}
