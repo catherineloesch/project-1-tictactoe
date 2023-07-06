@@ -686,3 +686,44 @@ RIGHT section of screen | player info
     align-items: center;
     margin-bottom: 0.5rem;
 }
+
+.contact-icons {
+
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+
+
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.contact-icon a svg {
+    color: rgba(108, 119, 137, 0.6);
+}
+
+.contact-portfolio {
+    text-decoration: none;
+    color: rgba(108, 119, 137, 0.6);
+    font-size: 1.2rem;
+
+}
+
+.contact-icon {    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5rem;
+}
+
+.contact-icon a svg:hover, .contact-portfolio:hover {
+    color: #6b7688;
+}
