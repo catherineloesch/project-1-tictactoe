@@ -688,42 +688,51 @@ RIGHT section of screen | player info
 }
 
 .contact-icons {
-
     position: absolute;
     bottom: 8px;
-    left: 0;
+    left: 10px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
     gap: 10px;
-
-
     font-size: 1.2rem;
     width: 100%;
 }
 
-.contact-icon a svg {
-    color: rgba(108, 119, 137, 0.6);
-}
-
-.contact-portfolio {
-    text-decoration: none;
-    color: rgba(108, 119, 137, 0.6);
-    font-size: 1.2rem;
-
-}
-
 .contact-icon {    
-
     display: flex;
     justify-content: center;
     align-items: center;
     align-items: center;
     transition: all 0.3s ease-in-out;
     font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(108, 119, 137, 0.6);
 }
 
-.contact-icon a svg:hover, .contact-portfolio:hover {
+.contact-icon a svg {
+    color: rgba(108, 119, 137, 0.6);
+    width: 20px;
+    height: 20px;
+    padding-top: 3px;
+    transition: all 0.3s ease-in-out; 
+    padding-bottom: 2px;
+    scale: 1.1;
+    border-radius: 30%;
+
+}
+
+.contact-icon-portfolio a svg{
+    scale: 0.9;
+}
+
+.contact-icon a svg:hover {
     color: #6b7688;
+}
+
+.contact-icon:hover {
+    border: 1px solid #6b7688;
 }
