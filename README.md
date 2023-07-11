@@ -19,7 +19,8 @@
 ## <a name="description"></a> 1. Description
 
 A classic game of Tic Tac Toe built from scratch in 7 days using HTML/CSS/JS. This solo project was the first application built as part of the curriculum for the General Assembly Software Engineering Immersive Course, with the objective of building a dynamic game that allows two players to compete from the same computer. <br>
-This version lets users enter their name and pick a colour. After they start the game, a preview of their symbol will appear in any empty cell when they hover over it and a display notifies them about whose turn it is, who wins or if there's a draw. Users can also reset the game and keep track of the number of draws and wins. The game features animations and sound effects, which can be muted and the LocalStorage option enables users to continue their gaming session where they left off after the page reloads or the internet connection is interrupted.
+This version lets users enter their name and pick a colour. After they start the game, a preview of their symbol will appear in any empty cell when they hover over it and a display notifies them about whose turn it is, who wins or if there's a draw. Users can also reset the game and keep track of the number of draws and wins. The game features animations and sound effects, which can be muted and the LocalStorage option enables users to continue their gaming session where they left off after the page reloads or the internet connection is interrupted. <br>
+The updated version of the app is fully responsive for easy navigation on mobile devices.
 
 <br>
 
@@ -51,8 +52,12 @@ This game was written in vanilla JavaScript, HTML and CSS.
 ### External web resources:
 
 - icons
-  - all icons used are Scalable Vector Graphics from iconify (open source svg library)
+
+  - iconify
     - https://iconify.design/
+  - fontawesome
+    - https://fontawesome.com/
+
 - font
   - Comfortaa, designed by Johan Aakerlund
   - available at:
